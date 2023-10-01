@@ -4,10 +4,13 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  unstable = import <nixos-unstable> {config = {allowUnfree = true;};};
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -58,6 +61,11 @@
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "pango";
+
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
 
   # Configure keymap in X11
   # services.xserver = {
@@ -150,101 +158,113 @@
   # nixpkgs.config.brave.commandLineArgs = "--disable-features=WaylandFractionalScaleV1";
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    neovim
-    vim
-    wget
-    git
-    home-manager
+  environment.systemPackages =
+    (with unstable; [
+      neovim
+      vim
+      wget
+      git
+      home-manager
 
-    kitty
-    wezterm
-    nushell
-    starship
-    neofetch
+      kitty
+      wezterm
+      nushell
+      starship
+      neofetch
 
-    vscodium
-    vlc
-    # wl-clipboard
-    xclip
+      vscodium
+      vlc
+      # wl-clipboard
+      xclip
 
-    firefox
-    thunderbird
-    brave
-    # chromium
-    obsidian
-    qownnotes
-    # qbittorrent
-    # quartus-prime-lite
+      firefox
+      thunderbird
+      brave
+      # chromium
+      obsidian
+      qownnotes
+      # qbittorrent
+      # quartus-prime-lite
+      # (pkgs.discord.override {
+      #   # remove any overrides that you don't want
+      #   withOpenASAR = true;
+      #   withVencord = true;
+      # })
+      discord
+      betterdiscordctl
 
-    nodejs
-    deno
-    yarn
-    bun
-    nodePackages_latest.pnpm
-    rustup
-    # rust-analyzer
-    gcc
-    gnumake
-    python312
+      nodejs
+      deno
+      yarn
+      bun
+      nodePackages_latest.pnpm
+      rustup
+      # rust-analyzer
+      gcc
+      gnumake
+      python312
+      zig
+      zls
 
-    # fuck mason
-    stylua
-    luajitPackages.lua-lsp
-    lua-language-server
-    nodePackages_latest.vscode-css-languageserver-bin
-    nodePackages_latest.svelte-language-server
-    nodePackages_latest.typescript-language-server
-    typescript
-    nodePackages_latest.prettier
-    prettierd
-    vscode-langservers-extracted
-    nil # nix
-    alejandra # nix
-    marksman
+      # fuck mason
+      stylua
+      luajitPackages.lua-lsp
+      lua-language-server
+      nodePackages_latest.vscode-css-languageserver-bin
+      nodePackages_latest.svelte-language-server
+      nodePackages_latest.typescript-language-server
+      typescript
+      nodePackages_latest.prettier
+      prettierd
+      vscode-langservers-extracted
+      nil # nix
+      alejandra # nix
+      marksman
 
-    # gimp-with-plugins
-    # gimpPlugins.gmic
-    # gmic-qt
+      # gimp-with-plugins
+      # gimpPlugins.gmic
+      # gmic-qt
 
-    (catppuccin-gtk.override {
-      accents = ["blue" "flamingo" "green" "lavender" "maroon" "mauve" "peach" "pink" "red" "rosewater" "sapphire" "sky" "teal" "yellow"];
-      size = "compact";
-      tweaks = ["rimless"];
-      variant = "mocha";
-    })
+      (catppuccin-gtk.override {
+        accents = ["blue" "flamingo" "green" "lavender" "maroon" "mauve" "peach" "pink" "red" "rosewater" "sapphire" "sky" "teal" "yellow"];
+        size = "compact";
+        tweaks = ["rimless"];
+        variant = "mocha";
+      })
 
-    appimage-run
-    # wine-wayland
+      appimage-run
+      # wine-wayland
 
-    eza
-    bat
-    ripgrep
-    fzf
-    zoxide
+      eza
+      bat
+      ripgrep
+      fzf
+      zoxide
 
-    # ani-cli
-    # mpv
-    # aria
-    # yt-dlp
-    # ffmpeg
+      # ani-cli
+      # mpv
+      # aria
+      # yt-dlp
+      # ffmpeg
 
-    # woeusb
-    trashy
-    tmux
-    lldb
-    unzip
-    # gnupg
-    # pinentry
+      # woeusb
+      trashy
+      tmux
+      lldb
+      unzip
+      # gnupg
+      # pinentry
 
-    # for pix-engine crate
-    # SDL2
-    # SDL2_image
-    # SDL2_mixer
-    # SDL2_mixer_2_0
-    # SDL2_ttf
-    # SDL2_gfx
-  ];
+      # for pix-engine crate
+      # SDL2
+      # SDL2_image
+      # SDL2_mixer
+      # SDL2_mixer_2_0
+      # SDL2_ttf
+      # SDL2_gfx
+    ])
+    ++ (with pkgs; [
+      ]);
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;

@@ -45,8 +45,8 @@
       cd = "z";
       # :q = "exit";
 
-      cn = "vim /home/pango/system/nixos/configuration.nix";
-      fn = "sudo nixos-rebuild switch --flake /home/pango/system/#PangoliNix";
+      cn = "cd /home/pango/system && vim .";
+      fn = "sudo nixos-rebuild switch --flake /home/pango/system/#PangoliNix --impure";
     };
 
     initExtraFirst = ''
@@ -70,6 +70,7 @@
         {name = "nix-community/nix-zsh-completions";}
         # {name = "zdharma-continuum/zsh-fast-syntax-highlighting";}
         {name = "zsh-users/zsh-autosuggestions";}
+        {name = "ziglang/shell-completions";}
       ];
     };
   };
