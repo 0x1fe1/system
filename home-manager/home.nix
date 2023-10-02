@@ -42,7 +42,7 @@
       ll3 = "eza -FTla --icons -L=3 -s=type";
       lla = "eza -FTla --icons -s=type";
       v = "nvim";
-      cd = "z";
+      g = "z";
       # :q = "exit";
 
       cn = "cd /home/pango/system && vim .";
@@ -78,7 +78,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
+    # viAlias = true;
+    # vimAlias = true;
   };
 }
