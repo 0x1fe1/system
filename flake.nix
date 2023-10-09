@@ -9,11 +9,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    # nvix.url = "github:Pangolecimal/nvix";
   };
 
   outputs = {
     self,
     nixpkgs,
+    # nvix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -30,6 +33,11 @@
 
         modules = [
           ./nixos/configuration.nix
+          # {
+          #   environment.systemPackages = [
+          #       nvix
+          #   ];
+          # }
         ];
       };
     };

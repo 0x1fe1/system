@@ -14,6 +14,14 @@ in {
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  # nix = {
+  #   package = pkgs.nixFlakes;
+  #   extraOptions =
+  #     lib.optionalString (config.nix.package == pkgs.nixFlakes)
+  #     "experimental-features = nix-command flakes";
+  # };
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     users.pango = import ../home-manager/home.nix;
@@ -152,8 +160,6 @@ in {
   # systemd.services."getty@tty1".enable = false;
   # systemd.services."autovt@tty1".enable = false;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # nixpkgs.config.brave.commandLineArgs = "--disable-features=WaylandFractionalScaleV1";
 
@@ -173,6 +179,7 @@ in {
       neofetch
 
       vscodium
+      libsForQt5.kate
       vlc
       # wl-clipboard
       xclip
@@ -184,7 +191,7 @@ in {
       obsidian
       qownnotes
       # qbittorrent
-      # quartus-prime-lite
+      quartus-prime-lite
       # (pkgs.discord.override {
       #   # remove any overrides that you don't want
       #   withOpenASAR = true;
@@ -192,6 +199,9 @@ in {
       # })
       discord
       betterdiscordctl
+      inkscape
+      libreoffice
+      unityhub
 
       nodejs
       deno
@@ -203,8 +213,12 @@ in {
       gcc
       gnumake
       python312
+
       zig
       zls
+
+      go
+      gopls
 
       # fuck mason
       stylua
@@ -252,6 +266,7 @@ in {
       tmux
       lldb
       unzip
+      tree-sitter
       # gnupg
       # pinentry
 

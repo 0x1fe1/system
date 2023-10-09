@@ -1,6 +1,7 @@
 {
-  config,
+  # config,
   pkgs,
+  # lib,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -9,8 +10,8 @@
   home.homeDirectory = "/home/pango";
 
   home.packages = [
-    pkgs.hello
-    (pkgs.nerdfonts.override {fonts = ["FiraCode"];})
+    # pkgs.hello
+    (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
   ];
 
   home.sessionVariables = {
@@ -18,6 +19,15 @@
   };
 
   home.file = {
+    ".config/nvim" = {
+      recursive = true;
+      source = pkgs.fetchFromGitHub {
+        owner = "Pangolecimal";
+        repo = "nvim";
+        rev = "9fd68aabbb7a491fe1dcfa9f19c12605caf4f695";
+        sha256 = "sha256-oRsyJfQUo3oJZ0I8uVBk1IChQBJXYUeMEweyU938EEk=";
+      };
+    };
   };
 
   home.stateVersion = "22.11";
@@ -45,20 +55,24 @@
       g = "z";
       # :q = "exit";
 
-      cn = "cd /home/pango/system && vim .";
+      cn = "z /home/pango/system && nvim .";
       fn = "sudo nixos-rebuild switch --flake /home/pango/system/#PangoliNix --impure";
     };
 
     initExtraFirst = ''
-        zstyle :compinstall filename '/home/pango/.zshrc'
+      zstyle :compinstall filename '/home/pango/.zshrc'
 
-        autoload -Uz compinit
-        compinit
+      autoload -Uz compinit
+      compinit
 
-        eval "$(starship init zsh)"
-        eval "$(zoxide init zsh)"
-        eval "$(wezterm shell-completion --shell zsh)"
-        source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+      eval "$(starship init zsh)"
+      eval "$(zoxide init zsh)"
+      eval "$(wezterm shell-completion --shell zsh)"
+      source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+      function precmd {
+        print -Pn "\e[34m%~ \e[0m"
+      }
     '';
 
     # histSize = 10000;
