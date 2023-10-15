@@ -9,9 +9,10 @@
   home.username = "pango";
   home.homeDirectory = "/home/pango";
 
-  home.packages = [
+  home.packages = with pkgs; [
     # pkgs.hello
-    (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+    times-newer-roman
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
   ];
 
   home.sessionVariables = {
@@ -19,18 +20,18 @@
   };
 
   home.file = {
-    ".config/nvim" = {
-      recursive = true;
-      source = pkgs.fetchFromGitHub {
-        owner = "Pangolecimal";
-        repo = "nvim";
-        rev = "9fd68aabbb7a491fe1dcfa9f19c12605caf4f695";
-        sha256 = "sha256-oRsyJfQUo3oJZ0I8uVBk1IChQBJXYUeMEweyU938EEk=";
-      };
-    };
+    # ".config/nvim" = {
+    #   recursive = true;
+    #   source = pkgs.fetchFromGitHub {
+    #     owner = "Pangolecimal";
+    #     repo = "nvim";
+    #     rev = "9fd68aabbb7a491fe1dcfa9f19c12605caf4f695";
+    #     sha256 = "sha256-oRsyJfQUo3oJZ0I8uVBk1IChQBJXYUeMEweyU938EEk=";
+    #   };
+    # };
   };
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   programs.home-manager.enable = true;
 
@@ -89,9 +90,16 @@
     };
   };
 
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+  #   }))
+  # ];
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    # package = pkgs.neovim;
     # viAlias = true;
     # vimAlias = true;
   };

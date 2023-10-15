@@ -59,16 +59,20 @@ in {
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    # Enable the KDE Plasma Desktop Environment.
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "pango";
+    displayManager = {
+      # Enable automatic login for the user.
+      autoLogin.enable = true;
+      autoLogin.user = "pango";
+    };
+  };
 
   security.pam.services.kwallet = {
     name = "kwallet";
@@ -104,45 +108,49 @@ in {
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  ##### NVIDIA bullshit ~~ Google: NixOS NVIDIA
-  # Make sure opengl is enabled
+  # fix unity login page not opening
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+  };
+
+  ##### NVIDIA bullshit | https://nixos.wiki/wiki/Nvidia
+  # Enable OpenGL
   hardware.opengl = {
     enable = true;
     driSupport = true;
+    driSupport32Bit = true;
   };
 
-  # NVIDIA drivers are unfree
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-      "nvidia-settings"
-    ];
-
-  # Tell Xorg to use the nvidia driver
+  # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
+
   hardware.nvidia = {
-    # for wayland
+    # Modesetting is required.
     modesetting.enable = true;
 
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # powerManagement.enable = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    # powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+    # Only available from driver 515.43.04+
+    # Do not disable this unless your GPU is unsupported or if you have a good reason to.
     open = true;
+
+    # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
-  # maybe fix for black sceen after suspend?
-  # hardware.nvidia.prime = {
-  #   sync.enable = true;
-  #   nvidiaBusId = "PCI:1:0:0";
-  #   intelBusId = "PCI:0:2:0";
-  # };
-  # hardware.nvidia.powerManagement.enable = true;
-  #
-  # systemd.services.nvidia-resume.serviceConfig = {
-  #   ExecStartPost = "${pkgs.xorg.xrandr}/bin/xrandr --display :0.0 --auto";
-  # };
-  # services.xserver.displayManager.sessionCommands = ''
-  #   ${pkgs.xorg.xhost}/bin/xhost +local:
-  # '';
   #####
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -172,14 +180,14 @@ in {
       git
       home-manager
 
-      kitty
+      # kitty
       wezterm
-      nushell
+      # nushell
       starship
       neofetch
 
       vscodium
-      libsForQt5.kate
+      # libsForQt5.kate
       vlc
       # wl-clipboard
       xclip
@@ -199,41 +207,27 @@ in {
       # })
       discord
       betterdiscordctl
-      inkscape
       libreoffice
       unityhub
 
       nodejs
-      deno
       yarn
       bun
-      nodePackages_latest.pnpm
       rustup
       # rust-analyzer
       gcc
       gnumake
       python312
-
-      zig
-      zls
-
-      go
-      gopls
-
-      # fuck mason
-      stylua
-      luajitPackages.lua-lsp
-      lua-language-server
-      nodePackages_latest.vscode-css-languageserver-bin
-      nodePackages_latest.svelte-language-server
-      nodePackages_latest.typescript-language-server
       typescript
-      nodePackages_latest.prettier
-      prettierd
-      vscode-langservers-extracted
-      nil # nix
-      alejandra # nix
-      marksman
+      zig
+      go
+
+      # temp vvv
+      alejandra
+      nil
+      lua-language-server
+      stylua
+      # temp ^^^
 
       # gimp-with-plugins
       # gimpPlugins.gmic
@@ -254,6 +248,7 @@ in {
       ripgrep
       fzf
       zoxide
+      fd
 
       # ani-cli
       # mpv
