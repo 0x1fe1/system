@@ -227,6 +227,7 @@ in {
       nil
       lua-language-server
       stylua
+      gopls
       # temp ^^^
 
       # gimp-with-plugins
@@ -249,6 +250,7 @@ in {
       fzf
       zoxide
       fd
+      manix
 
       # ani-cli
       # mpv

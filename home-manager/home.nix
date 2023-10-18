@@ -52,11 +52,11 @@
       ll2 = "eza -FTla --icons -L=2 -s=type";
       ll3 = "eza -FTla --icons -L=3 -s=type";
       lla = "eza -FTla --icons -s=type";
-      v = "nvim";
+      v = "nix run /home/pango/nvix/#nvim";
       g = "z";
-      # :q = "exit";
+      ":q" = "exit";
 
-      cn = "z /home/pango/system && nvim .";
+      cn = "z /home/pango/system && v .";
       fn = "sudo nixos-rebuild switch --flake /home/pango/system/#PangoliNix --impure";
     };
 
