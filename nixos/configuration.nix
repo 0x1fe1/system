@@ -1,17 +1,20 @@
 {
   inputs,
   config,
-  lib,
   pkgs,
   ...
 }: let
   unstable = import <nixos-unstable> {config = {allowUnfree = true;};};
+  getPkgs = import /home/pango/system/nixos/packages.nix;
 in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
+
+    # add device-specific configuration
+    # /home/pango/device-specific/nvidia.nix {inherit config;}
   ];
 
   # nix = {
@@ -114,16 +117,27 @@ in {
     xdgOpenUsePortal = true;
   };
 
-  ##### NVIDIA bullshit | https://nixos.wiki/wiki/Nvidia
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.pango = {
+    isNormalUser = true;
+    description = "Pangolecimal";
+    extraGroups = ["networkmanager" "wheel"];
+    # packages = with pkgs; [
+    #	 # firefox
+    #	 # thunderbird
+    # ];
+  };
+
+  ### NVIDIA bullshit | https://nixos.wiki/wiki/Nvidia
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
-
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -151,132 +165,16 @@ in {
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  #####
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.pango = {
-    isNormalUser = true;
-    description = "Pangolecimal";
-    extraGroups = ["networkmanager" "wheel"];
-    # packages = with pkgs; [
-    #	 # firefox
-    #	 # thunderbird
-    # ];
-  };
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  # systemd.services."getty@tty1".enable = false;
-  # systemd.services."autovt@tty1".enable = false;
+  ###
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # nixpkgs.config.brave.commandLineArgs = "--disable-features=WaylandFractionalScaleV1";
 
   # List packages installed in system profile.
-  environment.systemPackages =
-    (with unstable; [
-      neovim
-      vim
-      wget
-      git
-      home-manager
-
-      # kitty
-      wezterm
-      # nushell
-      starship
-      neofetch
-
-      vscodium
-      # libsForQt5.kate
-      vlc
-      # wl-clipboard
-      xclip
-
-      firefox
-      thunderbird
-      brave
-      # chromium
-      obsidian
-      qownnotes
-      # qbittorrent
-      quartus-prime-lite
-      # (pkgs.discord.override {
-      #   # remove any overrides that you don't want
-      #   withOpenASAR = true;
-      #   withVencord = true;
-      # })
-      discord
-      betterdiscordctl
-      libreoffice
-      unityhub
-
-      nodejs
-      yarn
-      bun
-      rustup
-      # rust-analyzer
-      gcc
-      gnumake
-      python312
-      typescript
-      zig
-      go
-
-      # temp vvv
-      alejandra
-      nil
-      lua-language-server
-      stylua
-      gopls
-      # temp ^^^
-
-      # gimp-with-plugins
-      # gimpPlugins.gmic
-      # gmic-qt
-
-      (catppuccin-gtk.override {
-        accents = ["blue" "flamingo" "green" "lavender" "maroon" "mauve" "peach" "pink" "red" "rosewater" "sapphire" "sky" "teal" "yellow"];
-        size = "compact";
-        tweaks = ["rimless"];
-        variant = "mocha";
-      })
-
-      appimage-run
-      # wine-wayland
-
-      eza
-      bat
-      ripgrep
-      fzf
-      zoxide
-      fd
-      manix
-
-      # ani-cli
-      # mpv
-      # aria
-      # yt-dlp
-      # ffmpeg
-
-      # woeusb
-      trashy
-      tmux
-      lldb
-      unzip
-      tree-sitter
-      # gnupg
-      # pinentry
-
-      # for pix-engine crate
-      # SDL2
-      # SDL2_image
-      # SDL2_mixer
-      # SDL2_mixer_2_0
-      # SDL2_ttf
-      # SDL2_gfx
-    ])
-    ++ (with pkgs; [
-      ]);
+  environment.systemPackages = getPkgs {
+    pkgs-unstable = unstable;
+    pkgs-stable = pkgs;
+  };
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;

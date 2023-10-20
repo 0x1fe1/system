@@ -22,12 +22,13 @@
   home.file = {
     # ".config/nvim" = {
     #   recursive = true;
-    #   source = pkgs.fetchFromGitHub {
-    #     owner = "Pangolecimal";
-    #     repo = "nvim";
-    #     rev = "9fd68aabbb7a491fe1dcfa9f19c12605caf4f695";
-    #     sha256 = "sha256-oRsyJfQUo3oJZ0I8uVBk1IChQBJXYUeMEweyU938EEk=";
-    #   };
+    #   source = /home/pango/system/home-manager/nvim;
+      # source = pkgs.fetchFromGitHub {
+      #   owner = "Pangolecimal";
+      #   repo = "nvim";
+      #   rev = "9fd68aabbb7a491fe1dcfa9f19c12605caf4f695";
+      #   sha256 = "sha256-oRsyJfQUo3oJZ0I8uVBk1IChQBJXYUeMEweyU938EEk=";
+      # };
     # };
   };
 
@@ -52,7 +53,7 @@
       ll2 = "eza -FTla --icons -L=2 -s=type";
       ll3 = "eza -FTla --icons -L=3 -s=type";
       lla = "eza -FTla --icons -s=type";
-      v = "nix run /home/pango/nvix/#nvim";
+      v = "nix run /home/pango/.config/nvim/#nvim";
       g = "z";
       ":q" = "exit";
 
