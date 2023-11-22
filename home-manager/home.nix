@@ -1,7 +1,8 @@
 {
   # config,
-  pkgs,
   # lib,
+  pkgs,
+  unstable,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -9,28 +10,12 @@
   home.username = "pango";
   home.homeDirectory = "/home/pango";
 
-  home.packages = with pkgs; [
-    # pkgs.hello
-    times-newer-roman
-    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
-  ];
+  # List packages installed in system profile.
+  home.packages = [];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = {EDITOR = "nvim";};
 
-  home.file = {
-    # ".config/nvim" = {
-    #   recursive = true;
-    #   source = /home/pango/system/home-manager/nvim;
-      # source = pkgs.fetchFromGitHub {
-      #   owner = "Pangolecimal";
-      #   repo = "nvim";
-      #   rev = "9fd68aabbb7a491fe1dcfa9f19c12605caf4f695";
-      #   sha256 = "sha256-oRsyJfQUo3oJZ0I8uVBk1IChQBJXYUeMEweyU938EEk=";
-      # };
-    # };
-  };
+  home.file = {};
 
   home.stateVersion = "23.05";
 
@@ -40,9 +25,9 @@
     enable = true;
     userName = "Pangolecimal";
     userEmail = "domkuzaleza@gmail.com";
+    package = unstable.git;
   };
 
-  # programs.zsh.interactiveShellInit = "source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -54,8 +39,11 @@
       ll3 = "eza -FTla --icons -L=3 -s=type";
       lla = "eza -FTla --icons -s=type";
       v = "nix run /home/pango/.config/nvim/#nvim";
+      "v." = "v .";
       g = "z";
       ":q" = "exit";
+      ":x" = "exit";
+      ":xa" = "exit";
 
       cn = "z /home/pango/system && v .";
       fn = "sudo nixos-rebuild switch --flake /home/pango/system/#PangoliNix --impure";
@@ -64,18 +52,18 @@
     initExtraFirst = ''
       zstyle :compinstall filename '/home/pango/.zshrc'
 
-      autoload -Uz compinit
-      compinit
+      autoload -Uz compinit && compinit
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
       eval "$(starship init zsh)"
       eval "$(zoxide init zsh)"
       eval "$(wezterm shell-completion --shell zsh)"
-      source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
       function precmd {
         print -Pn "\e[34m%~ \e[0m"
       }
     '';
+    # source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
     # histSize = 10000;
     # histFile = "${config.xdg.dataHome}/zsh/history";
@@ -83,25 +71,11 @@
     zplug = {
       enable = true;
       plugins = [
-        {name = "nix-community/nix-zsh-completions";}
-        # {name = "zdharma-continuum/zsh-fast-syntax-highlighting";}
         {name = "zsh-users/zsh-autosuggestions";}
         {name = "ziglang/shell-completions";}
+        {name = "nix-community/nix-zsh-completions";}
+        {name = "zdharma-continuum/fast-syntax-highlighting";}
       ];
     };
-  };
-
-  # nixpkgs.overlays = [
-  #   (import (builtins.fetchTarball {
-  #     url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-  #   }))
-  # ];
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    # package = pkgs.neovim;
-    # viAlias = true;
-    # vimAlias = true;
   };
 }

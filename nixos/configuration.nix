@@ -12,21 +12,15 @@ in {
     ./hardware-configuration.nix
 
     inputs.home-manager.nixosModules.home-manager
-
-    # add device-specific configuration
-    # /home/pango/device-specific/nvidia.nix {inherit config;}
   ];
 
-  # nix = {
-  #   package = pkgs.nixFlakes;
-  #   extraOptions =
-  #     lib.optionalString (config.nix.package == pkgs.nixFlakes)
-  #     "experimental-features = nix-command flakes";
-  # };
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {
+      inherit inputs;
+      unstable = unstable;
+    };
     users.pango = import ../home-manager/home.nix;
   };
 
@@ -170,17 +164,21 @@ in {
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # nixpkgs.config.brave.commandLineArgs = "--disable-features=WaylandFractionalScaleV1";
 
-  # List packages installed in system profile.
   environment.systemPackages = getPkgs {
     pkgs-unstable = unstable;
     pkgs-stable = pkgs;
   };
+  fonts.packages = with unstable; [
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+  ];
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
 
   nixpkgs.config.allowUnfree = true;
+
+  # programs.steam.enable = true;
 
   system.stateVersion = "23.05";
 }

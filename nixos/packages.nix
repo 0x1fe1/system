@@ -1,7 +1,8 @@
 {
   pkgs-unstable,
   pkgs-stable,
-}: (with pkgs-unstable; [
+}:
+(with pkgs-unstable; [
   # * Nix
   home-manager
 
@@ -10,13 +11,14 @@
   wezterm
   # nushell
   starship
-  neovim
+  # neovim
   vim
 
   # * Utils
   wget
-  git
+  # git
   neofetch
+  ngrok
   # wl-clipboard
   xclip
   appimage-run
@@ -50,7 +52,7 @@
 
   # * Apps
   vscodium
-  # libsForQt5.kate
+  libsForQt5.kate
   vlc
   firefox
   thunderbird
@@ -79,7 +81,7 @@
   # rust-analyzer
 
   # @ Nix
-  nil
+  # nil
   alejandra
 
   # @ Go
@@ -87,8 +89,11 @@
   # gopls
 
   # @ Zig
-  zig
-  # zls
+  zig # zls
+
+  # @ Odin
+  odin
+  ols
 
   # @ C/C++
   gcc
@@ -96,11 +101,17 @@
   lldb
 
   # @ Lua
-  lua-language-server
+  lua
   stylua
+  lua-language-server
 
   # @ Python
   python3
+
+  # C# and Unity
+  neovim-remote
+  mono
+  wmctrl
 
   # Other
   (catppuccin-gtk.override {
@@ -109,7 +120,13 @@
     tweaks = ["rimless"];
     variant = "mocha";
   })
-])
-# ++ (with pkgs-stable; [
-#   ])
+  times-newer-roman
 
+  # maybe fix for tmodloader? -- i gave up, maybe will try later on
+  # dotnet-sdk
+  # faudio
+  # openssl
+])
+++ (with pkgs-stable; [
+  cowsay
+])
