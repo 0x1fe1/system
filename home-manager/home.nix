@@ -21,6 +21,11 @@
 
   programs.home-manager.enable = true;
 
+  programs.java = {
+    enable = true;
+    package = unstable.jdk;
+  };
+
   programs.git = {
     enable = true;
     userName = "Pangolecimal";

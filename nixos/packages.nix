@@ -15,6 +15,7 @@
   vim
 
   # * Utils
+  ollama
   wget
   # git
   neofetch
@@ -39,6 +40,8 @@
   trashy
   tmux
   unzip
+  rar
+  unrar
   tree-sitter
   # gnupg
   # pinentry
@@ -113,6 +116,11 @@
   mono
   wmctrl
 
+  # Java
+  # jdk
+  maven
+  # gradle
+
   # Other
   (catppuccin-gtk.override {
     accents = ["blue" "flamingo" "green" "lavender" "maroon" "mauve" "peach" "pink" "red" "rosewater" "sapphire" "sky" "teal" "yellow"];
@@ -121,6 +129,7 @@
     variant = "mocha";
   })
   times-newer-roman
+  
 
   # maybe fix for tmodloader? -- i gave up, maybe will try later on
   # dotnet-sdk

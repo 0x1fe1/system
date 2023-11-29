@@ -169,6 +169,7 @@ in {
     pkgs-stable = pkgs;
   };
   fonts.packages = with unstable; [
+    monaspace
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
   ];
 
