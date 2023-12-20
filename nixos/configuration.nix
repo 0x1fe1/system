@@ -25,8 +25,13 @@ in {
   };
 
   # Bootloader.
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.device = "nodev";
+  # boot.loader.grub.useOSProber = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  time.hardwareClockInLocalTime = true;
 
   networking.hostName = "pangolinux"; # Define your hostname.
   # networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
@@ -163,6 +168,11 @@ in {
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # nixpkgs.config.brave.commandLineArgs = "--disable-features=WaylandFractionalScaleV1";
+
+  # HACK
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   environment.systemPackages = getPkgs {
     pkgs-unstable = unstable;

@@ -13,6 +13,7 @@
   starship
   # neovim
   vim
+  micro
 
   # * Utils
   ollama
@@ -31,6 +32,7 @@
   zoxide
   fd
   manix
+  os-prober
   # ani-cli
   # mpv
   # aria
@@ -63,11 +65,12 @@
   obsidian
   qownnotes
   # qbittorrent
-  quartus-prime-lite
+  # quartus-prime-lite
   discord
   betterdiscordctl
-  libreoffice
+  libreoffice-qt
   unityhub
+  blender
   # gimp-with-plugins
   # gimpPlugins.gmic
   # gmic-qt
