@@ -46,9 +46,11 @@
       v = "nix run /home/pango/.config/nvim/#nvim";
       "v." = "v .";
       g = "z";
+      "g." = "g ..";
       ":q" = "exit";
       ":x" = "exit";
       ":xa" = "exit";
+      f = "z $(fd . --hidden --exclude \".git\" | fzf)";
 
       cn = "z /home/pango/system && v .";
       fn = "sudo nixos-rebuild switch --flake /home/pango/system/#PangoliNix --impure";

@@ -169,11 +169,6 @@ in {
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # nixpkgs.config.brave.commandLineArgs = "--disable-features=WaylandFractionalScaleV1";
 
-  # HACK
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
   environment.systemPackages = getPkgs {
     pkgs-unstable = unstable;
     pkgs-stable = pkgs;

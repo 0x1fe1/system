@@ -62,10 +62,10 @@
   firefox
   thunderbird
   brave
-  obsidian
+  # obsidian # HACK: electron 25.9.0 is EOL
   qownnotes
   # qbittorrent
-  # quartus-prime-lite
+  quartus-prime-lite
   discord
   betterdiscordctl
   libreoffice-qt
@@ -85,6 +85,7 @@
   # @ Rust
   rustup
   # rust-analyzer
+  cargo-watch
 
   # @ Nix
   # nil
@@ -100,6 +101,10 @@
   # @ Odin
   odin
   ols
+
+  # @ Nim
+  nim
+  nimble
 
   # @ C/C++
   gcc
@@ -132,7 +137,6 @@
     variant = "mocha";
   })
   times-newer-roman
-  
 
   # maybe fix for tmodloader? -- i gave up, maybe will try later on
   # dotnet-sdk
