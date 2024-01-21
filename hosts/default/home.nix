@@ -11,7 +11,14 @@ in {
 
   home.packages = with pkgs; [
     fd
+    wezterm
+    brave
+    kate
+    xclip
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+
+    (jetbrains.idea-community)
+    jdk21
 
     # (writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
@@ -47,6 +54,21 @@ in {
     enableCompletion = true;
     defaultKeymap = "emacs";
 
+    /*
+    Aliases:
+
+    [G]oto (zoxide)
+        [.] ../ (parent directory)
+        [P]ersonal
+        [N]ixos
+        [V]im
+
+    [F]uzzy Find (fzf)
+
+    [V]im
+        [.] (current directory)
+
+    */
     shellAliases = {
       ll = "eza -FTla --icons -L=1 -s=type";
       ll2 = "eza -FTla --icons -L=2 -s=type";
@@ -85,6 +107,7 @@ in {
   programs.zoxide = on-zsh;
   programs.fzf = on-zsh;
   programs.ripgrep.enable = true;
+  programs.eza.enable = true;
 
   programs.git = {
     enable = true;
