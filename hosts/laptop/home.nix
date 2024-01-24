@@ -22,7 +22,7 @@ in {
 
     ollama
     neofetch
-    ngrok
+    # ngrok
     manix
     vscodium
     vlc
