@@ -50,13 +50,14 @@
     enableCompletion = true;
     defaultKeymap = null;
 
-    shellGlobalAliases = {
+    shellAliases = {
       lla = "eza -FTla --icons -s=type";
       ll = "lla -L=1";
       ":q" = "exit";
 
       # [G]oto (zoxide)
       g = "z";
+      "g-" = "g -"; # [G]oto [-] (previous directory)
       "g." = "g .."; # [G]oto [.]./ (parent directory)
       gp = "g ~/personal"; # [G]oto [P]ersonal
       gs = "g ~/system"; # [G]oto [S]ystem
@@ -66,12 +67,14 @@
       v = "nix run ~/neovim";
       "v." = "v ."; # [V]im [.] open vim in current directory
       # [V]im [F]zf (fuzzy find into vim)
-      vf = "fzf --preview 'bat --color=always {}' --preview-window '~3' --border=rounded --bind 'enter:become(nix run ~/neovim {})'";
+      vf = "fd . -t f | fzf \
+      --preview 'bat --color=always {}' --preview-window '~3' --border=rounded \
+      --bind 'enter:become(nix run ~/neovim {})'";
 
       # [F]zf (fuzzy find)
       # [F]zf [F]unction (the underlying search directories function)
       ff = "fd . --type directory | fzf --border=rounded ";
-      f = "ff --bind 'enter:become(cd {})'";
+      f = "() { local p; p=$(ff); [[ -n \"$p\" && -d \"$p\" ]] && cd \"$p\" }";
 
       # [C]onfigure [N]ixos (goto ~/system and enter vim)
       cn = "cd /home/pango/system && v .";
@@ -79,16 +82,12 @@
       fn = "sudo nixos-rebuild switch --flake ~/system#default";
     };
 
-    sessionVariables = {
-      FZF_DEFAULT_COMMAND = "fd --type f --strip-cwd-prefix";
-      foo = "
-        a
-        b
-      ";
-    };
-
     initExtra = ''
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+    '';
+
+    envExtra = ''
+      export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
     '';
 
     zplug = {
