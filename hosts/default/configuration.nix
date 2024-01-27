@@ -113,6 +113,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
+    useGlobalPkgs = true;
     users = {
       "pango" = import ./home.nix;
     };

@@ -1,9 +1,4 @@
-{pkgs, ...}: let
-  on-zsh = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-in {
+{pkgs, ...}: {
   home.username = "pango";
   home.homeDirectory = "/home/pango";
   home.stateVersion = "23.11";
@@ -15,6 +10,7 @@ in {
     brave
     kate
     xclip
+    discord
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
 
     (jetbrains.idea-community)
@@ -52,39 +48,55 @@ in {
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    defaultKeymap = "emacs";
+    defaultKeymap = null;
 
-    /*
-    Aliases:
-
-    [G]oto (zoxide)
-        [.] ../ (parent directory)
-        [P]ersonal
-        [N]ixos
-        [V]im
-
-    [F]uzzy Find (fzf)
-
-    [V]im
-        [.] (current directory)
-
-    */
-    shellAliases = {
-      ll = "eza -FTla --icons -L=1 -s=type";
-      ll2 = "eza -FTla --icons -L=2 -s=type";
-      ll3 = "eza -FTla --icons -L=3 -s=type";
+    shellGlobalAliases = {
       lla = "eza -FTla --icons -s=type";
-      v = "nix run /home/pango/neovim";
-      "v." = "v .";
-      g = "z";
-      "g." = "z ..";
+      ll = "lla -L=1";
       ":q" = "exit";
-      ":x" = "exit";
-      ":xa" = "exit";
-      f = "z $(fd . --hidden --exclude \".git\" | fzf)";
 
+      # [G]oto (zoxide)
+      g = "z";
+      "g." = "g .."; # [G]oto [.]./ (parent directory)
+      gp = "g ~/personal"; # [G]oto [P]ersonal
+      gs = "g ~/system"; # [G]oto [S]ystem
+      gn = "g ~/neovim"; # [G]oto [N]eovim
+
+      # [V]im (nvim built with nixvim)
+      v = "nix run ~/neovim";
+      "v." = "v ."; # [V]im [.] open vim in current directory
+      # [V]im [F]zf (fuzzy find into vim)
+      vf = "fzf --preview 'bat --color=always {}' --preview-window '~3' --border=rounded --bind 'enter:become(nix run ~/neovim {})'";
+
+      # [F]zf (fuzzy find)
+      # [F]zf [F]unction (the underlying search directories function)
+      ff = "fd . --type directory | fzf --border=rounded ";
+      f = "ff --bind 'enter:become(cd {})'";
+
+      # [C]onfigure [N]ixos (goto ~/system and enter vim)
       cn = "cd /home/pango/system && v .";
-      fn = "sudo nixos-rebuild switch --flake /home/pango/system#default";
+      # [F]lake rebuild [N]ixos (switch system with the new config)
+      fn = "sudo nixos-rebuild switch --flake ~/system#default";
+    };
+
+    sessionVariables = {
+      FZF_DEFAULT_COMMAND = "fd --type f --strip-cwd-prefix";
+      foo = "
+        a
+        b
+      ";
+    };
+
+    initExtra = ''
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+    '';
+
+    zplug = {
+      enable = true;
+      plugins = [
+        {name = "zdharma-continuum/fast-syntax-highlighting";}
+        {name = "zsh-users/zsh-autosuggestions";}
+      ];
     };
   };
 
@@ -98,16 +110,21 @@ in {
         truncation_length = 64;
         truncation_symbol = "…/";
       };
-      character = {
-        error_symbol = "[✖](bold red)";
-      };
+      character.error_symbol = "[✖](bold red)";
     };
   };
 
-  programs.zoxide = on-zsh;
-  programs.fzf = on-zsh;
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.ripgrep.enable = true;
   programs.eza.enable = true;
+  programs.bat.enable = true;
 
   programs.git = {
     enable = true;
