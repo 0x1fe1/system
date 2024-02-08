@@ -6,13 +6,15 @@
 
   home.packages = with pkgs; [
     fd
+    wget
+    ollama
     wezterm
     brave
     xclip
     trash-cli
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
 
-    (jetbrains.idea-community)
+    # (jetbrains.idea-community)
     # jdk21
 
     # (writeShellScriptBin "my-hello" ''

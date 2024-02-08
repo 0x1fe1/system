@@ -24,13 +24,13 @@
   # boot.loader.efi.canTouchEfiVariables = true;
   boot = {
     loader = {
-      systemd-boot.enable = true;
-      # grub = {
-      #   enable = true;
-      #   device = "nodev";
-      #   useOSProber = true;
-      #   efiSupport = true;
-      # };
+      # systemd-boot.enable = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        useOSProber = true;
+        efiSupport = true;
+      };
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
