@@ -16,6 +16,9 @@
 
     # (jetbrains.idea-community)
     # jdk21
+    blender
+    qemu
+    quickemu
 
     # (writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
