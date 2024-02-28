@@ -106,7 +106,7 @@
         fn = toString [
           "pushd ~/system ;"
           "sudo nixos-rebuild switch --flake ~/system#laptop ;"
-          "git add . ; git commit -m \"$(nixos-rebuild list-generations --no-build-nix | grep current)\" ;"
+          "git add . ; git commit -m \"laptop: $(nixos-rebuild list-generations --no-build-nix | grep current)\" ;"
           "popd"
         ];
       };
