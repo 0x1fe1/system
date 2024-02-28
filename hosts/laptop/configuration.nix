@@ -76,9 +76,9 @@
   # services.xserver.displayManager.autoLogin.user = "pango";
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -93,6 +93,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -113,17 +114,38 @@
   users.users.pango = {
     isNormalUser = true;
     description = "pango";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
     useDefaultShell = true;
   };
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
+    useGlobalPkgs = true;
     users = {
       "pango" = import ./home.nix;
     };
   };
+
+  virtualisation = {
+    docker.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+    gtk3
+    pango
+    cairo
+    atk
+    gdk-pixbuf
+    glib
+    gobject-introspection
+    libgudev
+    glibc
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -135,6 +157,8 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+
+    spice
   ];
 
   programs.zsh.enable = true;
