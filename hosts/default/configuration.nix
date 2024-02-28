@@ -104,7 +104,7 @@
   users.users.pango = {
     isNormalUser = true;
     description = "pango";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
     useDefaultShell = true;
   };
