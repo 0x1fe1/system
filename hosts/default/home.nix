@@ -95,7 +95,12 @@
         # [C]onfigure [N]ixos (goto ~/system and enter vim)
         cn = "cd /home/pango/system && v .";
         # [F]lake rebuild [N]ixos (switch system with the new config)
-        fn = "sudo nixos-rebuild switch --flake ~/system#default";
+        fn = toString [
+          "pushd ~/system ;"
+          "sudo nixos-rebuild switch --flake ~/system#default ;"
+          "git add . ; git commit -m \"$(nixos-rebuild list-generations --no-build-nix | grep current)\" ;"
+          "popd"
+        ];
       };
 
       initExtra =
@@ -136,7 +141,6 @@
       enable = true;
       enableZshIntegration = true; # see note on other shells below
       nix-direnv.enable = true;
-      # config.load_dotenv = true;
     };
 
     starship = {
