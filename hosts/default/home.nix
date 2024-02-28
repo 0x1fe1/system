@@ -48,6 +48,13 @@
 
           local w = require("wezterm")
 
+          config = {
+            color_scheme = "Catppuccin Mocha",
+            font = w.font("FiraCode Nerd Font"),
+            adjust_window_size_when_changing_font_size = false,
+            warn_about_missing_glyphs = false,
+          }
+
           local opacity = 0.9
           config.window_background_opacity = opacity
 
@@ -70,13 +77,6 @@
               mods = "CTRL",
               action = wezterm.action.EmitEvent("toggle-opacity"),
             },
-          }
-
-          config = {
-            color_scheme = "Catppuccin Mocha",
-            font = w.font("FiraCode Nerd Font"),
-            adjust_window_size_when_changing_font_size = false,
-            warn_about_missing_glyphs = false,
           }
 
           return config
