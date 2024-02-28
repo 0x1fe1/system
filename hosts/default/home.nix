@@ -19,16 +19,20 @@
     blender
     qemu
     quickemu
+    libreoffice-qt
+    corefonts
 
     # (writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
 
+  fonts.fontconfig.enable = true;
+
   home.file = {};
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "vim";
   };
 
   programs = {
@@ -58,8 +62,9 @@
       defaultKeymap = null;
 
       shellAliases = {
-        lla = "eza -FTla --icons -s=type";
+        lla = "eza -Tla --icons -s=type";
         ll = "lla -L=1";
+        c = "clear";
         ":q" = "exit";
 
         # [J]ump to (zoxide)
@@ -69,6 +74,7 @@
         jp = "j ~/personal"; # [J]ump to [P]ersonal
         js = "j ~/system"; # [J]ump to [S]ystem
         jn = "j ~/neovim"; # [J]ump to [N]eovim
+        jm = "j ~/mirea"; # [J]ump to [N]eovim
 
         # [V]im (nvim built with nixvim)
         v = "nix run ~/neovim";
