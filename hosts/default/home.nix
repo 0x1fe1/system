@@ -122,7 +122,7 @@
         f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
 
         # [C]onfigure [N]ixos (goto ~/system and enter vim)
-        cn = "v /home/pango/system";
+        cn = "pushd /home/pango/system ; v . ; popd";
         # [F]lake rebuild [N]ixos (switch system with the new config)
         fn = toString [
           "pushd ~/system ;"
