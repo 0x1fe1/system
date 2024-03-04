@@ -12,6 +12,7 @@
     brave
     xclip
     trash-cli
+    file
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
 
     # (jetbrains.idea-community)
@@ -121,7 +122,7 @@
         f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
 
         # [C]onfigure [N]ixos (goto ~/system and enter vim)
-        cn = "cd /home/pango/system && v .";
+        cn = "v /home/pango/system";
         # [F]lake rebuild [N]ixos (switch system with the new config)
         fn = toString [
           "pushd ~/system ;"
