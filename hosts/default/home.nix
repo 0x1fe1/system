@@ -20,6 +20,7 @@
     blender
     qemu
     quickemu
+    quickgui
     libreoffice-qt
     corefonts
 
