@@ -5,28 +5,22 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    fd
-    wget
-    ollama
-    wezterm
-    brave
-    xclip
-    trash-cli
-    file
-    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
-
     # (jetbrains.idea-community)
+    # blender
     # jdk21
-    blender
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+    brave
+    corefonts
+    fd
+    file
+    libreoffice
+    ollama
     qemu
     quickemu
-    quickgui
-    libreoffice-qt
-    corefonts
-
-    # (writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    trash-cli
+    wezterm
+    wget
+    xclip
   ];
 
   fonts.fontconfig.enable = true;
