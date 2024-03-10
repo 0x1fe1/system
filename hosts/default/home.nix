@@ -4,6 +4,8 @@
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 
+  # a temp comment from DEFAULT
+
   home.packages = with pkgs; [
     # (jetbrains.idea-community)
     # blender
