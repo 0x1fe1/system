@@ -197,12 +197,15 @@
     eza.enable = true;
     bat.enable = true;
 
+    # on the LAPTOP machine run: `echo "default/*" >> .git/info/sparse-checkout`
+    # on the DEFAULT machine run: `echo "laptop/*" >> .git/info/sparse-checkout`
     git = {
       enable = true;
       userName = "Pangolecimal";
       userEmail = "domkuzaleza@gmail.com";
       extraConfig = {
         init.defaultBranch = "main";
+        core.sparseCheckout = true;
       };
     };
   };
