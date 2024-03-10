@@ -8,7 +8,7 @@
     fd
     wezterm
     brave
-    libsForQt5.kate
+    kdePackages.kate
     xclip
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
 
@@ -35,7 +35,8 @@
       set -e
       pushd ~/system
       sudo nixos-rebuild switch --flake ~/system#laptop
-      git commit -am \"laptop: $(nixos-rebuild list-generations --no-build-nix | grep current)\"
+      current=$(nixos-rebuild list-generations --no-build-nix | grep current)
+      git add . ; git commit -m "laptop: $current"
       popd
     '')
   ];
@@ -209,13 +210,13 @@
     eza.enable = true;
     bat.enable = true;
 
+    # on the LAPTOP machine run: `echo "default/*" >> .git/info/exclude`, and vice versa
     git = {
       enable = true;
       userName = "Pangolecimal";
       userEmail = "domkuzaleza@gmail.com";
       extraConfig = {
         init.defaultBranch = "main";
-        core.sparseCheckout = true;
       };
     };
   };
