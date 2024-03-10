@@ -31,9 +31,13 @@
     corefonts
     staruml
 
-    # (writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    (writeShellScriptBin "custom-flake-rebuild" ''
+      set -e
+      pushd ~/system
+      sudo nixos-rebuild switch --flake ~/system#laptop
+      git add . ; git commit -m \"laptop: $(nixos-rebuild list-generations --no-build-nix | grep current)\"
+      popd
+    '')
   ];
 
   fonts.fontconfig.enable = true;
@@ -53,14 +57,46 @@
         lua
         */
         ''
-          local w = require("wezterm")
-          return {
-            color_scheme = "Catppuccin Mocha",
-            font = w.font("FiraCode Nerd Font"),
-            window_background_opacity = 0.9,
-            adjust_window_size_when_changing_font_size = false,
-            warn_about_missing_glyphs = false,
+          local wezterm = require 'wezterm';
+
+          local config = {}
+
+          config = {
+              color_scheme = "Catppuccin Mocha",
+              font = wezterm.font_with_fallback {
+                  "FiraCode Nerd Font",
+                  "JetBrainsMono Nerd Font",
+                  "Consolas"
+              },
+              adjust_window_size_when_changing_font_size = false,
+              warn_about_missing_glyphs = false,
           }
+
+          local opacity = 0.9
+          config.window_background_opacity = opacity
+
+          -- toggle function
+          wezterm.on("toggle-opacity", function(window, _)
+              local overrides = window:get_config_overrides() or {}
+              if not overrides.window_background_opacity then
+                  -- if no override is setup, override the default opacity value with 1.0
+                  overrides.window_background_opacity = 1.0
+              else
+                  -- if there is an override, make it nil so the opacity goes back to the default
+                  overrides.window_background_opacity = nil
+              end
+              window:set_config_overrides(overrides)
+          end)
+
+          config.keys = {
+              {
+                  key = "O",
+                  mods = "CTRL",
+                  action = wezterm.action.EmitEvent("toggle-opacity"),
+              },
+          }
+
+          return config
         '';
     };
 
@@ -104,12 +140,7 @@
         # [C]onfigure [N]ixos (goto ~/system and enter vim)
         cn = "pushd ~/system ; v . ; popd";
         # [F]lake rebuild [N]ixos (switch system with the new config)
-        fn = toString [
-          "pushd ~/system ;"
-          "sudo nixos-rebuild switch --flake ~/system#laptop ;"
-          "git add . ; git commit -m \"laptop: $(nixos-rebuild list-generations --no-build-nix | grep current)\" ;"
-          "popd"
-        ];
+        fn = "custom-flake-rebuild";
       };
 
       initExtra =
