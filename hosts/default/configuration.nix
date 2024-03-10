@@ -68,9 +68,8 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.displayManager.sddm.wayland.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -129,8 +128,6 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
     git

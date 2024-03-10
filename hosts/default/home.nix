@@ -197,8 +197,7 @@
     eza.enable = true;
     bat.enable = true;
 
-    # on the LAPTOP machine run: `echo "default/*" >> .git/info/sparse-checkout`
-    # on the DEFAULT machine run: `echo "laptop/*" >> .git/info/sparse-checkout`
+    # on the DEFAULT machine run: `echo "laptop/*" >> .git/info/exclude`, and vice versa
     git = {
       enable = true;
       userName = "Pangolecimal";
