@@ -4,32 +4,32 @@
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [
-    fd
-    wezterm
-    brave
-    kdePackages.kate
-    xclip
-    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+  # a temp comment from LAPTOP
 
+  home.packages = with pkgs; [
+    # manix
+    # ngrok
+    # thunderbird
+    # times-newer-roman
+    # vlc
+    # vscodium
     (jetbrains.idea-community)
-    jdk21
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+    brave
+    corefonts
+    fd
+    firefox
     gradle
+    jdk21
+    kdePackages.kate
+    libreoffice
+    neofetch
+    ollama
     qemu
     quickemu
-
-    ollama
-    neofetch
-    # ngrok
-    # manix
-    # vscodium
-    # vlc
-    firefox
-    # thunderbird
-    libreoffice
-    # times-newer-roman
-    corefonts
     staruml
+    wezterm
+    xclip
 
     (writeShellScriptBin "custom-flake-rebuild" ''
       set -e
