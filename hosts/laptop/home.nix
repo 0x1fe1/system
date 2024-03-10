@@ -4,8 +4,6 @@
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 
-  # a temp comment from LAPTOP
-
   home.packages = with pkgs; [
     # manix
     # ngrok
