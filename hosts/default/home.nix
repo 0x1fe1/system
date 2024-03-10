@@ -206,8 +206,9 @@
       userName = "Pangolecimal";
       userEmail = "domkuzaleza@gmail.com";
       extraConfig = {
-        init.defaultBranch = "main";
-        core.sparseCheckout = true;
+        init = {
+          defaultBranch = "main";
+        };
       };
     };
   };
