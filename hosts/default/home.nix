@@ -21,6 +21,14 @@
     wezterm
     wget
     xclip
+
+    (writeShellScriptBin "custom-flake-rebuild" ''
+      set -e
+      pushd ~/system
+      sudo nixos-rebuild switch --flake ~/system#laptop
+      git add . ; git commit -m \"laptop: $(nixos-rebuild list-generations --no-build-nix | grep current)\"
+      popd
+    '')
   ];
 
   fonts.fontconfig.enable = true;
@@ -123,12 +131,7 @@
         # [C]onfigure [N]ixos (goto ~/system and enter vim)
         cn = "pushd /home/pango/system ; v . ; popd";
         # [F]lake rebuild [N]ixos (switch system with the new config)
-        fn = toString [
-          "pushd ~/system ;"
-          "sudo nixos-rebuild switch --flake ~/system#default ;"
-          "git add . ; git commit -m \"default: $(nixos-rebuild list-generations --no-build-nix | grep current)\" ;"
-          "popd"
-        ];
+        fn = "custom-flake-rebuild";
       };
 
       initExtra =
