@@ -3,6 +3,15 @@
 
   home.file = {};
 
+  home.packages = with pkgs; [
+    (writeShellScriptBin "custom-system-edit" ''
+      set -e
+      pushd ~/system
+      nix run ~/neovim .
+      popd
+    '')
+  ];
+
   home.sessionVariables = {
     EDITOR = "vim";
   };
