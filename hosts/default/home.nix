@@ -23,13 +23,14 @@
     wezterm
     wget
     xclip
+    # discord
 
     (writeShellScriptBin "custom-flake-rebuild" ''
       set -e
       pushd ~/system
-      sudo nixos-rebuild switch --flake ~/system#laptop
+      sudo nixos-rebuild switch --flake ~/system#default
       current=$(nixos-rebuild list-generations --no-build-nix | grep current)
-      git add . ; git commit -m "laptop: $current"
+      git add . ; git commit -m "default: $current"
       popd
     '')
   ];
