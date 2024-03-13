@@ -1,44 +1,4 @@
 {pkgs, ...}: {
-  home.username = "pango";
-  home.homeDirectory = "/home/pango";
-  home.stateVersion = "23.11";
-  programs.home-manager.enable = true;
-
-  home.packages = with pkgs; [
-    # (jetbrains.idea-community)
-    # blender
-    # jdk21
-    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
-    brave
-    corefonts
-    fd
-    file
-    libreoffice
-    ollama
-    qemu
-    quickemu
-    trash-cli
-    wezterm
-    wget
-    xclip
-
-    (writeShellScriptBin "system-rebuild" ''
-      set -e
-      pushd ~/system
-      sudo nixos-rebuild switch --flake ~/system#default
-      current=$(nixos-rebuild list-generations --no-build-nix | grep current)
-      git add . ; git commit -m "default: $current"
-      popd
-    '')
-
-    (writeShellScriptBin "system-edit" ''
-      set -e
-      pushd ~/system
-      nix run ~/neovim .
-      popd
-    '')
-  ];
-
   fonts.fontconfig.enable = true;
 
   home.file = {};
@@ -137,9 +97,9 @@
         f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
 
         # [C]onfigure [N]ixos (goto ~/system and enter vim)
-        cn = "system-edit";
+        cn = "custom-system-edit";
         # [F]lake rebuild [N]ixos (switch system with the new config)
-        fn = "system-rebuild";
+        fn = "custom-system-rebuild";
       };
 
       initExtra =
