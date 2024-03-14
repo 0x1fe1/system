@@ -21,6 +21,7 @@
     wezterm
     wget
     xclip
+    vlc
 
     (writeShellScriptBin "custom-system-rebuild" ''
       set -e
