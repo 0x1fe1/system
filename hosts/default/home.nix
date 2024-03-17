@@ -22,6 +22,9 @@
     wget
     xclip
     vlc
+    jq
+    zig
+    gnumake
 
     (writeShellScriptBin "custom-system-rebuild" ''
       set -e
