@@ -127,7 +127,7 @@
           }
           copy_function _direnv_hook _direnv_hook__old
           _direnv_hook() {
-            _direnv_hook__old "$@" 2> >(awk '{if (length >= 200) { sub("^direnv: export.*","direnv: export "NF" environment variables")}}1')
+            _direnv_hook__old "$@" 2> >(awk '{if (length >= 100) { sub("^direnv: export.*","direnv: export "NF" environment variables")}}1')
             wait
           }
         '';
