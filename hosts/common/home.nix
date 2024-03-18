@@ -117,19 +117,19 @@
         */
         ''
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
+          export DIRENV_LOG_FORMAT=
           # ~~~~~ Direnv ~~~~~
           # Tone down verbosity of loading output
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
-          copy_function() {
-            test -n "$(declare -f "$1")" || return
-            eval "''${_/$1/$2}"
-          }
-          copy_function _direnv_hook _direnv_hook__old
-          _direnv_hook() {
-            _direnv_hook__old "$@" 2> >(awk '{if (length >= 100) { sub("^direnv: export.*","direnv: export "NF" environment variables")}}1')
-            wait
-          }
+          # copy_function() {
+          #   test -n "$(declare -f "$1")" || return
+          #   eval "''${_/$1/$2}"
+          # }
+          # copy_function _direnv_hook _direnv_hook__old
+          # _direnv_hook() {
+          #   _direnv_hook__old "$@" 2> >(awk '{if (length >= 100) { sub("^direnv: export.*","direnv: export "NF" environment variables")}}1')
+          #   wait
+          # }
         '';
 
       envExtra = ''
@@ -162,6 +162,11 @@
           truncation_symbol = "…/";
         };
         character.error_symbol = "[✖](bold red)";
+        custom.direnv = {
+          format = "[\\[direnv\\]]($style) ";
+          style = "fg:yellow dimmed";
+          when = "printenv DIRENV_FILE";
+        };
       };
     };
 
