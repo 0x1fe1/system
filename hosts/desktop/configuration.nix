@@ -131,11 +131,11 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    dotnetCorePackages.sdk_6_0
   ];
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    dotnet-sdk
   ];
 
   programs.zsh.enable = true;
