@@ -131,6 +131,10 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+  ];
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
     dotnet-sdk
   ];
 
