@@ -131,6 +131,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    dotnet-sdk
   ];
 
   programs.zsh.enable = true;
