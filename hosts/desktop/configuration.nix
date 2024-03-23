@@ -149,6 +149,8 @@
     };
   };
 
+  programs.steam.enable = true;
+
   ### Nvidia hax
   services.xserver.videoDrivers = ["nvidia"];
   hardware.opengl = {
