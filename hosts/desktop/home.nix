@@ -8,6 +8,7 @@
     # (jetbrains.idea-community)
     # blender
     # jdk21
+    kdePackages.kate
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     brave
     corefonts
