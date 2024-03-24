@@ -7,9 +7,9 @@
   home.packages = with pkgs; [
     # (jetbrains.idea-community)
     # blender
-    jdk21
-    gradle
-    gradle-completion
+    # jdk21
+    # gradle
+    # gradle-completion
     kdePackages.kate
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     brave
