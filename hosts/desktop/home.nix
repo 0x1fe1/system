@@ -9,7 +9,6 @@
     # blender
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     brave
-    comma
     corefonts
     fd
     file
