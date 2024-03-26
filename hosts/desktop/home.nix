@@ -16,6 +16,7 @@
     jq
     kdePackages.kate
     libreoffice
+    obsidian
     ollama
     qemu
     quickemu
