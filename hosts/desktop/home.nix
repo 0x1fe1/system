@@ -6,13 +6,11 @@
 
   home.packages = with pkgs; [
     # (jetbrains.idea-community)
-    # blender
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     brave
     corefonts
     fd
     file
-    gnumake
     jq
     kdePackages.kate
     libreoffice
@@ -20,12 +18,9 @@
     ollama
     qemu
     quickemu
-    trash-cli
     vlc
-    wezterm
     wget
     xclip
-    zig
 
     (writeShellScriptBin "custom-system-rebuild" ''
       set -e
