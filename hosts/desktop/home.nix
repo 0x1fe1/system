@@ -9,6 +9,7 @@
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     brave
     corefonts
+    discord
     fd
     file
     jq
