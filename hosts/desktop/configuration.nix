@@ -118,6 +118,8 @@
   };
 
   virtualisation.docker.enable = true;
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
@@ -155,7 +157,6 @@
   };
 
   programs.steam.enable = true;
-  programs.virt-manager.enable = true;
 
   ### Nvidia hax
   services.xserver.videoDrivers = ["nvidia"];
