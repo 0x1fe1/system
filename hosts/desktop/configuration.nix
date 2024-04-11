@@ -155,6 +155,7 @@
   };
 
   programs.steam.enable = true;
+  programs.virt-manager.enable = true;
 
   ### Nvidia hax
   services.xserver.videoDrivers = ["nvidia"];
