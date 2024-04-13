@@ -25,6 +25,8 @@
     protonvpn-gui
     networkmanager
     networkmanagerapplet
+    spice
+    spice-gtk
 
     (writeShellScriptBin "custom-system-rebuild" ''
       set -e
