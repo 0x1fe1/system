@@ -22,6 +22,9 @@
     vlc
     wget
     xclip
+    protonvpn-gui
+    networkmanager
+    networkmanagerapplet
 
     (writeShellScriptBin "custom-system-rebuild" ''
       set -e
