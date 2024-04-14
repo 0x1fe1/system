@@ -104,7 +104,7 @@
   users.users.pango = {
     isNormalUser = true;
     description = "pango";
-    extraGroups = ["networkmanager" "wheel" "docker" "libvirtd"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
     useDefaultShell = true;
   };
@@ -118,8 +118,6 @@
   };
 
   virtualisation.docker.enable = true;
-  programs.virt-manager.enable = true;
-  virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
   # Enable automatic login for the user.
@@ -134,8 +132,6 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-    dotnetCorePackages.sdk_6_0
-    spice-gtk
   ];
 
   programs.nix-ld.enable = true;

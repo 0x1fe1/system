@@ -10,23 +10,25 @@
     brave
     corefonts
     discord
+    dotnetCorePackages.sdk_6_0
     fd
     file
     jq
     kdePackages.kate
     libreoffice
-    obsidian
-    ollama
-    qemu
-    quickemu
-    vlc
-    wget
-    xclip
-    protonvpn-gui
     networkmanager
     networkmanagerapplet
-    spice
-    spice-gtk
+    obsidian
+    # ollama
+    protonvpn-gui
+    qemu
+    quickemu
+    staruml
+    # spice
+    # spice-gtk
+    vlc
+    # wget
+    xclip
 
     (writeShellScriptBin "custom-system-rebuild" ''
       set -e
