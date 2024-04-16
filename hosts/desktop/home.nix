@@ -25,7 +25,7 @@
     quickemu
     staruml
     vlc
-    vscode-fhs
+    vscode
     xclip
 
     (writeShellScriptBin "custom-system-rebuild" ''
