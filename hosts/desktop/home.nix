@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     # (jetbrains.idea-community)
+    # ollama
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     brave
     corefonts
@@ -19,15 +20,12 @@
     networkmanager
     networkmanagerapplet
     obsidian
-    # ollama
     protonvpn-gui
     qemu
     quickemu
     staruml
-    # spice
-    # spice-gtk
     vlc
-    # wget
+    vscode-fhs
     xclip
 
     (writeShellScriptBin "custom-system-rebuild" ''
