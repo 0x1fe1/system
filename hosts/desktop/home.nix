@@ -19,6 +19,8 @@
     libreoffice
     networkmanager
     networkmanagerapplet
+    nix-output-monitor
+    nh
     obsidian
     protonvpn-gui
     qemu
