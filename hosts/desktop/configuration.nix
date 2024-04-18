@@ -130,7 +130,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.sessionVariables = {
-    FLAKE = "/home/pango/system#desktop";
+    FLAKE = "/home/pango/system";
   };
   environment.systemPackages = with pkgs; [
     vim
