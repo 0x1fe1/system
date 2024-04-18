@@ -1,13 +1,50 @@
 {pkgs, ...}: {
+  home.username = "pango";
+  home.homeDirectory = "/home/pango";
+  home.stateVersion = "23.11";
+  programs.home-manager.enable = true;
+
   fonts.fontconfig.enable = true;
 
   home.file = {};
 
   home.packages = with pkgs; [
+    # (jetbrains.idea-community)
+    # ollama
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+    brave
+    corefonts
+    fd
+    file
+    jq
+    kdePackages.kate
+    libreoffice
+    networkmanager
+    networkmanagerapplet
+    nh
+    nix-output-monitor
+    obsidian
+    protonvpn-gui
+    qemu
+    quickemu
+    staruml
+    vlc
+    vscode
+    xclip
+
     (writeShellScriptBin "custom-system-edit" ''
       set -e
       pushd ~/system
       nix run ~/neovim .
+      popd
+    '')
+
+    (writeShellScriptBin "custom-system-rebuild" ''
+      set -e
+      pushd ~/system
+      nh os switch
+      current=$(nixos-rebuild list-generations --no-build-nix | grep current)
+      git add . ; git commit -m "$(hostname): $current"
       popd
     '')
   ];
