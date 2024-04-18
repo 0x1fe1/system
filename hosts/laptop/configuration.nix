@@ -149,8 +149,9 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  environment.sessionVariables = {
+    FLAKE = "/home/pango/system";
+  };
   environment.systemPackages = with pkgs; [
     vim
     git
