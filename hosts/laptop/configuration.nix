@@ -33,7 +33,7 @@
     };
   };
 
-  networking.hostName = "pangolinux"; # Define your hostname.
+  networking.hostName = "laptop"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -154,11 +154,21 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-
-    spice
   ];
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
+
+  # This setups a SSH server. Very important if you're setting up a headless system.
+  # Feel free to remove if you don't need it.
+  services.openssh = {
+    enable = true;
+    settings = {
+      # Forbid root login through SSH.
+      PermitRootLogin = "no";
+      # Use keys only. Remove if you want to SSH using password (not recommended)
+      # PasswordAuthentication = false;
+    };
+  };
 }
