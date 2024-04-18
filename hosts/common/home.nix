@@ -62,27 +62,28 @@
         lua
         */
         ''
-          local wezterm = require 'wezterm';
+          local w = require 'wezterm';
 
           local config = {}
 
+          FONT_ID = 0
+
           config = {
               color_scheme = "Catppuccin Mocha",
-              font = wezterm.font_with_fallback {
+              font = w.font_with_fallback {
                   "FiraCode Nerd Font",
                   "JetBrainsMono Nerd Font",
                   "Consolas"
               },
               adjust_window_size_when_changing_font_size = false,
               warn_about_missing_glyphs = false,
-              font_id = 0,
           }
 
           local opacity = 0.9
           config.window_background_opacity = opacity
 
           -- toggle function
-          wezterm.on("toggle-opacity", function(window, _)
+          w.on("toggle-opacity", function(window, _)
               local overrides = window:get_config_overrides() or {}
               if not overrides.window_background_opacity then
                   -- if no override is setup, override the default opacity value with 1.0
@@ -93,29 +94,29 @@
               end
               window:set_config_overrides(overrides)
           end)
-          -- wezterm.on("font-switch", function(window, _)
-          --     local overrides = window:get_config_overrides() or {}
-          --     if not overrides.window_background_opacity then
-          --         -- if no override is setup, override the default opacity value with 1.0
-          --         overrides.window_background_opacity = 1.0
-          --     else
-          --         -- if there is an override, make it nil so the opacity goes back to the default
-          --         overrides.window_background_opacity = nil
-          --     end
-          --     window:set_config_overrides(overrides)
-          -- end)
+          w.on("font-switch", function(window, _)
+              local overrides = window:get_config_overrides() or {}
+              if FONT_ID == 0 then
+                  FONT_ID = 1
+                  overrides.font = w.font("FiraCode Nerd Font")
+              else
+                  FONT_ID = 0
+                  overrides.font = w.font("JetBrainsMono Nerd Font")
+              end
+              window:set_config_overrides(overrides)
+          end)
 
           config.keys = {
               {
                   key = "O",
                   mods = "CTRL",
-                  action = wezterm.action.EmitEvent("toggle-opacity"),
+                  action = w.action.EmitEvent("toggle-opacity"),
               },
-              -- {
-              --     key = "I",
-              --     mods = "CTRL",
-              --     action = wezterm.action.EmitEvent("font-switch"),
-              -- },
+              {
+                  key = "I",
+                  mods = "CTRL",
+                  action = w.action.EmitEvent("font-switch"),
+              },
           }
 
           return config
