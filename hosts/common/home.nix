@@ -11,7 +11,7 @@
   home.packages = with pkgs; [
     # (jetbrains.idea-community)
     # ollama
-    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+    (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly"];})
     brave
     corefonts
     fd
@@ -98,10 +98,10 @@
               local overrides = window:get_config_overrides() or {}
               if FONT_ID == 0 then
                   FONT_ID = 1
-                  overrides.font = w.font("FiraCode Nerd Font")
+                  overrides.font = w.font("JetBrainsMono Nerd Font")
               else
                   FONT_ID = 0
-                  overrides.font = w.font("JetBrainsMono Nerd Font")
+                  overrides.font = w.font("FiraCode Nerd Font")
               end
               window:set_config_overrides(overrides)
           end)
