@@ -151,7 +151,7 @@
         vf = toString [
           "fd . -t f"
           "| fzf --preview \"bat --color=always {}\""
-          "--preview-window \"~3\" --border=rounded"
+          "--preview-window \"right,75%,wrap,~3\" --border=rounded"
           "--bind \"enter:become(nix run ~/neovim {})\""
         ];
 
