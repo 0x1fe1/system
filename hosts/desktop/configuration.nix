@@ -135,6 +135,8 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    libgcc
+    gnumake
   ];
 
   programs.nix-ld.enable = true;
