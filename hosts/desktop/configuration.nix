@@ -135,7 +135,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-    libgcc
+    gcc
     gnumake
   ];
 
