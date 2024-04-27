@@ -69,7 +69,7 @@
           FONT_ID = 0
 
           config = {
-              color_scheme = "Catppuccin Mocha",
+              color_scheme = "Catppuccin Mocha (Gogh)",
               font = w.font_with_fallback {
                   "FiraCode Nerd Font",
                   "JetBrainsMono Nerd Font",
