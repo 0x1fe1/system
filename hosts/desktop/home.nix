@@ -13,7 +13,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      theme = "catppuccin-mocha";
+      theme = "gruvbox-dark";
     };
   };
 
