@@ -9,6 +9,11 @@
     # gnumake
   ];
 
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   imports = [
     ../common/home.nix
   ];
