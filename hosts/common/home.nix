@@ -13,6 +13,7 @@
     # ollama
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly"];})
     brave
+    cool-retro-term
     corefonts
     fd
     file
@@ -176,41 +177,28 @@
         fn = "custom-system-rebuild";
       };
 
-      initExtra =
+      initExtraBeforeCompInit =
         /*
         bash
         */
         ''
           source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+        '';
 
+      initExtra =
+        /*
+        bash
+        */
+        ''
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           export DIRENV_LOG_FORMAT=
-          # ~~~~~ Direnv ~~~~~
-          # Tone down verbosity of loading output
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
-          # copy_function() {
-          #   test -n "$(declare -f "$1")" || return
-          #   eval "''${_/$1/$2}"
-          # }
-          # copy_function _direnv_hook _direnv_hook__old
-          # _direnv_hook() {
-          #   _direnv_hook__old "$@" 2> >(awk '{if (length >= 100) { sub("^direnv: export.*","direnv: export "NF" environment variables")}}1')
-          #   wait
-          # }
         '';
 
       envExtra = ''
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
       '';
-
-      # zplug = {
-      #   enable = true;
-      #   plugins = [
-      #     {name = "zdharma-continuum/fast-syntax-highlighting";}
-      #     {name = "jeffreytse/zsh-vi-mode";}
-      #   ];
-      # };
     };
 
     direnv = {
