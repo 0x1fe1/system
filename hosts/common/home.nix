@@ -127,7 +127,6 @@
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      defaultKeymap = null;
 
       shellAliases = {
         lla = "eza -Tla --icons -s=type";
@@ -195,7 +194,7 @@
         enable = true;
         plugins = [
           {name = "zdharma-continuum/fast-syntax-highlighting";}
-          {name = "zsh-users/zsh-autosuggestions";}
+          {name = "jeffreytse/zsh-vi-mode";}
         ];
       };
     };
