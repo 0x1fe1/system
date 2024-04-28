@@ -59,6 +59,7 @@
       enableZshIntegration = true;
       settings = {
         theme = "gruvbox-dark";
+        copy_command = "xclip -selection clipboard";
       };
     };
 
