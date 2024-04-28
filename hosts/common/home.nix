@@ -137,6 +137,10 @@
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
+      syntaxHighlighting = {
+        enable = true;
+        package = pkgs.zsh-fast-syntax-highlighting;
+      };
 
       shellAliases = {
         lla = "eza -Tla --icons -s=type";
