@@ -182,6 +182,7 @@
         */
         ''
           source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           export DIRENV_LOG_FORMAT=
