@@ -17,8 +17,6 @@
   services.xserver.displayManager.autoLogin.user = "pango";
 
   environment.systemPackages = with pkgs; [
-    neovim
-    git
     gcc
     gnumake
   ];

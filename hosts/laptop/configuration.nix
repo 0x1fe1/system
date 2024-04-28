@@ -18,7 +18,5 @@
   services.xserver.libinput.enable = true; # Enable touchpad support
 
   environment.systemPackages = with pkgs; [
-    vim
-    git
   ];
 }
