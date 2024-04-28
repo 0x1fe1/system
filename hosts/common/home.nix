@@ -139,7 +139,6 @@
       enableCompletion = true;
       syntaxHighlighting = {
         enable = true;
-        package = pkgs.zsh-fast-syntax-highlighting;
       };
 
       shellAliases = {
