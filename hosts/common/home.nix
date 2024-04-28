@@ -40,6 +40,8 @@
       popd
     '')
 
+    # to rebuild boot use:
+    # $ NIXOS_INSTALL_BOOTLOADER=1 custom-system-rebuild
     (writeShellScriptBin "custom-system-rebuild" ''
       set -e
       pushd ~/system
