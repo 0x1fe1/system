@@ -181,7 +181,7 @@
         bash
         */
         ''
-          source ${pkgs.zsh-fast-syntax-highlighting}/fast-syntax-highlighting.plugin.zsh
+          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
 
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           export DIRENV_LOG_FORMAT=
