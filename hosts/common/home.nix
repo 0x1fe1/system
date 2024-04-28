@@ -86,6 +86,7 @@
               adjust_window_size_when_changing_font_size = false,
               warn_about_missing_glyphs = false,
               disable_default_key_bindings = true,
+              hide_tab_bar_if_only_one_tab = true,
           }
 
           local opacity = 0.9
@@ -199,18 +200,18 @@
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
       '';
 
-      zplug = {
-        enable = true;
-        plugins = [
-          {name = "zdharma-continuum/fast-syntax-highlighting";}
-          {name = "jeffreytse/zsh-vi-mode";}
-        ];
-      };
+      # zplug = {
+      #   enable = true;
+      #   plugins = [
+      #     {name = "zdharma-continuum/fast-syntax-highlighting";}
+      #     {name = "jeffreytse/zsh-vi-mode";}
+      #   ];
+      # };
     };
 
     direnv = {
       enable = true;
-      enableZshIntegration = true; # see note on other shells below
+      enableZshIntegration = true;
       nix-direnv.enable = true;
     };
 
