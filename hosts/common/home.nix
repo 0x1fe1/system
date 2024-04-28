@@ -137,9 +137,6 @@
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      syntaxHighlighting = {
-        enable = true;
-      };
 
       shellAliases = {
         lla = "eza -Tla --icons -s=type";
@@ -183,6 +180,8 @@
         bash
         */
         ''
+          source ${pkgs.zsh-fast-syntax-highlighting}/fast-syntax-highlighting.plugin.zsh
+
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           export DIRENV_LOG_FORMAT=
           # ~~~~~ Direnv ~~~~~
