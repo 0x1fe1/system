@@ -11,6 +11,7 @@
     firefox
     gradle
     neofetch
+    cool-retro-term
   ];
 
   imports = [

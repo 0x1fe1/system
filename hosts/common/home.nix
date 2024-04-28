@@ -74,7 +74,7 @@
 
           local config = {}
 
-          FONT_ID = 0
+          local FONT_ID = 0
 
           config = {
               color_scheme = "Catppuccin Mocha (Gogh)",
