@@ -9,14 +9,6 @@
     # gnumake
   ];
 
-  programs.zellij = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      theme = "gruvbox-dark";
-    };
-  };
-
   imports = [
     ../common/home.nix
   ];

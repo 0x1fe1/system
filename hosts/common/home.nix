@@ -54,6 +54,14 @@
   };
 
   programs = {
+    zellij = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        theme = "gruvbox-dark";
+      };
+    };
+
     wezterm = {
       enable = true;
       enableZshIntegration = true;
@@ -77,6 +85,7 @@
               },
               adjust_window_size_when_changing_font_size = false,
               warn_about_missing_glyphs = false,
+              disable_default_key_bindings = true,
           }
 
           local opacity = 0.9
