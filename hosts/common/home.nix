@@ -184,8 +184,6 @@
         bash
         */
         ''
-          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
         '';
 
       initExtra =
@@ -196,6 +194,14 @@
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           export DIRENV_LOG_FORMAT=
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
+
+          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+          if [[ $options[zle] = on ]]; then
+            . ${pkgs.fzf}/share/fzf/completion.zsh
+            . ${pkgs.fzf}/share/fzf/key-bindings.zsh
+          fi
         '';
 
       envExtra = ''
