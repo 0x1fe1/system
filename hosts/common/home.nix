@@ -173,6 +173,10 @@
         ff = "fd . --type directory --max-depth=3 | fzf --border=rounded";
         f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
 
+        # nix-direnv
+        da = "direnv allow";
+        dn = "direnv deny";
+
         # [C]onfigure [N]ixos (goto ~/system and enter vim)
         cn = "custom-system-edit";
         # [F]lake rebuild [N]ixos (switch system with the new config)
