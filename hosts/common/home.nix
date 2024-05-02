@@ -59,7 +59,7 @@
   programs = {
     zellij = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = false;
       settings = {
         theme = "gruvbox-dark";
         copy_command = "xclip -selection clipboard";
