@@ -21,11 +21,11 @@
     gnumake
   ];
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.x11 = true;
-  users.extraGroups.vboxusers.members = ["pango"];
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.guest.enable = true;
+  # virtualisation.virtualbox.guest.x11 = true;
+  # users.extraGroups.vboxusers.members = ["pango"];
 
   programs.steam.enable = true;
 
