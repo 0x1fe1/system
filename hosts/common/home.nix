@@ -63,6 +63,9 @@
       settings = {
         theme = "gruvbox-dark";
         copy_command = "xclip -selection clipboard";
+        keybinds = {
+          unbind = ["Ctrl h" "Ctrl s"];
+        };
       };
     };
 
