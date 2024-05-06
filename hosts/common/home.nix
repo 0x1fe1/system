@@ -66,9 +66,7 @@
         keybinds = {
           normal = {
             unbind = ["Ctrl h" "Ctrl s"];
-          };
-          move = {
-            "bind \"Ctrl x\"" = {SwitchToMode = "Normal";};
+            "bind \"Ctrl x\"" = {SwitchToMode = "Move";};
           };
         };
       };
