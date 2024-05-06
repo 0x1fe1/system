@@ -65,6 +65,9 @@
         copy_command = "xclip -selection clipboard";
         keybinds = {
           unbind = ["Ctrl h" "Ctrl s"];
+          move = {
+            bind = ["Ctrl x" {SwitchToMode = "Normal";}];
+          };
         };
       };
     };
