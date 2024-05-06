@@ -206,12 +206,12 @@
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
 
           source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+          # source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-          if [[ $options[zle] = on ]]; then
-            . ${pkgs.fzf}/share/fzf/completion.zsh
-            . ${pkgs.fzf}/share/fzf/key-bindings.zsh
-          fi
+          # if [[ $options[zle] = on ]]; then
+          #   . ${pkgs.fzf}/share/fzf/completion.zsh
+          #   . ${pkgs.fzf}/share/fzf/key-bindings.zsh
+          # fi
         '';
 
       envExtra = ''
