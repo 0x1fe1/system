@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    tldr
+    python3
     ansible
     ollama
     ngrok
