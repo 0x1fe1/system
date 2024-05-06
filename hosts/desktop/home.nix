@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    virtualbox
     tldr
     python3
     ansible
