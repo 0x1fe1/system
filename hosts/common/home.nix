@@ -63,16 +63,14 @@
       settings = {
         theme = "gruvbox-dark";
         copy_command = "xclip -selection clipboard";
-        keybinds = ''
-          {
-            normal {
-              unbind "Ctrl h" "Ctrl s"
-            }
-            move {
-              bind "Ctrl x" {SwitchToMode "Normal";}
-            };
-          }
-        '';
+        keybinds = {
+          normal = {
+            unbind = ["Ctrl h" "Ctrl s"];
+          };
+          move = {
+            "bind \"Ctrl x\"" = {SwitchToMode = "Normal";};
+          };
+        };
       };
     };
 
