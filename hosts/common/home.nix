@@ -25,7 +25,7 @@
     nh
     nix-output-monitor
     obsidian
-    protonvpn-gui
+    # protonvpn-gui
     qemu
     quickemu
     staruml
