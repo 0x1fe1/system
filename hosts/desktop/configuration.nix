@@ -19,7 +19,6 @@
   environment.systemPackages = with pkgs; [
     gcc
     gnumake
-    bazecor
   ];
 
   # virtualisation.virtualbox.host.enable = true;

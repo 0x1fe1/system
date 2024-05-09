@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # bazecor
+    bazecor
     sshpass
     tldr
     # python3
