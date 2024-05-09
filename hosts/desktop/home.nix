@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    bazecor
+    # bazecor
     sshpass
     tldr
-    python3
-    ansible
+    # python3
+    # ansible
     ollama
     ngrok
     discord
