@@ -27,6 +27,8 @@
   # virtualisation.virtualbox.guest.x11 = true;
   # users.extraGroups.vboxusers.members = ["pango"];
 
+  services.udev.packages = [pkgs.bazecor];
+
   programs.steam.enable = true;
 
   ### Nvidia hax
