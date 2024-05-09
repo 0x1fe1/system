@@ -1,0 +1,7 @@
+{
+  inputs,
+  system,
+  ...
+}: [
+  (import ./bazecor)
+]

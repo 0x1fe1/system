@@ -16,7 +16,12 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    overlays = import ./overlays/default.nix {inherit inputs system;};
+    # pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import inputs.nixpkgs {
+      inherit overlays system;
+      config.allowUnfree = true;
+    };
   in {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
@@ -33,6 +38,12 @@
           inputs.home-manager.nixosModules.default
         ];
       };
+    };
+
+    out = {inherit pkgs overlays;};
+
+    packages.${system} = {
+      inherit (pkgs) bazecor;
     };
   };
 }
