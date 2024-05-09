@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     jetbrains.idea-ultimate
+    jdk21_headless
+
     bazecor
     sshpass
     tldr
