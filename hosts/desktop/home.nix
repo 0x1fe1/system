@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    wgo
     jetbrains.idea-ultimate
     jdk21_headless
 
