@@ -19,9 +19,6 @@
   environment.systemPackages = with pkgs; [
     gcc
     gnumake
-  ];
-
-  programs.nix-ld.libraries = with pkgs; [
     linuxHeaders
   ];
 

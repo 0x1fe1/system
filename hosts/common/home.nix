@@ -176,7 +176,7 @@
 
         # [F]zf (fuzzy find)
         # [F]zf [F]unction (the underlying search directories function)
-        ff = "fd . --type directory --max-depth=3 | fzf --border=rounded";
+        ff = "fd . --type directory | fzf --border=rounded";
         f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
 
         # nix-direnv
