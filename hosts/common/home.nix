@@ -200,27 +200,44 @@
         hn = "custom-home-rebuild";
       };
 
-      # initExtra =
-      #   /*
-      #   bash
-      #   */
-      #   ''
-      #     # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-      #     # export DIRENV_LOG_FORMAT=
-      #     # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
-      #
-      #     # source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-      #     # source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-      #
-      #     # if [[ $options[zle] = on ]]; then
-      #     #   . ${pkgs.fzf}/share/fzf/completion.zsh
-      #     #   . ${pkgs.fzf}/share/fzf/key-bindings.zsh
-      #     # fi
-      #   '';
+      initExtra =
+        /*
+        bash
+        */
+        ''
+          # History
+          HISTDUP=erase
+          setopt appendhistory
+          setopt hist_save_no_dups
+          setopt hist_find_no_dups
 
-      # envExtra = ''
-      #   export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
-      # '';
+          # Completion styling
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+          zstyle ':completion:*' list-colors "$\{s.:. LS_COLORS}"
+          zstyle ':completion:*' menu no
+          zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+          zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+          # export DIRENV_LOG_FORMAT=
+          # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
+
+          # source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
+          # source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+        '';
+
+      envExtra = ''
+        export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+      '';
+
+      history = {
+        size = 10000;
+        ignoreAllDups = true;
+        ignoreDups = true;
+        ignoreSpace = true;
+        share = true;
+      };
+
+      /**/
     };
 
     direnv = {
