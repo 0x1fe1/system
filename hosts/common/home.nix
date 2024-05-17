@@ -208,7 +208,7 @@
         */
         ''
           # Source/Load zinit
-          source "$\{ZINIT_HOME}/zinit.zsh"
+          source "''${ZINIT_HOME}/zinit.zsh"
 
           # Add in Powerlevel10k
           zinit ice depth=1; zinit light romkatv/powerlevel10k
