@@ -47,7 +47,16 @@
       pushd ~/system
       nh os switch
       current=$(nixos-rebuild list-generations --no-build-nix | grep current)
-      git add . ; git commit -m "$(hostname): $current"
+      git add . ; git commit -m "$(hostname)@system: $current"
+      popd
+    '')
+
+    (writeShellScriptBin "custom-home-rebuild" ''
+      set -e
+      pushd ~/system
+      nh home switch
+      current=$(nixos-rebuild list-generations --no-build-nix | grep current)
+      git add . ; git commit -m "$(hostname)@home: $current"
       popd
     '')
   ];
@@ -152,6 +161,7 @@
         lla = "eza -Tla --icons -s=type";
         ll = "lla -L=1";
         c = "clear";
+        q = "exit";
         ":q" = "exit";
 
         # [J]ump to (zoxide)
@@ -176,7 +186,7 @@
 
         # [F]zf (fuzzy find)
         # [F]zf [F]unction (the underlying search directories function)
-        ff = "fd . --type directory | fzf --border=rounded";
+        ff = "fd . --type directory --max-depth=16 | fzf --border=rounded";
         f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
 
         # nix-direnv
@@ -187,6 +197,8 @@
         cn = "custom-system-edit";
         # [F]lake rebuild [N]ixos (switch system with the new config)
         fn = "custom-system-rebuild";
+        # [H]ome rebuild [N]ixos (switch home-manager with the new config)
+        hn = "custom-home-rebuild";
       };
 
       initExtraBeforeCompInit =

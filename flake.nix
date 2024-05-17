@@ -22,25 +22,39 @@
       inherit overlays system;
       config.allowUnfree = true;
     };
+    hm = inputs.home-manager;
   in {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/desktop/configuration.nix
-          inputs.home-manager.nixosModules.default
+          hm.nixosModules.default
         ];
       };
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/laptop/configuration.nix
-          inputs.home-manager.nixosModules.default
+          hm.nixosModules.default
         ];
       };
     };
 
-    out = {inherit pkgs overlays;};
+    homeConfigurations = {
+      desktop = hm.lib.homeManagerConfiguration {
+        pkgs = pkgs;
+        modules = [
+          ./hosts/desktop/home.nix
+        ];
+      };
+      laptop = hm.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./hosts/laptop/home.nix
+        ];
+      };
+    };
 
     packages.${system} = {
       inherit (pkgs) bazecor;
