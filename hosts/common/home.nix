@@ -54,7 +54,7 @@
     (writeShellScriptBin "custom-home-rebuild" ''
       set -e
       pushd ~/system
-      nh home switch
+      nh home switch --configuration=$(hostname)
       current=$(nixos-rebuild list-generations --no-build-nix | grep current)
       git add . ; git commit -m "$(hostname)@home: $current"
       popd
