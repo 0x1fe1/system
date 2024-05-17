@@ -154,12 +154,11 @@
 
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
-      enableCompletion = true;
 
       shellAliases = {
         lla = "eza -Tla --icons -s=type";
         ll = "lla -L=1";
+        ls = "ls --color";
         c = "clear";
         q = "exit";
         ":q" = "exit";
@@ -200,13 +199,6 @@
         # [H]ome rebuild [N]ixos (switch home-manager with the new config)
         hn = "custom-home-rebuild";
       };
-
-      initExtraBeforeCompInit =
-        /*
-        bash
-        */
-        ''
-        '';
 
       initExtra =
         /*
