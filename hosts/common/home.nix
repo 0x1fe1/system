@@ -94,7 +94,15 @@
 
           local config = {}
 
-          local FONT_ID = 0
+          local FONT_ID = 1
+          local FONT_ID_MAX = 4
+          local FONTS = {
+            "FiraCode Nerd Font",
+            "JetBrainsMono Nerd Font",
+            "MesloLGS NF",
+            "Noto",
+            "Consolas"
+          }
 
           config = {
               color_scheme = "Catppuccin Mocha (Gogh)",
@@ -126,13 +134,8 @@
           end)
           w.on("font-switch", function(window, _)
               local overrides = window:get_config_overrides() or {}
-              if FONT_ID == 0 then
-                  FONT_ID = 1
-                  overrides.font = w.font("JetBrainsMono Nerd Font")
-              else
-                  FONT_ID = 0
-                  overrides.font = w.font("FiraCode Nerd Font")
-              end
+              FONT_ID = (FONT_ID % FONT_ID_MAX) + 1
+              overrides.font = w.font(FONTS[FONT_ID])
               window:set_config_overrides(overrides)
           end)
 
