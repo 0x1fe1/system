@@ -273,9 +273,9 @@
           # source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
           # source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-          # eval "$(${pkgs.zoxide}/bin/zoxide init zsh )"
-          # source "${pkgs.wezterm}/etc/profile.d/wezterm.sh"
-          # eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+          eval "$(${pkgs.zoxide}/bin/zoxide init zsh )"
+          source "${pkgs.wezterm}/etc/profile.d/wezterm.sh"
+          eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
         '';
 
       envExtra = ''
