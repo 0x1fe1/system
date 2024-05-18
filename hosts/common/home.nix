@@ -49,7 +49,7 @@
       pushd ~/system
       nh os switch
       current=$(nixos-rebuild list-generations --no-build-nix | grep current)
-      git add . ; git commit -m "$(hostname)@system: $current"
+      git add . ; git commit --allow-empty -m "$(hostname)@system: $current"
       popd
     '')
 
@@ -58,7 +58,7 @@
       pushd ~/system
       nh home switch --configuration=$(hostname)
       current=$(nixos-rebuild list-generations --no-build-nix | grep current)
-      git add . ; git commit -m "$(hostname)@home: $current"
+      git add . ; git commit --allow-empty -m "$(hostname)@home: $current"
       popd
     '')
   ];
@@ -85,7 +85,7 @@
 
     wezterm = {
       enable = true;
-      # enableZshIntegration = true;
+      enableZshIntegration = false;
       extraConfig =
         /*
         lua
@@ -220,11 +220,11 @@
           # Download Zinit, if it's not there yet
           if [ ! -d "$ZINIT_HOME" ]; then
              mkdir -p "$(dirname $ZINIT_HOME)"
-             git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+             git clone https://github.com/zdharma-continuum/zinit.git --depth=1 "$ZINIT_HOME"
           fi
 
           # Source/Load zinit
-          source "${pkgs.zinit}/share/zinit/zinit.zsh"
+          source "''${ZINIT_HOME}/zinit.zsh"
 
           # Add in Powerlevel10k
           zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -241,9 +241,10 @@
         bash
         */
         ''
-          autoload -U compinit && compinit
+          autoload -Uz compinit && compinit
 
           zinit cdreplay -q
+
           # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
           [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
         '';
@@ -294,13 +295,13 @@
 
     direnv = {
       enable = true;
-      # enableZshIntegration = true;
+      enableZshIntegration = false;
       nix-direnv.enable = true;
     };
 
     # starship = {
     #   enable = true;
-    # # enableZshIntegration = true;
+    #   enableZshIntegration = false;
     #   settings = {
     #     scan_timeout = 10;
     #     directory = {
@@ -319,11 +320,11 @@
 
     zoxide = {
       enable = true;
-      # enableZshIntegration = true;
+      enableZshIntegration = false;
     };
     fzf = {
       enable = true;
-      # enableZshIntegration = true;
+      enableZshIntegration = false;
     };
     ripgrep.enable = true;
     eza.enable = true;
