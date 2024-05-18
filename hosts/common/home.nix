@@ -97,9 +97,9 @@
           local FONT_ID = 1
           local FONT_ID_MAX = 4
           local FONTS = {
-          "FiraCode Nerd Font",
-          "JetBrainsMono Nerd Font",
-          "MesloLGS Nerd Font Mono",
+            "FiraCode Nerd Font",
+            "JetBrainsMono Nerd Font",
+            -- "MesloLGS Nerd Font Mono",
           }
 
           config = {
@@ -107,7 +107,7 @@
             font = w.font_with_fallback {
               "FiraCode Nerd Font",
               "JetBrainsMono Nerd Font",
-              "MesloLGS Nerd Font Mono",
+              -- "MesloLGS Nerd Font Mono",
             },
             adjust_window_size_when_changing_font_size = false,
             warn_about_missing_glyphs = false,
@@ -130,7 +130,7 @@
           end)
           w.on("font-switch", function(window, _)
             local overrides = window:get_config_overrides() or {}
-            FONT_ID = (FONT_ID % FONT_ID_MAX) + 1
+            FONT_ID = math.max(1, (FONT_ID+1) % FONT_ID_MAX)
             overrides.font = w.font(FONTS[FONT_ID])
             window:set_config_overrides(overrides)
           end)
