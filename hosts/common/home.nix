@@ -85,7 +85,7 @@
 
     wezterm = {
       enable = true;
-      enableZshIntegration = true;
+      # enableZshIntegration = true;
       extraConfig =
         /*
         lua
@@ -207,17 +207,36 @@
         bash
         */
         ''
+          # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+          # Initialization code that may require console input (password prompts, [y/n]
+          # confirmations, etc.) must go above this block; everything else may go below.
+          if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+            source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+          fi
+
           # Source/Load zinit
-          source "''${ZINIT_HOME}/zinit.zsh"
+          source "${pkgs.zinit}/share/zinit/zinit.zsh"
 
           # Add in Powerlevel10k
           zinit ice depth=1; zinit light romkatv/powerlevel10k
 
           # Add in zsh plugins
-          zinit light zsh-users/zsh-syntax-highlighting
+          zinit light zdharma-continuum/fast-syntax-highlighting
           zinit light zsh-users/zsh-completions
           zinit light zsh-users/zsh-autosuggestions
           zinit light Aloxaf/fzf-tab
+        '';
+
+      completionInit =
+        /*
+        bash
+        */
+        ''
+          autoload -U compinit && compinit
+
+          zinit cdreplay -q
+          # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
         '';
 
       initExtra =
@@ -233,7 +252,7 @@
 
           # Completion styling
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-          zstyle ':completion:*' list-colors "''${s.:. LS_COLORS}"
+          # zstyle ':completion:*' list-colors "''${s.:. LS_COLORS}"
           zstyle ':completion:*' menu no
           zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
           zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
@@ -262,13 +281,13 @@
 
     direnv = {
       enable = true;
-      enableZshIntegration = true;
+      # enableZshIntegration = true;
       nix-direnv.enable = true;
     };
 
     # starship = {
     #   enable = true;
-    #   enableZshIntegration = true;
+    # # enableZshIntegration = true;
     #   settings = {
     #     scan_timeout = 10;
     #     directory = {
@@ -287,11 +306,11 @@
 
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
+      # enableZshIntegration = true;
     };
     fzf = {
       enable = true;
-      enableZshIntegration = true;
+      # enableZshIntegration = true;
     };
     ripgrep.enable = true;
     eza.enable = true;
