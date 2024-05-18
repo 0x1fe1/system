@@ -214,6 +214,15 @@
             source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
           fi
 
+          # Set the directory we want to store zinit and plugins
+          ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
+
+          # Download Zinit, if it's not there yet
+          if [ ! -d "$ZINIT_HOME" ]; then
+             mkdir -p "$(dirname $ZINIT_HOME)"
+             git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+          fi
+
           # Source/Load zinit
           source "${pkgs.zinit}/share/zinit/zinit.zsh"
 
@@ -262,6 +271,10 @@
 
           # source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
           # source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+          # eval "$(${pkgs.zoxide}/bin/zoxide init zsh )"
+          # source "${pkgs.wezterm}/etc/profile.d/wezterm.sh"
+          # eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
         '';
 
       envExtra = ''
