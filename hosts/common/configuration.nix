@@ -15,6 +15,7 @@
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
+        fontSize = 24;
       };
       efi = {
         canTouchEfiVariables = true;
@@ -146,6 +147,7 @@
     };
   };
   stylix.polarity = "dark";
+  stylix.targets.chromium.enable = false;
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
