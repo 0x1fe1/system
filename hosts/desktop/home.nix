@@ -3,6 +3,7 @@
     wgo
     jetbrains.idea-ultimate
     jdk21_headless
+    delta
 
     bazecor
     sshpass
