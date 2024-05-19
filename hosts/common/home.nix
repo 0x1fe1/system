@@ -133,6 +133,7 @@
             local overrides = window:get_config_overrides() or {}
             FONT_ID = (FONT_ID+1) % table.getn(FONTS)
             overrides.font = w.font(FONTS[FONT_ID+1])
+            print(FONT_ID)
             window:set_config_overrides(overrides)
           end)
 
