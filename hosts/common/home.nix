@@ -95,7 +95,6 @@
           local config = {}
 
           local FONT_ID = 1
-          local FONT_ID_MAX = 4
           local FONTS = {
             "FiraCode Nerd Font",
             "JetBrainsMono Nerd Font",
@@ -130,7 +129,7 @@
           end)
           w.on("font-switch", function(window, _)
             local overrides = window:get_config_overrides() or {}
-            FONT_ID = math.max(1, (FONT_ID+1) % FONT_ID_MAX)
+            FONT_ID = math.max(1, (FONT_ID+1) % table.getn(FONTS))
             overrides.font = w.font(FONTS[FONT_ID])
             window:set_config_overrides(overrides)
           end)
@@ -245,8 +244,6 @@
         bash
         */
         ''
-          autoload -Uz compinit && compinit
-
           zinit cdreplay -q
 
           # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
