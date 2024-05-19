@@ -33,6 +33,8 @@
     vscode
     xclip
     zsh-powerlevel10k
+    nix-prefetch
+    nix-prefetch-github
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
@@ -199,6 +201,45 @@
         hn = "custom-home-rebuild";
       };
 
+      # plugins = [
+      #   {
+      #     name = "fast-syntax-highlighting";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "zdharma-continuum";
+      #       repo = "fast-syntax-highlighting";
+      #       rev = "";
+      #       sha256 = "";
+      #     };
+      #   }
+      #   {
+      #     name = "zsh-completions";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "zsh-users";
+      #       repo = "zsh-completions";
+      #       rev = "";
+      #       sha256 = "";
+      #     };
+      #   }
+      #   {
+      #     name = "zsh-autosuggestions";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "zsh-users";
+      #       repo = "zsh-autosuggestions";
+      #       rev = "";
+      #       sha256 = "";
+      #     };
+      #   }
+      #   {
+      #     name = "fzf-tab";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "Aloxaf";
+      #       repo = "fzf-tab";
+      #       rev = "";
+      #       sha256 = "";
+      #     };
+      #   }
+      # ];
+
       initExtraFirst =
         /*
         bash
@@ -212,39 +253,39 @@
           fi
         '';
 
-      initExtraBeforeCompInit =
-        /*
-        bash
-        */
-        ''
-          # Set the directory we want to store zinit and plugins
-          ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
-
-          # Download Zinit, if it's not there yet
-          if [ ! -d "$ZINIT_HOME" ]; then
-             mkdir -p "$(dirname $ZINIT_HOME)"
-             git clone https://github.com/zdharma-continuum/zinit.git --depth=1 "$ZINIT_HOME"
-          fi
-
-          # Source/Load zinit
-          source "''${ZINIT_HOME}/zinit.zsh"
-
-          # Add in Powerlevel10k
-          zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-          # Add in zsh plugins
-          zinit light zdharma-continuum/fast-syntax-highlighting
-          zinit light zsh-users/zsh-completions
-          zinit light zsh-users/zsh-autosuggestions
-          zinit light Aloxaf/fzf-tab
-        '';
+      # initExtraBeforeCompInit =
+      #   /*
+      #   bash
+      #   */
+      #   ''
+      #     # # Set the directory we want to store zinit and plugins
+      #     # ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
+      #
+      #     # # Download Zinit, if it's not there yet
+      #     # if [ ! -d "$ZINIT_HOME" ]; then
+      #     #    mkdir -p "$(dirname $ZINIT_HOME)"
+      #     #    git clone https://github.com/zdharma-continuum/zinit.git --depth=1 "$ZINIT_HOME"
+      #     # fi
+      #
+      #     # # Source/Load zinit
+      #     # source "''${ZINIT_HOME}/zinit.zsh"
+      #
+      #     # # Add in Powerlevel10k
+      #     # zinit ice depth=1; zinit light romkatv/powerlevel10k
+      #     #
+      #     # # Add in zsh plugins
+      #     # zinit light zdharma-continuum/fast-syntax-highlighting
+      #     # zinit light zsh-users/zsh-completions
+      #     # zinit light zsh-users/zsh-autosuggestions
+      #     # zinit light Aloxaf/fzf-tab
+      #   '';
 
       completionInit =
         /*
         bash
         */
         ''
-          zinit cdreplay -q
+          # zinit cdreplay -q
 
           # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
           [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
