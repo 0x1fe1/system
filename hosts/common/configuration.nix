@@ -129,26 +129,6 @@
     glibc
   ];
 
-  # Styles
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-  stylix.image = ../../dots/wall-library.jpg;
-  stylix.fonts = {
-    monospace = {
-      package = pkgs.nerdfonts.override {fonts = ["FiraCode"];};
-      name = "FiraCode Nerd Font";
-    };
-    sansSerif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans";
-    };
-    serif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Serif";
-    };
-  };
-  stylix.polarity = "dark";
-  stylix.targets.chromium.enable = false;
-
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
