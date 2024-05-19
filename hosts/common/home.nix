@@ -92,23 +92,22 @@
         lua
         */
         ''
-          local w = require 'wezterm';
-
           local config = {}
 
           local FONT_ID = 0
           local FONTS = {
-            "FiraCode Nerd Font",
+            {
+              family = "FiraCode Nerd Font",
+              harfbuzz_features = {"cv02", "cv25", "cv26", "cv27", "cv28", "cv32", "ss03", "ss05", "ss07", "ss09"},
+            },
             "JetBrainsMono Nerd Font",
-            "MesloLGS Nerd Font Mono",
           }
 
           config = {
             color_scheme = "Catppuccin Mocha (Gogh)",
-            font = w.font_with_fallback {
+            font = wezterm.font_with_fallback {
               "FiraCode Nerd Font",
               "JetBrainsMono Nerd Font",
-              "MesloLGS Nerd Font Mono",
             },
             adjust_window_size_when_changing_font_size = false,
             warn_about_missing_glyphs = false,
@@ -120,7 +119,7 @@
           config.window_background_opacity = opacity
 
           -- toggle function
-          w.on("toggle-opacity", function(window, _)
+          wezterm.on("toggle-opacity", function(window, _)
             local overrides = window:get_config_overrides() or {}
             if not overrides.window_background_opacity then
               overrides.window_background_opacity = 1.0
@@ -129,11 +128,10 @@
             end
             window:set_config_overrides(overrides)
           end)
-          w.on("font-switch", function(window, _)
+          wezterm.on("font-switch", function(window, _)
             local overrides = window:get_config_overrides() or {}
-            FONT_ID = (FONT_ID+1) % table.getn(FONTS)
-            overrides.font = w.font(FONTS[FONT_ID+1])
-            print(FONT_ID)
+            FONT_ID = (FONT_ID + 1) % #FONTS
+            overrides.font = wezterm.font(FONTS[FONT_ID+1])
             window:set_config_overrides(overrides)
           end)
 
@@ -141,12 +139,12 @@
             {
               key = "O",
               mods = "CTRL",
-              action = w.action.EmitEvent("toggle-opacity"),
+              action = wezterm.action.EmitEvent("toggle-opacity"),
             },
             {
               key = "I",
               mods = "CTRL",
-              action = w.action.EmitEvent("font-switch"),
+              action = wezterm.action.EmitEvent("font-switch"),
             },
           }
 
