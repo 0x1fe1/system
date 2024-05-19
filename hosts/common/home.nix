@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   home.username = "pango";
   home.homeDirectory = "/home/pango";
   home.stateVersion = "23.11";
@@ -73,7 +77,7 @@
       enable = true;
       enableZshIntegration = false;
       settings = {
-        theme = "gruvbox-dark";
+        theme = lib.mkForce "gruvbox-dark";
         copy_command = "xclip -selection clipboard";
         keybinds = {
           normal = {
