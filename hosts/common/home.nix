@@ -201,44 +201,44 @@
         hn = "custom-home-rebuild";
       };
 
-      # plugins = [
-      #   {
-      #     name = "fast-syntax-highlighting";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "zdharma-continuum";
-      #       repo = "fast-syntax-highlighting";
-      #       rev = "";
-      #       sha256 = "";
-      #     };
-      #   }
-      #   {
-      #     name = "zsh-completions";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "zsh-users";
-      #       repo = "zsh-completions";
-      #       rev = "";
-      #       sha256 = "";
-      #     };
-      #   }
-      #   {
-      #     name = "zsh-autosuggestions";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "zsh-users";
-      #       repo = "zsh-autosuggestions";
-      #       rev = "";
-      #       sha256 = "";
-      #     };
-      #   }
-      #   {
-      #     name = "fzf-tab";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "Aloxaf";
-      #       repo = "fzf-tab";
-      #       rev = "";
-      #       sha256 = "";
-      #     };
-      #   }
-      # ];
+      plugins = [
+        {
+          name = "fast-syntax-highlighting";
+          src = pkgs.fetchFromGitHub {
+            owner = "zdharma-continuum";
+            repo = "fast-syntax-highlighting";
+            rev = "cf318e06a9b7c9f2219d78f41b46fa6e06011fd9";
+            hash = "sha256-RVX9ZSzjBW3LpFs2W86lKI6vtcvDWP6EPxzeTcRZua4=";
+          };
+        }
+        {
+          name = "zsh-completions";
+          src = pkgs.fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-completions";
+            rev = "b1cf65187047a83e27a0847bd565dcf28b5be465";
+            hash = "sha256-eqpZp61qCrdp6yrexQJWgEl9Efjk/aTj/AImplpl6gg=";
+          };
+        }
+        {
+          name = "zsh-autosuggestions";
+          src = pkgs.fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-autosuggestions";
+            rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
+            hash = "sha256-B+Kz3B7d97CM/3ztpQyVkE6EfMipVF8Y4HJNfSRXHtU=";
+          };
+        }
+        {
+          name = "fzf-tab";
+          src = pkgs.fetchFromGitHub {
+            owner = "Aloxaf";
+            repo = "fzf-tab";
+            rev = "c7fb028ec0bbc1056c51508602dbd61b0f475ac3";
+            hash = "sha256-Qv8zAiMtrr67CbLRrFjGaPzFZcOiMVEFLg1Z+N6VMhg=";
+          };
+        }
+      ];
 
       initExtraFirst =
         /*
