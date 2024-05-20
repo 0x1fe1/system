@@ -20,6 +20,7 @@
     cool-retro-term
     corefonts
     fd
+    fg-virgil
     file
     jq
     kdePackages.kate
@@ -28,6 +29,8 @@
     networkmanagerapplet
     nh
     nix-output-monitor
+    nix-prefetch
+    nix-prefetch-github
     obsidian
     protonvpn-gui
     qemu
@@ -37,8 +40,6 @@
     vscode
     xclip
     zsh-powerlevel10k
-    nix-prefetch
-    nix-prefetch-github
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
