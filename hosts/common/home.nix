@@ -321,7 +321,7 @@
           zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
           zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
 
-          # export DIRENV_LOG_FORMAT=
+          export DIRENV_LOG_FORMAT=
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
 
           # source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
