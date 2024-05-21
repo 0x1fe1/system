@@ -16,6 +16,10 @@
     dotnetCorePackages.sdk_6_0
     # libgcc
     # gnumake
+
+    kubernetes
+    minikube
+    kompose
   ];
 
   imports = [
