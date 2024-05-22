@@ -18,6 +18,7 @@
     # gnumake
 
     kubernetes
+    kubectl
     minikube
     kompose
   ];
