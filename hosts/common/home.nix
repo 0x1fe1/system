@@ -159,51 +159,7 @@
 
     zsh = {
       enable = true;
-
-      shellAliases = {
-        lla = "eza -Tla --icons -s=type";
-        ll = "lla -L=1";
-        ls = "ls --color";
-        c = "clear";
-        q = "exit";
-        ":q" = "exit";
-
-        # [J]ump to (zoxide)
-        j = "z";
-        "j-" = "j -"; # [J]ump to [-] (previous directory)
-        "j." = "j .."; # [J]ump to [.]./ (parent directory)
-        jp = "j ~/personal"; # [J]ump to [P]ersonal
-        js = "j ~/system"; # [J]ump to [S]ystem
-        jn = "j ~/neovim"; # [J]ump to [N]eovim
-        jm = "j ~/mirea"; # [J]ump to [N]eovim
-
-        # [V]im (nvim built with nixvim)
-        v = "nix run ~/neovim";
-        "v." = "v ."; # [V]im [.] open vim in current directory
-        # [V]im [F]zf (fuzzy find into vim)
-        vf = toString [
-          "fd . -t f"
-          "| fzf --preview \"bat --color=always {}\""
-          "--preview-window \"right,67%,wrap,~3\" --border=rounded"
-          "--bind \"enter:become(nix run ~/neovim {})\""
-        ];
-
-        # [F]zf (fuzzy find)
-        # [F]zf [F]unction (the underlying search directories function)
-        ff = "fd . --type directory --max-depth=16 | fzf --border=rounded";
-        f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
-
-        # nix-direnv
-        da = "direnv allow";
-        dn = "direnv deny";
-
-        # [C]onfigure [N]ixos (goto ~/system and enter vim)
-        cn = "custom-system-edit";
-        # [F]lake rebuild [N]ixos (switch system with the new config)
-        fn = "custom-system-rebuild";
-        # [H]ome rebuild [N]ixos (switch home-manager with the new config)
-        hn = "custom-home-rebuild";
-      };
+      defaultKeymap = "emacs";
 
       plugins = [
         {
@@ -314,12 +270,16 @@
           setopt hist_ignore_dups
           setopt hist_find_no_dups
 
+          # Custom Keybindings
+          bindkey '^j' history-search-backward
+          bindkey '^k' history-search-forward
+
           # Completion styling
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
           zstyle ':completion:*' menu no
           zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
-          zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
+          zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
 
           export DIRENV_LOG_FORMAT=
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
@@ -333,6 +293,51 @@
           # source "/nix/store/m1njxh2kwbjxnpl7ykr9dxz7fsyrbamh-wezterm-20240203-110809-5046fc22/etc/profile.d/wezterm.sh"
         '';
 
+      shellAliases = {
+        lla = "eza -Tla --icons -s=type";
+        ll = "lla -L=1";
+        ls = "ls --color";
+        c = "clear";
+        q = "exit";
+        ":q" = "exit";
+
+        # [J]ump to (zoxide)
+        j = "__zoxide_z";
+        "j-" = "j -"; # [J]ump to [-] (previous directory)
+        "j." = "j .."; # [J]ump to [.]./ (parent directory)
+        jp = "j ~/personal"; # [J]ump to [P]ersonal
+        js = "j ~/system"; # [J]ump to [S]ystem
+        jn = "j ~/neovim"; # [J]ump to [N]eovim
+        jm = "j ~/mirea"; # [J]ump to [N]eovim
+
+        # [V]im (nvim built with nixvim)
+        v = "nix run ~/neovim";
+        "v." = "v ."; # [V]im [.] open vim in current directory
+        # [V]im [F]zf (fuzzy find into vim)
+        vf = toString [
+          "fd . -t f"
+          "| fzf --preview \"bat --color=always {}\""
+          "--preview-window \"right,67%,wrap,~3\" --border=rounded"
+          "--bind \"enter:become(nix run ~/neovim {})\""
+        ];
+
+        # [F]zf (fuzzy find)
+        # [F]zf [F]unction (the underlying search directories function)
+        ff = "fd . --type directory --max-depth=16 | fzf --border=rounded";
+        f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
+
+        # nix-direnv
+        da = "direnv allow";
+        dn = "direnv deny";
+
+        # [C]onfigure [N]ixos (goto ~/system and enter vim)
+        cn = "custom-system-edit";
+        # [F]lake rebuild [N]ixos (switch system with the new config)
+        fn = "custom-system-rebuild";
+        # [H]ome rebuild [N]ixos (switch home-manager with the new config)
+        hn = "custom-home-rebuild";
+      };
+
       envExtra = ''
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
       '';
@@ -343,25 +348,6 @@
       enableZshIntegration = false;
       nix-direnv.enable = true;
     };
-
-    # starship = {
-    #   enable = true;
-    #   enableZshIntegration = false;
-    #   settings = {
-    #     scan_timeout = 10;
-    #     directory = {
-    #       truncate_to_repo = false;
-    #       truncation_length = 64;
-    #       truncation_symbol = "…/";
-    #     };
-    #     character.error_symbol = "[✖](bold red)";
-    #     custom.direnv = {
-    #       format = "[\\[direnv\\]]($style) ";
-    #       style = "fg:yellow dimmed";
-    #       when = "printenv DIRENV_FILE";
-    #     };
-    #   };
-    # };
 
     zoxide = {
       enable = true;
@@ -378,7 +364,7 @@
     git = {
       enable = true;
       userName = "Pangolecimal";
-      userEmail = "domkuzaleza@gmail.com";
+      userEmail = "pangolecimal@gmail.com";
       extraConfig = {
         init = {
           defaultBranch = "main";
