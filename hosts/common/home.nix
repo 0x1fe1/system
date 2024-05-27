@@ -31,6 +31,7 @@
     nix-output-monitor
     nix-prefetch
     nix-prefetch-github
+    obs-studio
     obsidian
     protonvpn-gui
     qemu
