@@ -31,7 +31,6 @@
     nix-output-monitor
     nix-prefetch
     nix-prefetch-github
-    obs-studio
     obsidian
     protonvpn-gui
     qemu
@@ -280,7 +279,7 @@
           zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
           zstyle ':completion:*' menu no
           zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
-          zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
+          zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
 
           export DIRENV_LOG_FORMAT=
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
@@ -303,7 +302,7 @@
         ":q" = "exit";
 
         # [J]ump to (zoxide)
-        j = "__zoxide_z";
+        j = "z";
         "j-" = "j -"; # [J]ump to [-] (previous directory)
         "j." = "j .."; # [J]ump to [.]./ (parent directory)
         jp = "j ~/personal"; # [J]ump to [P]ersonal

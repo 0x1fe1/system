@@ -16,6 +16,8 @@
     dotnetCorePackages.sdk_6_0
     # libgcc
     # gnumake
+    obs-studio
+    appimage-run
 
     kubernetes
     kubectl
