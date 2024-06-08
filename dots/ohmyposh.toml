@@ -40,7 +40,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     style = 'plain'
     background = 'transparent'
     foreground = 'yellow'
-    template = ' a {{if .Env.DIRENV_FILE}} b {{else}} c {{end}} d'
+    template = ' a {{ if .Env.DIRENV_LOG_FORMAT }} b {{ else }} c {{ end }} d'
 
 
 [[blocks]]
