@@ -13,7 +13,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     type = 'path'
     style = 'plain'
     background = 'transparent'
-    foreground = 'lightBlue'
+    foreground = 'blue'
     template = '{{ .Path }}'
 
     [blocks.segments.properties]
@@ -24,12 +24,21 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     style = 'plain'
     foreground = 'white'
     background = 'transparent'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <lightCyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    template = ' {{.HEAD}}{{if or (.Working.Changed) (.Staging.Changed)}}*{{end}} <cyan>{{if gt .Behind 0}}\/{{end}}{{if gt .Ahead 0}}/\{{end}}</>'
 
     [blocks.segments.properties]
       branch_icon = ''
       commit_icon = '@'
       fetch_status = true
+
+[[blocks]]
+  type = 'text'
+  style = 'plain'
+  alignment = 'left'
+  background = 'transparent'
+  foreground = 'yellow'
+  template = '{{if .Env.DIRENV_FILE}}[direnv]{{end}}'
+
 
 [[blocks]]
   type = 'rprompt'
@@ -38,12 +47,12 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   [[blocks.segments]]
     type = 'executiontime'
     style = 'plain'
-    foreground = 'lightYellow'
+    foreground = 'yellow'
     background = 'transparent'
     template = '{{ .FormattedMs }}'
 
     [blocks.segments.properties]
-      threshold = 5000
+      threshold = 1000
 
 [[blocks]]
   type = 'prompt'
@@ -54,21 +63,21 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     type = 'text'
     style = 'plain'
     foreground_templates = [
-      "{{if gt .Code 0}}lightRed{{end}}",
-      "{{if eq .Code 0}}lightMagenta{{end}}",
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}green{{end}}",
     ]
     background = 'transparent'
     template = '->'
 
 [transient_prompt]
   foreground_templates = [
-    "{{if gt .Code 0}}lightRed{{end}}",
-    "{{if eq .Code 0}}lightMagenta{{end}}",
+    "{{if gt .Code 0}}red{{end}}",
+    "{{if eq .Code 0}}green{{end}}",
   ]
   background = 'transparent'
   template = '-> '
 
 [secondary_prompt]
-  foreground = 'lightMagenta'
+  foreground = 'green'
   background = 'transparent'
   template = '->> '
