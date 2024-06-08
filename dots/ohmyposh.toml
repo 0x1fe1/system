@@ -35,7 +35,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   type = 'text'
   alignment = 'left'
 
-  [[blocks.segment]]
+  [[blocks.segments]]
     style = 'plain'
     background = 'transparent'
     foreground = 'yellow'
