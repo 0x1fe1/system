@@ -33,11 +33,13 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 
 [[blocks]]
   type = 'text'
-  style = 'plain'
   alignment = 'left'
-  background = 'transparent'
-  foreground = 'yellow'
-  template = ' a {{if .Env.DIRENV_FILE}} b [direnv] {{else}} c {{end}}'
+
+  [[blocks.segment]]
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+    template = ' a {{if .Env.DIRENV_FILE}} b [direnv] {{else}} c {{end}}'
 
 
 [[blocks]]
