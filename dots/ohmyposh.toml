@@ -31,16 +31,12 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       commit_icon = '@'
       fetch_status = true
 
-[[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-
   [[blocks.segments]]
     type = 'text'
     style = 'plain'
     background = 'transparent'
     foreground = 'yellow'
-    template = ' a {{ if .Env.DIRENV_FILE }} b {{ else }} c {{ end }} d'
+    template = ' {{if .Env.DIRENV_FILE}}[direnv]{{end}}'
 
 
 [[blocks]]
