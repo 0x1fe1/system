@@ -302,9 +302,7 @@
     oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      # settings = {
-      #
-      # };
+      settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ./../../dots/ohmyposh.toml));
     };
 
     direnv = {
