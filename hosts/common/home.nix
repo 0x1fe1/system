@@ -13,8 +13,6 @@
   home.file = {};
 
   home.packages = with pkgs; [
-    # (jetbrains.idea-community)
-    # ollama
     (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "Meslo" "Monaspace" "Noto" "NerdFontsSymbolsOnly"];})
     brave
     cool-retro-term
@@ -39,7 +37,6 @@
     vlc
     vscode
     xclip
-    zsh-powerlevel10k
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
@@ -200,14 +197,6 @@
         }
       ];
 
-      completionInit =
-        /*
-        bash
-        */
-        ''
-          # zinit cdreplay -q
-        '';
-
       initExtra =
         /*
         bash
@@ -237,16 +226,8 @@
           zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
           zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
 
-          export DIRENV_LOG_FORMAT=
+          # export DIRENV_LOG_FORMAT=
           # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
-
-          # source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
-          # source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-          eval "$(fzf --zsh)"
-          eval "$(zoxide init zsh)"
-          eval "$(direnv hook zsh)"
-          # source "/nix/store/m1njxh2kwbjxnpl7ykr9dxz7fsyrbamh-wezterm-20240203-110809-5046fc22/etc/profile.d/wezterm.sh"
         '';
 
       shellAliases = {
@@ -307,17 +288,17 @@
 
     direnv = {
       enable = true;
-      enableZshIntegration = false;
+      enableZshIntegration = true;
       nix-direnv.enable = true;
     };
 
     zoxide = {
       enable = true;
-      enableZshIntegration = false;
+      enableZshIntegration = true;
     };
     fzf = {
       enable = true;
-      enableZshIntegration = false;
+      enableZshIntegration = true;
     };
     ripgrep.enable = true;
     eza.enable = true;

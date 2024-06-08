@@ -37,7 +37,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   alignment = 'left'
   background = 'transparent'
   foreground = 'yellow'
-  template = '{{if .Env.DIRENV_FILE}}[direnv]{{end}}'
+  template = ' a {{if .Env.DIRENV_FILE}} b [direnv] {{else}} c {{end}}'
 
 
 [[blocks]]
