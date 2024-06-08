@@ -13,7 +13,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     type = 'path'
     style = 'plain'
     background = 'transparent'
-    foreground = 'blue'
+    foreground = 'lightBlue'
     template = '{{ .Path }}'
 
     [blocks.segments.properties]
@@ -22,9 +22,9 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   [[blocks.segments]]
     type = 'git'
     style = 'plain'
-    foreground = 'p:grey'
+    foreground = 'white'
     background = 'transparent'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <lightCyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
 
     [blocks.segments.properties]
       branch_icon = ''
@@ -38,7 +38,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   [[blocks.segments]]
     type = 'executiontime'
     style = 'plain'
-    foreground = 'yellow'
+    foreground = 'lightYellow'
     background = 'transparent'
     template = '{{ .FormattedMs }}'
 
@@ -54,21 +54,21 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     type = 'text'
     style = 'plain'
     foreground_templates = [
-      "{{if gt .Code 0}}red{{end}}",
-      "{{if eq .Code 0}}magenta{{end}}",
+      "{{if gt .Code 0}}lightRed{{end}}",
+      "{{if eq .Code 0}}lightMagenta{{end}}",
     ]
     background = 'transparent'
-    template = '❯'
+    template = '->'
 
 [transient_prompt]
   foreground_templates = [
-    "{{if gt .Code 0}}red{{end}}",
-    "{{if eq .Code 0}}magenta{{end}}",
+    "{{if gt .Code 0}}lightRed{{end}}",
+    "{{if eq .Code 0}}lightMagenta{{end}}",
   ]
   background = 'transparent'
-  template = '❯ '
+  template = '-> '
 
 [secondary_prompt]
-  foreground = 'magenta'
+  foreground = 'lightMagenta'
   background = 'transparent'
-  template = '❯❯ '
+  template = '->> '
