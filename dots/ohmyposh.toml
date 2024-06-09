@@ -74,7 +74,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     "{{if eq .Code 0}}green{{end}}",
   ]
   background = 'transparent'
-  template = '-> '
+  template = '{{ .Path }}\n-> '
 
 [secondary_prompt]
   foreground = 'green'
