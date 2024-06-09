@@ -115,6 +115,30 @@
             warn_about_missing_glyphs = false,
             -- disable_default_key_bindings = true,
             hide_tab_bar_if_only_one_tab = true,
+            window_decorations = "INTEGRATED_BUTTONS|RESIZE",
+
+            -- Backend settings
+            prefer_egl=true,
+            front_end="WebGpu",
+            webgpu_power_preference = "HighPerformance",
+
+            -- Experimental undocumented features to improve perceived performance
+            -- default delay is 3ms
+            mux_output_parser_coalesce_delay_ms = 1,
+            -- default size is 256
+            glyph_cache_image_cache_size = 512,
+            -- default size is 1024
+            shape_cache_size = 2048,
+            line_state_cache_size = 2048,
+            line_quad_cache_size = 2048,
+            line_to_ele_shape_cache_size = 2048,
+            -- default is 10 fps for animations
+            animation_fps = 60,
+            -- default is 60
+            max_fps = 144,
+
+            -- Set terminal type for better integration
+            term = "wezterm",
           }
 
           local opacity = 0.9
