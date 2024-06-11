@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -28,12 +27,12 @@
   # virtualisation.virtualbox.guest.x11 = true;
   # users.extraGroups.vboxusers.members = ["pango"];
 
-  services.udev.packages = [pkgs.bazecor];
+  services.udev.packages = [ pkgs.bazecor ];
 
   programs.steam.enable = true;
 
   ### Nvidia hax
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl = {
     enable = true;
     driSupport = true;
