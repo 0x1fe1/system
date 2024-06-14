@@ -93,15 +93,13 @@
 
         local FONT_ID = 0
         local FONTS = {
-          {
-            family = "FiraCode Nerd Font",
-            harfbuzz_features = {"cv02", "cv25", "cv26", "cv27", "cv28", "cv32", "ss03", "ss05", "ss07", "ss09"},
-          },
+          "FiraCode Nerd Font",
           "JetBrainsMono Nerd Font",
         }
 
         config = {
           color_scheme = "Catppuccin Mocha (Gogh)",
+          harfbuzz_features = {"cv02", "cv25", "cv26", "cv27", "cv28", "cv32", "ss03", "ss05", "ss07", "ss09"},
           font = wezterm.font_with_fallback {
             "FiraCode Nerd Font",
             "JetBrainsMono Nerd Font",
