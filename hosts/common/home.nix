@@ -135,7 +135,7 @@
           term = "wezterm",
         }
 
-        local opacity = 0.9
+        local opacity = 0.95
         config.window_background_opacity = opacity
 
         -- toggle function
