@@ -323,7 +323,7 @@
 
     git = {
       enable = true;
-      userName = "Pangolecimal";
+      userName = "0x1fe1";
       userEmail = "pangolecimal@gmail.com";
       extraConfig = {
         init = {
