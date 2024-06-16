@@ -22,6 +22,7 @@
     jq
     kdePackages.kate
     libreoffice
+    man-pages
     networkmanager
     networkmanagerapplet
     nh
