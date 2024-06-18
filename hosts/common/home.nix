@@ -326,8 +326,29 @@
       userName = "0x1fe1";
       userEmail = "pangolecimal@gmail.com";
       extraConfig = {
-        init = {
-          defaultBranch = "main";
+        init.defaultBranch = "main";
+      };
+
+      delta = {
+        enable = true;
+        options = {
+          features = "decorations";
+          dark = true;
+          line-numbers = true;
+          side-by-side = false;
+          true-color = "always";
+          decorations = {
+            commit-decoration-style = "lightblue ol";
+            commit-style = "raw";
+            file-style = "omit";
+            hunk-header-decoration-style = "lightblue box";
+            hunk-header-file-style = "pink";
+            hunk-header-line-number-style = "lightgreen";
+            hunk-header-style = "file line-number syntax";
+          };
+          interactive = {
+            keep-plus-minus-markers = false;
+          };
         };
       };
     };
