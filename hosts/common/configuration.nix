@@ -28,6 +28,8 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
+  # FIX dualboot (only on windows) breaks time
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
