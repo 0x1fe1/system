@@ -57,15 +57,15 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
   # services.xserver.displayManager.defaultSession = "plasma";
-  # services.xserver.displayManager.sddm.wayland.enable = true;
-  services.xserver.displayManager.sddm.theme = "breeze";
+  services.xserver.displayManager.sddm.wayland.enable = true;
+  # services.xserver.displayManager.sddm.theme = "breeze";
 
   # exclude unwanted plasma-related packages
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
-    oxygen
-  ];
+  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
+  #   plasma-browser-integration
+  #   konsole
+  #   oxygen
+  # ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
