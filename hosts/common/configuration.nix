@@ -16,7 +16,7 @@
         efiSupport = true;
         font = "${ pkgs.nerdfonts.override{fonts=["FiraCode"];}
           }/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
-        fontSize = 24;
+        fontSize = 36;
         theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
       };
       efi = {
