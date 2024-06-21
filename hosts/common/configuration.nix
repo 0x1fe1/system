@@ -14,8 +14,7 @@
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
-        font = "${ pkgs.nerdfonts.override{fonts=["FiraCode"];}
-          }/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
+        font = "${pkgs.grub2}/share/grub/unicode.pf2";
         fontSize = 36;
         theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
       };
@@ -57,8 +56,8 @@
   # services.xserver.desktopManager.plasma5.enable = true;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.defaultSession = "plasma";
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  # services.xserver.displayManager.defaultSession = "plasma";
+  # services.xserver.displayManager.sddm.wayland.enable = true;
   services.xserver.displayManager.sddm.theme = "breeze";
 
   # exclude unwanted plasma-related packages
