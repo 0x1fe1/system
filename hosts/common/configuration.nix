@@ -16,7 +16,7 @@
         efiSupport = true;
         font = "${pkgs.grub2}/share/grub/unicode.pf2";
         fontSize = 36;
-        theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
+        # theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
       };
       efi = {
         canTouchEfiVariables = true;
@@ -52,20 +52,8 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  # services.xserver.displayManager.defaultSession = "plasma";
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  # services.xserver.displayManager.sddm.theme = "breeze";
-
-  # exclude unwanted plasma-related packages
-  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
-  #   plasma-browser-integration
-  #   konsole
-  #   oxygen
-  # ];
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
