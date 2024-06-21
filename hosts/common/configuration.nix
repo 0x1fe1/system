@@ -14,7 +14,10 @@
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
+        font = "${ pkgs.nerdfonts.override{fonts=["FiraCode"];}
+          }/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
         fontSize = 24;
+        theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
       };
       efi = {
         canTouchEfiVariables = true;
@@ -50,8 +53,17 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  # exclude unwanted plasma-related packages
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    oxygen
+  ];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -75,7 +87,8 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # use the example session manager
+    # (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
