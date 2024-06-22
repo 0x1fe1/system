@@ -1,7 +1,54 @@
 { pkgs
 , lib
 , ...
-}: {
+}:
+let
+  shell-aliases = {
+    lla = "eza -Tla --icons -s=type";
+    ll = "lla -L=1";
+    ls = "ls --color";
+    c = "clear";
+    q = "exit";
+    ":q" = "exit";
+
+    # [J]ump to (zoxide)
+    j = "z";
+    "j-" = "j -"; # [J]ump to [-] (previous directory)
+    "j." = "j .."; # [J]ump to [.]./ (parent directory)
+    jp = "j ~/personal"; # [J]ump to [P]ersonal
+    js = "j ~/system"; # [J]ump to [S]ystem
+    jn = "j ~/neovim"; # [J]ump to [N]eovim
+    jm = "j ~/mirea"; # [J]ump to [N]eovim
+
+    # [V]im (nvim built with nixvim)
+    v = "nix run ~/neovim";
+    "v." = "v ."; # [V]im [.] open vim in current directory
+    # [V]im [F]zf (fuzzy find into vim)
+    vf = toString [
+      "fd . -t f"
+      "| fzf --preview \"bat --color=always {}\""
+      "--preview-window \"right,67%,wrap,~3\" --border=rounded"
+      "--bind \"enter:become(nix run ~/neovim {})\""
+    ];
+
+    # [F]zf (fuzzy find)
+    # [F]zf [F]unction (the underlying search directories function)
+    ff = "fd . --type directory --max-depth=16 | fzf --border=rounded";
+    f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
+
+    # nix-direnv
+    da = "direnv allow";
+    dn = "direnv deny";
+
+    # [C]onfigure [N]ixos (goto ~/system and enter vim)
+    cn = "custom-system-edit";
+    # [F]lake rebuild [N]ixos (switch system with the new config)
+    fn = "custom-system-rebuild";
+    # [H]ome rebuild [N]ixos (switch home-manager with the new config)
+    hn = "custom-home-rebuild";
+  };
+in
+{
   home.username = "pango";
   home.homeDirectory = "/home/pango";
   home.stateVersion = "23.11";
@@ -246,50 +293,7 @@
         # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
       '';
 
-      shellAliases = {
-        lla = "eza -Tla --icons -s=type";
-        ll = "lla -L=1";
-        ls = "ls --color";
-        c = "clear";
-        q = "exit";
-        ":q" = "exit";
-
-        # [J]ump to (zoxide)
-        j = "z";
-        "j-" = "j -"; # [J]ump to [-] (previous directory)
-        "j." = "j .."; # [J]ump to [.]./ (parent directory)
-        jp = "j ~/personal"; # [J]ump to [P]ersonal
-        js = "j ~/system"; # [J]ump to [S]ystem
-        jn = "j ~/neovim"; # [J]ump to [N]eovim
-        jm = "j ~/mirea"; # [J]ump to [N]eovim
-
-        # [V]im (nvim built with nixvim)
-        v = "nix run ~/neovim";
-        "v." = "v ."; # [V]im [.] open vim in current directory
-        # [V]im [F]zf (fuzzy find into vim)
-        vf = toString [
-          "fd . -t f"
-          "| fzf --preview \"bat --color=always {}\""
-          "--preview-window \"right,67%,wrap,~3\" --border=rounded"
-          "--bind \"enter:become(nix run ~/neovim {})\""
-        ];
-
-        # [F]zf (fuzzy find)
-        # [F]zf [F]unction (the underlying search directories function)
-        ff = "fd . --type directory --max-depth=16 | fzf --border=rounded";
-        f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
-
-        # nix-direnv
-        da = "direnv allow";
-        dn = "direnv deny";
-
-        # [C]onfigure [N]ixos (goto ~/system and enter vim)
-        cn = "custom-system-edit";
-        # [F]lake rebuild [N]ixos (switch system with the new config)
-        fn = "custom-system-rebuild";
-        # [H]ome rebuild [N]ixos (switch home-manager with the new config)
-        hn = "custom-home-rebuild";
-      };
+      shellAliases = shell-aliases;
 
       envExtra = ''
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
@@ -300,26 +304,30 @@
       # '';
     };
 
+    fish = {
+      enable = true;
+      shellAliases = shell-aliases;
+      plugins = [
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      ];
+      shellInitLast = ''
+        set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
+        set -gx DIRENV_LOG_FORMAT ""
+      '';
+    };
+
     oh-my-posh = {
       enable = true;
-      enableZshIntegration = true;
       settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ./../../dots/ohmyposh.toml));
     };
 
     direnv = {
       enable = true;
-      enableZshIntegration = true;
       nix-direnv.enable = true;
     };
 
-    zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    zoxide.enable = true;
+    fzf.enable = true;
     ripgrep.enable = true;
     eza.enable = true;
     bat.enable = true;
