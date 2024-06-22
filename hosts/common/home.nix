@@ -296,11 +296,9 @@
       '';
 
       completionInit = ''
-        autoload -Uz compinit
-        for dump in ~/.zcompdump; do
-          compinit
-        done
-        compinit -C
+        autoload -Uz compinit; compinit -C  # Use cache to reduce startup time by ~0.1s
+        # Have another thread refresh the cache in the background (subshell to hide output)
+        (autoload -Uz compinit; compinit &)
       '';
       # completionInit = ''
       #   autoload -Uz compinit

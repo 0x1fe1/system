@@ -138,8 +138,8 @@
 
   programs.zsh = {
     enable = true;
-    enableCompletion = false;
-    enableGlobalCompInit = false;
+    # enableCompletion = false;
+    # enableGlobalCompInit = false;
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
