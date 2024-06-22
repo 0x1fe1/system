@@ -176,6 +176,7 @@
       enable = true;
       defaultKeymap = "emacs";
       zprof.enable = true;
+      enableCompletion = false;
 
       plugins = [
         {
@@ -294,7 +295,14 @@
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
       '';
 
-      completionInit = "autoload -U compinit && compinit";
+      completionInit = ''
+        autoload -Uz compinit
+        if [[ -n ''${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+          compinit
+        else
+          # We don't do `compinit -C` here because the GRML zshrc already did it above.
+        fi
+      '';
     };
 
     oh-my-posh = {
