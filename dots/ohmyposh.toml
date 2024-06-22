@@ -36,7 +36,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     style = 'plain'
     background = 'transparent'
     foreground = 'yellow'
-    template = ' {{if gt .Env.SHLVL 1}}[{{.Env.SHLVL}} shells deep]{{end}}'
+    template = ' {{if gt .SHLVL 1}}[{{.SHLVL}} shells deep]{{end}}'
 
   [[blocks.segments]]
     type = 'text'
