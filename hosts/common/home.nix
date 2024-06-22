@@ -296,9 +296,7 @@
       '';
 
       completionInit = ''
-        autoload -Uz compinit; compinit -C  # Use cache to reduce startup time by ~0.1s
-        # Have another thread refresh the cache in the background (subshell to hide output)
-        (autoload -Uz compinit; compinit &)
+        autoload -Uz compinit && compinit
       '';
     };
 
