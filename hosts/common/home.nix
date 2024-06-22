@@ -176,7 +176,7 @@
       enable = true;
       defaultKeymap = "emacs";
       zprof.enable = true;
-      enableCompletion = false;
+      enableCompletion = true;
 
       plugins = [
         {
