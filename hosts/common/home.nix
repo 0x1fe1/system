@@ -295,15 +295,10 @@
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
       '';
 
-      # completionInit = ''
-      #   autoload -Uz compinit; compinit -C  # Use cache to reduce startup time by ~0.1s
-      #   # Have another thread refresh the cache in the background (subshell to hide output)
-      #   (autoload -Uz compinit; compinit &)
-      # '';
       completionInit = ''
-        # negation, so that at least one exits on 0
-        [ ! "$(find ~/.zcompdump -mtime 1)" ] || compinit
-        compinit -C
+        autoload -Uz compinit; compinit -C  # Use cache to reduce startup time by ~0.1s
+        # Have another thread refresh the cache in the background (subshell to hide output)
+        (autoload -Uz compinit; compinit &)
       '';
     };
 
