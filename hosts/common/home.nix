@@ -175,8 +175,8 @@
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
-      zprof.enable = true;
-      # enableCompletion = false;
+      # zprof.enable = true;
+      enableCompletion = true;
 
       plugins = [
         {
