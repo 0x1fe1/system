@@ -14,7 +14,10 @@
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
-        font = "${pkgs.grub2}/share/grub/unicode.pf2";
+        # font = "${pkgs.grub2}/share/grub/unicode.pf2";
+        font = "${
+          pkgs.nerdfonts.override{fonts=["FiraCode"];}
+        }/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
         fontSize = 36;
         # theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
       };
