@@ -36,8 +36,28 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     style = 'plain'
     background = 'transparent'
     foreground = 'yellow'
-    template = ' {{if .Env.DIRENV_FILE}}[direnv]{{end}}'
+    template = ' {{lt 1 .Env.SHLVL}} [{{.Env.SHLVL}} shells deep]{{end}}'
 
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+    template = ' {{if .Env.DIRENV_FILE}} [direnv]{{end}}'
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+    template = ' {{if .Env.IN_NIX_SHELL}} [nix dev shell]{{end}}'
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+    template = ' {{if contains "/nix/store" .Env.PATH}} [nix shell]{{end}}'
 
 [[blocks]]
   type = 'rprompt'
