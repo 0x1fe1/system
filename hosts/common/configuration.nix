@@ -136,11 +136,7 @@
     glibc
   ];
 
-  programs.zsh = {
-    enable = true;
-    # enableCompletion = false;
-    # enableGlobalCompInit = false;
-  };
+  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
 

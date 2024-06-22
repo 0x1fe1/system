@@ -236,9 +236,9 @@
         bindkey '^k' history-search-forward
 
         # Completion styling
-        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-        zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
-        zstyle ':completion:*' menu no
+        # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        # zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
+        # zstyle ':completion:*' menu no
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
         zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
 
@@ -295,9 +295,9 @@
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
       '';
 
-      completionInit = ''
-        autoload -Uz compinit && compinit
-      '';
+      # completionInit = ''
+      #   autoload -Uz compinit && compinit
+      # '';
     };
 
     oh-my-posh = {
