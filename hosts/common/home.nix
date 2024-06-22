@@ -175,7 +175,7 @@
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
-      zprof.enable = false;
+      zprof.enable = true;
 
       plugins = [
         {
@@ -294,7 +294,7 @@
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
       '';
 
-      completionInit = "";
+      completionInit = "autoload -U compinit && compinit";
     };
 
     oh-my-posh = {
