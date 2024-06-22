@@ -187,15 +187,15 @@
             hash = "sha256-RVX9ZSzjBW3LpFs2W86lKI6vtcvDWP6EPxzeTcRZua4=";
           };
         }
-        {
-          name = "zsh-completions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-completions";
-            rev = "b1cf65187047a83e27a0847bd565dcf28b5be465";
-            hash = "sha256-eqpZp61qCrdp6yrexQJWgEl9Efjk/aTj/AImplpl6gg=";
-          };
-        }
+        # {
+        #   name = "zsh-completions";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "zsh-users";
+        #     repo = "zsh-completions";
+        #     rev = "b1cf65187047a83e27a0847bd565dcf28b5be465";
+        #     hash = "sha256-eqpZp61qCrdp6yrexQJWgEl9Efjk/aTj/AImplpl6gg=";
+        #   };
+        # }
         {
           name = "zsh-autosuggestions";
           src = pkgs.fetchFromGitHub {
