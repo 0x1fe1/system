@@ -297,12 +297,19 @@
 
       completionInit = ''
         autoload -Uz compinit
-        if [[ -n ''${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+        for dump in ~/.zcompdump(N.mh+24); do
           compinit
-        else
-          # We don't do `compinit -C` here because the GRML zshrc already did it above.
-        fi
+        done
+        compinit -C
       '';
+      # completionInit = ''
+      #   autoload -Uz compinit
+      #   if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+      #     compinit
+      #   else
+      #     compinit -C
+      #   fi
+      # '';
     };
 
     oh-my-posh = {
