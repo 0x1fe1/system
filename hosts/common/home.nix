@@ -175,7 +175,7 @@
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
-      # zprof.enable = true;
+      zprof.enable = true;
 
       plugins = [
         {
