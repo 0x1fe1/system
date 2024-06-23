@@ -1,28 +1,26 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    wgo
-    jetbrains.idea-ultimate
-    jdk21_headless
-    delta
-
+    # big ahh apps
+    # jetbrains.idea-ultimate
     bazecor
-    sshpass
-    tldr
+    discord
+    # obs-studio
+
+    # langs
+    dotnetCorePackages.sdk_6_0
+    # jdk21_headless
+
+    # sshpass
     # python3
     # ansible
-    ollama
-    ngrok
-    discord
-    dotnetCorePackages.sdk_6_0
+    # ollama
     # libgcc
     # gnumake
-    obs-studio
-    appimage-run
-
-    kubernetes
-    kubectl
-    minikube
-    kompose
+    # appimage-run
+    # kubernetes
+    # kubectl
+    # minikube
+    # kompose
   ];
 
   imports = [
