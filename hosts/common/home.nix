@@ -118,10 +118,10 @@ in
     ngrok
 
     # fonts
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Noto" ]; enableWindowsFonts = true; })
-    corefonts
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+    # corefonts
     fg-virgil
-    font-awesome
+    # font-awesome
     noto-fonts-monochrome-emoji
 
     (writeShellScriptBin "custom-system-edit" ''
@@ -180,6 +180,7 @@ in
 
     kitty = {
       enable = true;
+      theme = "Gruvbox Dark Hard";
     };
 
     zsh = {
