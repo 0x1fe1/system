@@ -3,7 +3,7 @@
 , ...
 }:
 let
-  shell-aliases = {
+  shell-aliases-common = {
     lla = "eza -Tla --icons -s=type";
     ll = "lla -L=1";
     ls = "ls --color";
@@ -23,28 +23,9 @@ let
     # [V]im (nvim built with nixvim)
     v = "nix run ~/neovim";
     "v." = "v ."; # [V]im [.] open vim in current directory
-    # [V]im [F]zf (fuzzy find into vim)
-    vf = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "a" /*bash*/''
-      fd . -t f
-      | fzf --preview "bat --color=always {}"
-      --preview-window "right,67%,wrap,~3" --border=rounded
-      --bind "enter:become(nix run ~/neovim {})"
-    ''));
 
-    # [F]zf (fuzzy find)
     # [F]zf [F]unction (the underlying search directories function)
     ff = "fd . --type directory --max-depth=16 | fzf --border=rounded";
-    # works for zsh
-    # f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
-    # works for fish
-    f = /* fish */ ''
-      function _fzf_f
-        set dir (ff);
-        if test -n $dir -a -d $dir
-          cd $dir
-        end
-      end
-    '';
 
     # nix-direnv
     da = "direnv allow";
@@ -56,6 +37,37 @@ let
     fn = "custom-system-rebuild";
     # [H]ome rebuild [N]ixos (switch home-manager with the new config)
     hn = "custom-home-rebuild";
+  };
+  shell-aliases-zsh = {
+    # [F]zf (fuzzy find)
+    f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
+    # [V]im [F]zf (fuzzy find into vim)
+    vf = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "a" /*bash*/''
+      fd . -t f
+      | fzf --preview "bat --color=always {}"
+      --preview-window "right,67%,wrap,~3" --border=rounded
+      --bind "enter:become(nix run ~/neovim {})"
+    ''));
+  };
+  shell-aliases-fish = {
+    # [F]zf (fuzzy find)
+    f = {
+      body = /* fish */ ''
+        set dir (ff);
+        if test -n $dir -a -d $dir
+          cd $dir
+        end
+      '';
+    };
+    # [V]im [F]zf (fuzzy find into vim)
+    vf = {
+      body = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "a" /*bash*/''
+        fd . -t f
+        | fzf --preview "bat --color=always {}"
+        --preview-window "right,67%,wrap,~3" --border=rounded
+        --bind "enter:become(nix run ~/neovim {})"
+      ''));
+    };
   };
 in
 {
@@ -303,7 +315,7 @@ in
         # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
       '';
 
-      shellAliases = shell-aliases;
+      shellAliases = shell-aliases-common // shell-aliases-zsh;
 
       envExtra = ''
         export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
@@ -316,7 +328,8 @@ in
 
     fish = {
       enable = true;
-      shellAliases = shell-aliases;
+      shellAliases = shell-aliases-common;
+      functions = shell-aliases-fish;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
