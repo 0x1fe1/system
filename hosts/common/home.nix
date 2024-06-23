@@ -24,17 +24,20 @@ let
     v = "nix run ~/neovim";
     "v." = "v ."; # [V]im [.] open vim in current directory
     # [V]im [F]zf (fuzzy find into vim)
-    vf = toString [
-      "fd . -t f"
-      "| fzf --preview \"bat --color=always {}\""
-      "--preview-window \"right,67%,wrap,~3\" --border=rounded"
-      "--bind \"enter:become(nix run ~/neovim {})\""
-    ];
+    vf = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "a" ''
+      fd . -t f
+      | fzf --preview "bat --color=always {}"
+      --preview-window "right,67%,wrap,~3" --border=rounded
+      --bind "enter:become(nix run ~/neovim {})"
+    ''));
 
     # [F]zf (fuzzy find)
     # [F]zf [F]unction (the underlying search directories function)
     ff = "fd . --type directory --max-depth=16 | fzf --border=rounded";
-    f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
+    # works for zsh
+    # f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
+    # works for fish
+    f = "function _fzf_f set dir (ff); if test -n $dir -a -d $dir; cd $dir end end";
 
     # nix-direnv
     da = "direnv allow";
