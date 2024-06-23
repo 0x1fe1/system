@@ -122,6 +122,7 @@
   ];
 
   fonts.fontconfig.defaultFonts.emoji = [ "Noto Emoji" ];
+  services.xserver.desktopManager.plasma5.notoPackage = pkgs.noto-fonts-monochrome-emoji;
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
