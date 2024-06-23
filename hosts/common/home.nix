@@ -86,7 +86,7 @@ in
     noto-fonts-monochrome-emoji
     brave
     cool-retro-term
-    # corefonts
+    corefonts
     fd
     fg-virgil
     file
