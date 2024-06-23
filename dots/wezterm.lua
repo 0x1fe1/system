@@ -6,6 +6,7 @@ local FONT_ID = 0
 local FONTS = {
     "FiraCode Nerd Font",
     "JetBrainsMono Nerd Font",
+    "Noto Emoji",
 }
 
 config = {
@@ -15,6 +16,7 @@ config = {
     font = wezterm.font_with_fallback {
         "FiraCode Nerd Font",
         "JetBrainsMono Nerd Font",
+        "Noto Emoji",
     },
     adjust_window_size_when_changing_font_size = false,
     warn_about_missing_glyphs = false,
@@ -24,7 +26,7 @@ config = {
 
     -- Backend settings
     prefer_egl = true,
-    -- front_end="OpenGL",
+    front_end = "WebGpu",
     webgpu_power_preference = "HighPerformance",
 
     -- Experimental undocumented features to improve perceived performance
