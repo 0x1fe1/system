@@ -81,9 +81,9 @@ in
   home.file = { };
 
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; enableWindowsFonts = true; })
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Noto" ]; enableWindowsFonts = true; })
     font-awesome
-    fira-code
+    noto-fonts-monochrome-emoji
     brave
     cool-retro-term
     # corefonts
