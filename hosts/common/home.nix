@@ -76,24 +76,33 @@ in
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      emoji = [ "Noto Emoji" ];
+      monospace = [ "FiraCode Nerd Font" ];
+    };
+  };
 
   home.file = { };
 
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Noto" ]; enableWindowsFonts = true; })
-    font-awesome
-    noto-fonts-monochrome-emoji
+    # big ahh apps
     brave
     cool-retro-term
-    corefonts
+    kdePackages.kate
+    libreoffice
+    obsidian
+    protonvpn-gui
+    staruml
+    vlc
+    vscode
+
+    # cli utils
     fd
-    fg-virgil
     file
     jq
     just
-    kdePackages.kate
-    libreoffice
     man-pages
     networkmanager
     networkmanagerapplet
@@ -101,14 +110,16 @@ in
     nix-output-monitor
     nix-prefetch
     nix-prefetch-github
-    obsidian
-    protonvpn-gui
     qemu
     quickemu
-    staruml
-    vlc
-    vscode
     xclip
+
+    # fonts
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Noto" ]; enableWindowsFonts = true; })
+    corefonts
+    fg-virgil
+    font-awesome
+    noto-fonts-monochrome-emoji
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e

@@ -8,13 +8,11 @@
   # Bootloader.
   boot = {
     loader = {
-      # systemd-boot.enable = true;
       grub = {
         enable = true;
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
-        # font = "${pkgs.grub2}/share/grub/unicode.pf2";
         font = "${
           pkgs.nerdfonts.override{fonts=["FiraCode"];}
         }/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
@@ -91,7 +89,7 @@
     isNormalUser = true;
     description = "pango";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     useDefaultShell = true;
   };
 
@@ -121,7 +119,6 @@
     git
   ];
 
-  fonts.fontconfig.defaultFonts.emoji = [ "Noto Emoji" ];
   services.xserver.desktopManager.plasma5.notoPackage = pkgs.noto-fonts-monochrome-emoji;
 
   programs.nix-ld.enable = true;
