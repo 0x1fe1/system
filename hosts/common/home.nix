@@ -113,6 +113,9 @@ in
     qemu
     quickemu
     xclip
+    tldr
+    wgo
+    ngrok
 
     # fonts
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Noto" ]; enableWindowsFonts = true; })
