@@ -164,6 +164,10 @@ in
       extraConfig = builtins.readFile ./../../dots/wezterm.lua;
     };
 
+    kitty = {
+      enable = true;
+    };
+
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
