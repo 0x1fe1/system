@@ -24,7 +24,7 @@ let
     v = "nix run ~/neovim";
     "v." = "v ."; # [V]im [.] open vim in current directory
     # [V]im [F]zf (fuzzy find into vim)
-    vf = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "a" ''
+    vf = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "a" /*bash*/''
       fd . -t f
       | fzf --preview "bat --color=always {}"
       --preview-window "right,67%,wrap,~3" --border=rounded
@@ -37,7 +37,14 @@ let
     # works for zsh
     # f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
     # works for fish
-    f = "function _fzf_f set dir (ff); if test -n $dir -a -d $dir; cd $dir end end";
+    f = /* fish */ ''
+      function _fzf_f
+        set dir (ff);
+        if test -n $dir -a -d $dir
+          cd $dir
+        end
+      end
+    '';
 
     # nix-direnv
     da = "direnv allow";
