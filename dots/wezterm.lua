@@ -6,18 +6,14 @@ local FONT_ID = 0
 local FONTS = {
     "FiraCode Nerd Font",
     "JetBrainsMono Nerd Font",
-    "Noto Emoji",
+    "Symbola",
 }
 
 config = {
     -- color_scheme = "Catppuccin Mocha (Gogh)",
     color_scheme = 'Gruvbox dark, hard (base16)',
     harfbuzz_features = { "cv02", "cv25", "cv26", "cv27", "cv28", "cv32", "ss03", "ss05", "ss07", "ss09" },
-    font = wezterm.font_with_fallback {
-        "FiraCode Nerd Font",
-        "JetBrainsMono Nerd Font",
-        "Noto Emoji",
-    },
+    font = wezterm.font_with_fallback(FONTS),
     adjust_window_size_when_changing_font_size = false,
     warn_about_missing_glyphs = false,
     -- disable_default_key_bindings = true,
