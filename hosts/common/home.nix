@@ -123,6 +123,7 @@ in
     fg-virgil
     # font-awesome
     noto-fonts-monochrome-emoji
+    symbola
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
