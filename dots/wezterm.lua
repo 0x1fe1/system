@@ -2,6 +2,23 @@ local wezterm = require 'wezterm';
 
 local config = {}
 
+local function dark_themes()
+    local schemes = wezterm.color.get_builtin_schemes()
+    local dark = {}
+    for name, scheme in pairs(schemes) do
+        local bg = wezterm.color.parse(scheme.background)
+        local _, _, l, _ = bg:hsla()
+        if l < 0.4 then
+            table.insert(dark, name)
+        end
+    end
+
+    table.sort(dark)
+    return dark
+end
+
+local themes = dark_themes()
+
 local FONT_ID = 0
 local FONTS = {
     "FiraCode Nerd Font",
@@ -63,6 +80,11 @@ wezterm.on("font-switch", function(window, _)
     overrides.font = wezterm.font(FONTS[FONT_ID + 1])
     window:set_config_overrides(overrides)
 end)
+wezterm.on("theme-switch", function(window, _)
+    local overrides = window:get_config_overrides() or {}
+    overrides.color_scheme = themes[math.random(#themes)]
+    window:set_config_overrides(overrides)
+end)
 
 config.keys = {
     {
@@ -74,6 +96,11 @@ config.keys = {
         key = "I",
         mods = "CTRL",
         action = wezterm.action.EmitEvent("font-switch"),
+    },
+    {
+        key = "K",
+        mods = "CTRL",
+        action = wezterm.action.EmitEvent("theme-switch"),
     },
 }
 
