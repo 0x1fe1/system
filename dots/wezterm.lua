@@ -2,23 +2,6 @@ local wezterm = require 'wezterm';
 
 local config = {}
 
-local function dark_themes()
-    local schemes = wezterm.color.get_builtin_schemes()
-    local dark = {}
-    for name, scheme in pairs(schemes) do
-        local bg = wezterm.color.parse(scheme.background)
-        local _, _, l, _ = bg:hsla()
-        if l < 0.4 then
-            table.insert(dark, name)
-        end
-    end
-
-    table.sort(dark)
-    return dark
-end
-
-local themes = dark_themes()
-
 local FONT_ID = 0
 local FONTS = {
     "FiraCode Nerd Font",
@@ -29,12 +12,15 @@ local FONTS = {
 config = {
     -- color_scheme = "Catppuccin Mocha (Gogh)",
     color_scheme = 'Gruvbox dark, hard (base16)',
-    harfbuzz_features = { "cv02", "cv25", "cv26", "cv27", "cv28", "cv32", "ss03", "ss05", "ss07", "ss09" },
+
+    harfbuzz_features = { "cv02", "cv25", "cv26", "cv27", "cv28", "cv32",
+        "ss03", "ss05", "ss07", "ss09" },
     font = wezterm.font_with_fallback(FONTS),
+
     adjust_window_size_when_changing_font_size = false,
     warn_about_missing_glyphs = false,
     -- disable_default_key_bindings = true,
-    -- hide_tab_bar_if_only_one_tab = true,
+    hide_tab_bar_if_only_one_tab = true,
     window_decorations = "INTEGRATED_BUTTONS|RESIZE",
 
     -- Backend settings
@@ -80,28 +66,18 @@ wezterm.on("font-switch", function(window, _)
     overrides.font = wezterm.font(FONTS[FONT_ID + 1])
     window:set_config_overrides(overrides)
 end)
-wezterm.on("theme-switch", function(window, _)
-    local overrides = window:get_config_overrides() or {}
-    overrides.color_scheme = themes[math.random(#themes)]
-    window:set_config_overrides(overrides)
-end)
+
+local function keymap(key, mods, event)
+    return {
+        key = key,
+        mods = mods,
+        action = wezterm.action.EmitEvent(event)
+    }
+end
 
 config.keys = {
-    {
-        key = "O",
-        mods = "CTRL",
-        action = wezterm.action.EmitEvent("toggle-opacity"),
-    },
-    {
-        key = "I",
-        mods = "CTRL",
-        action = wezterm.action.EmitEvent("font-switch"),
-    },
-    {
-        key = "K",
-        mods = "CTRL",
-        action = wezterm.action.EmitEvent("theme-switch"),
-    },
+    keymap("O", "CTRL", "toggle-opacity"),
+    keymap("I", "CTRL", "font-switch"),
 }
 
 return config
