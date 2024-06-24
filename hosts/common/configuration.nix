@@ -88,7 +88,7 @@
   users.users.pango = {
     isNormalUser = true;
     description = "pango";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "podman" ];
     shell = pkgs.fish;
     useDefaultShell = true;
   };
@@ -103,7 +103,9 @@
 
   virtualisation = {
     docker.enable = true;
+    podman.enable = true;
     spiceUSBRedirection.enable = true;
+    containers.cdi.dynamic.nvidia.enable = true;
   };
 
   # Allow unfree packages
