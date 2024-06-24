@@ -14,9 +14,9 @@
     { nixpkgs, ... } @ inputs:
     let
       system = "x86_64-linux";
-      overlays = import ./overlays/default.nix { inherit inputs system; };
+      # overlays = import ./overlays/default.nix { inherit inputs system; };
       pkgs = import inputs.nixpkgs {
-        inherit overlays system;
+        inherit /* overlays */ system;
         config.allowUnfree = true;
       };
       hm = inputs.home-manager;
@@ -54,8 +54,8 @@
         };
       };
 
-      packages.${system} = {
-        inherit (pkgs) bazecor;
-      };
+      # packages.${system} = {
+      #   inherit (pkgs) bazecor;
+      # };
     };
 }
