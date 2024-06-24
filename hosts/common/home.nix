@@ -279,6 +279,7 @@ in
       shellInitLast = ''
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
         set -gx DIRENV_LOG_FORMAT ""
+        set -U fish_greeting
       '';
     };
 
