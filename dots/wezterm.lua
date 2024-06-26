@@ -11,7 +11,8 @@ local FONTS = {
 
 config = {
     -- color_scheme = "Catppuccin Mocha (Gogh)",
-    color_scheme = 'Gruvbox dark, hard (base16)',
+    -- color_scheme = 'Gruvbox dark, hard (base16)',
+    color_scheme = "Tokyo Night",
 
     harfbuzz_features = { "cv02", "cv25", "cv26", "cv27", "cv28", "cv32",
         "ss03", "ss05", "ss07", "ss09" },
