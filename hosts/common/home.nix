@@ -18,7 +18,7 @@ let
     jp = "j ~/personal"; # [J]ump to [P]ersonal
     js = "j ~/system"; # [J]ump to [S]ystem
     jn = "j ~/neovim"; # [J]ump to [N]eovim
-    jm = "j ~/mirea"; # [J]ump to [N]eovim
+    jm = "j ~/mirea"; # [J]ump to [M]irea
 
     # [V]im (nvim built with nixvim)
     v = "nix run ~/neovim";
@@ -37,17 +37,6 @@ let
     fn = "custom-system-rebuild";
     # [H]ome rebuild [N]ixos (switch home-manager with the new config)
     hn = "custom-home-rebuild";
-  };
-  shell-aliases-zsh = {
-    # [F]zf (fuzzy find)
-    f = "() { local dir=$(ff); [[ -n \"$dir\" && -d \"$dir\" ]] && cd \"$dir\" }";
-    # [V]im [F]zf (fuzzy find into vim)
-    vf = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "\n" /*bash*/''
-      fd . -t f
-      | fzf --preview "bat --color=always {}"
-      --preview-window "right,67%,wrap,~3" --border=rounded
-      --bind "enter:become(nix run ~/neovim {})"
-    ''));
   };
   shell-aliases-fish = {
     # [F]zf (fuzzy find)
@@ -93,10 +82,10 @@ in
     kdePackages.kate
     libreoffice
     obsidian
-    protonvpn-gui
-    staruml
-    vlc
-    vscode
+    # protonvpn-gui
+    # staruml
+    # vlc
+    # vscode
 
     # cli utils
     fd
@@ -108,10 +97,10 @@ in
     networkmanagerapplet
     nh
     nix-output-monitor
-    nix-prefetch
-    nix-prefetch-github
-    qemu
-    quickemu
+    # nix-prefetch
+    # nix-prefetch-github
+    # qemu
+    # quickemu
     xclip
     tldr
     wgo
@@ -119,9 +108,9 @@ in
 
     # fonts
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+    # font-awesome
     # corefonts
     fg-virgil
-    # font-awesome
     noto-fonts-monochrome-emoji
     symbola
 
@@ -181,92 +170,7 @@ in
 
     kitty = {
       enable = true;
-      theme = "Gruvbox Dark Hard";
-    };
-
-    zsh = {
-      enable = true;
-      defaultKeymap = "emacs";
-      # zprof.enable = true;
-      enableCompletion = false;
-
-      plugins = [
-        {
-          name = "fast-syntax-highlighting";
-          src = pkgs.fetchFromGitHub {
-            owner = "zdharma-continuum";
-            repo = "fast-syntax-highlighting";
-            rev = "cf318e06a9b7c9f2219d78f41b46fa6e06011fd9";
-            hash = "sha256-RVX9ZSzjBW3LpFs2W86lKI6vtcvDWP6EPxzeTcRZua4=";
-          };
-        }
-        {
-          name = "zsh-completions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-completions";
-            rev = "b1cf65187047a83e27a0847bd565dcf28b5be465";
-            hash = "sha256-eqpZp61qCrdp6yrexQJWgEl9Efjk/aTj/AImplpl6gg=";
-          };
-        }
-        {
-          name = "zsh-autosuggestions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-autosuggestions";
-            rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
-            hash = "sha256-B+Kz3B7d97CM/3ztpQyVkE6EfMipVF8Y4HJNfSRXHtU=";
-          };
-        }
-        {
-          name = "fzf-tab";
-          src = pkgs.fetchFromGitHub {
-            owner = "Aloxaf";
-            repo = "fzf-tab";
-            rev = "c7fb028ec0bbc1056c51508602dbd61b0f475ac3";
-            hash = "sha256-Qv8zAiMtrr67CbLRrFjGaPzFZcOiMVEFLg1Z+N6VMhg=";
-          };
-        }
-      ];
-
-      initExtra = /* bash */ ''
-        # History
-        HISTSIZE=5000
-        SAVEHIST=$HISTSIZE
-        HISTFILE=~/.zsh_history
-        HISTDUP=erase
-        setopt appendhistory
-        setopt sharehistory
-        setopt hist_ignore_space
-        setopt hist_ignore_all_dups
-        setopt hist_save_no_dups
-        setopt hist_ignore_dups
-        setopt hist_find_no_dups
-
-        # Custom Keybindings
-        bindkey '^j' history-search-backward
-        bindkey '^k' history-search-forward
-
-        # Completion styling
-        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-        zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
-        zstyle ':completion:*' menu no
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
-        zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -Ta --icons -L=1 -s=type $realpath'
-
-        export DIRENV_LOG_FORMAT=""
-        # https://github.com/direnv/direnv/issues/68#issuecomment-1003426550
-      '';
-
-      shellAliases = shell-aliases-common // shell-aliases-zsh;
-
-      envExtra = ''
-        export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
-      '';
-
-      # completionInit = ''
-      #   autoload -Uz compinit && compinit
-      # '';
+      theme = "Tokyo Night";
     };
 
     fish = {
