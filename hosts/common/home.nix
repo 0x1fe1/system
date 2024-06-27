@@ -38,7 +38,7 @@ let
     # [H]ome rebuild [N]ixos (switch home-manager with the new config)
     hn = "custom-home-rebuild";
   };
-  shell-aliases-fish = {
+  shell-functions-fish = {
     # [F]zf (fuzzy find)
     f = {
       body = /* fish */ ''
@@ -50,7 +50,7 @@ let
     };
     # [V]im [F]zf (fuzzy find into vim)
     vf = {
-      body = builtins.concatStringsSep " " (builtins.filter (v: builtins.isString v) (builtins.split "\n" /*bash*/''
+      body = with builtins; concatStringsSep " " (filter (v: isString v) (split "\n" /*bash*/''
         fd . -t f
         | fzf --preview "bat --color=always {}"
         --preview-window "right,67%,wrap,~3" --border=rounded
@@ -146,6 +146,8 @@ in
     EDITOR = "vim";
   };
 
+  home.shellAliases = shell-aliases-common;
+
   programs = {
     zellij = {
       enable = true;
@@ -175,8 +177,8 @@ in
 
     fish = {
       enable = true;
-      shellAliases = shell-aliases-common;
-      functions = shell-aliases-fish;
+      # shellAliases = shell-aliases-common;
+      functions = shell-functions-fish;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
@@ -186,6 +188,10 @@ in
         set -U fish_greeting
         complete -e j
       '';
+    };
+
+    bash = {
+      enable = true;
     };
 
     oh-my-posh = {
