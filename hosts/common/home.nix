@@ -115,9 +115,6 @@ in
     noto-fonts-monochrome-emoji
     symbola
 
-    # other
-    linuxHeaders
-
     (writeShellScriptBin "custom-system-edit" ''
       set -e
       pushd ~/system

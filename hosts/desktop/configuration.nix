@@ -16,10 +16,11 @@
   services.xserver.displayManager.autoLogin.user = "pango";
 
   environment.systemPackages = with pkgs; [
-    gcc
-    gnumake
     linuxHeaders
+    gnumake
+    gcc
   ];
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
 
   # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;
