@@ -31,12 +31,12 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       commit_icon = '@'
       fetch_status = true
 
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'yellow'
-    template = ' {{if gt .$.SHLVL 1}}[{{.$.SHLVL}} shells deep]{{end}}'
+  # [[blocks.segments]]
+  #   type = 'text'
+  #   style = 'plain'
+  #   background = 'transparent'
+  #   foreground = 'yellow'
+  #   template = ' {{if gt .$.SHLVL 1}}[{{.$.SHLVL}} shells deep]{{end}}'
 
   [[blocks.segments]]
     type = 'text'
@@ -86,7 +86,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       "{{if eq .Code 0}}green{{end}}",
     ]
     background = 'transparent'
-    template = '{{- .Shell -}} {{if gt .$.SHLVL 1}}[{{- .$.SHLVL -}}]{{end}} ->'
+    template = '{{.Shell}} {{if gt .$.SHLVL 1}}[{{.$.SHLVL}}]{{end}} ->'
 
 [transient_prompt]
   foreground_templates = [

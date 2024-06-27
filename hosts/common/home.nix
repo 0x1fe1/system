@@ -88,6 +88,7 @@ in
     # vscode
 
     # cli utils
+    xclip
     fd
     file
     jq
@@ -97,14 +98,14 @@ in
     networkmanagerapplet
     nh
     nix-output-monitor
+    tldr
+    wgo
+    ngrok
+    distrobox
     # nix-prefetch
     # nix-prefetch-github
     # qemu
     # quickemu
-    xclip
-    tldr
-    wgo
-    ngrok
 
     # fonts
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
