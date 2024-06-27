@@ -127,15 +127,16 @@
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries for unpackaged programs
     # here, NOT in environment.systemPackages
-    gtk3
-    pango
-    cairo
     atk
+    cairo
     gdk-pixbuf
     glib
-    gobject-introspection
-    libgudev
     glibc
+    gobject-introspection
+    gtk3
+    libgudev
+    linuxHeaders
+    pango
   ];
 
   programs.fish.enable = true;

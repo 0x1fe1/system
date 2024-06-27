@@ -16,7 +16,6 @@
   services.xserver.displayManager.autoLogin.user = "pango";
 
   environment.systemPackages = with pkgs; [
-    linuxHeaders
     gnumake
     gcc
   ];
