@@ -86,7 +86,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       "{{if eq .Code 0}}green{{end}}",
     ]
     background = 'transparent'
-    template = '{{if gt .$.SHLVL 1}}[{{.$.SHLVL}}]{{end}} {{.Shell}} -> '
+    template = '{{- .Shell -}} {{if gt .$.SHLVL 1}}[{{- .$.SHLVL -}}]{{end}} ->'
 
 [transient_prompt]
   foreground_templates = [

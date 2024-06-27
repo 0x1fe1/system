@@ -194,6 +194,10 @@ in
       enable = true;
     };
 
+    carapace = {
+      enable = true;
+    };
+
     oh-my-posh = {
       enable = true;
       settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ./../../dots/ohmyposh.toml));
