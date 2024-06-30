@@ -147,7 +147,7 @@ in
     EDITOR = "vim";
   };
 
-  home.shellAliases = shell-aliases-common;
+  # home.shellAliases = shell-aliases-common;
 
   programs = {
     zellij = {
@@ -179,8 +179,8 @@ in
     fish = {
       enable = true;
       # shellAliases = shell-aliases-common;
-      # functions = shell-aliases-common // shell-functions-fish;
-      functions = shell-functions-fish;
+      functions = shell-aliases-common // shell-functions-fish;
+      # functions = shell-functions-fish;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
         # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
@@ -189,8 +189,8 @@ in
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
         set -gx DIRENV_LOG_FORMAT ""
         set -U fish_greeting
-        complete -c v --force-files -r
-        complete -c j --force-files -r
+        # complete -c v --force-files -r
+        # complete -c j --force-files -r
       '';
     };
 
