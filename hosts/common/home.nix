@@ -181,14 +181,15 @@ in
       # shellAliases = shell-aliases-common;
       functions = shell-functions-fish;
       plugins = [
-        # { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-        { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+        # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
       ];
       shellInitLast = /*fish*/ ''
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
         set -gx DIRENV_LOG_FORMAT ""
         set -U fish_greeting
-        # complete -e j
+        complete -f -c v -a '__fish_complete_path "" "Path"'
+        complete -f -c j -a '__fish_complete_path "" "Path"'
       '';
     };
 
