@@ -189,8 +189,8 @@ in
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
         set -gx DIRENV_LOG_FORMAT ""
         set -U fish_greeting
-        complete -c v -a '__fish_complete_path "" "Path"'
-        complete -c j -a '__fish_complete_path "" "Path"'
+        complete -c v --force-files -r
+        complete -c j --force-files -r
       '';
     };
 
