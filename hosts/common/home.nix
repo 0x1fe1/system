@@ -181,7 +181,7 @@ in
       # shellAliases = shell-aliases-common;
       functions = shell-functions-fish;
       plugins = [
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+        # { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
         { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
       ];
       shellInitLast = /*fish*/ ''
