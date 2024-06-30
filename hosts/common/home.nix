@@ -48,6 +48,7 @@ let
         end
       '';
     };
+
     # [V]im [F]zf (fuzzy find into vim)
     vf = {
       body = with builtins; concatStringsSep " " (filter (v: isString v) (split "\n" /*bash*/''
@@ -68,7 +69,7 @@ in
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      emoji = [ "Noto Emoji" ];
+      emoji = [ "Symbola" ];
       monospace = [ "FiraCode Nerd Font" ];
     };
   };
@@ -76,7 +77,7 @@ in
   home.file = { };
 
   home.packages = with pkgs; [
-    # big ahh apps
+    ### big ahh apps
     brave
     cool-retro-term
     kdePackages.kate
@@ -87,7 +88,7 @@ in
     # vlc
     # vscode
 
-    # cli utils
+    ### cli utils
     xclip
     fd
     file
@@ -107,7 +108,7 @@ in
     # qemu
     # quickemu
 
-    # fonts
+    ### fonts
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
     # font-awesome
     # corefonts
@@ -152,7 +153,6 @@ in
   programs = {
     zellij = {
       enable = true;
-      # enableFishIntegration = false;
       settings = {
         theme = lib.mkForce "gruvbox-dark";
         copy_command = "xclip -selection clipboard";
@@ -167,37 +167,36 @@ in
 
     wezterm = {
       enable = true;
-      enableZshIntegration = false;
       extraConfig = builtins.readFile ./../../dots/wezterm.lua;
     };
 
-    kitty = {
-      enable = true;
-      theme = "Tokyo Night";
-    };
+    # kitty = {
+    #   enable = true;
+    #   theme = "Tokyo Night";
+    # };
 
     fish = {
       enable = true;
       shellAliases = shell-aliases-common;
       functions = shell-functions-fish;
-      plugins = [
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-        # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
-      ];
-      shellInitLast = /*fish*/ ''
-        set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
-        set -gx DIRENV_LOG_FORMAT ""
-        set -U fish_greeting
-      '';
+      # plugins = [
+      #   { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      #   # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+      # ];
+      # shellInitLast = /*fish*/ ''
+      #   set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
+      #   set -gx DIRENV_LOG_FORMAT ""
+      #   set -U fish_greeting
+      # '';
     };
 
     bash = {
       enable = true;
     };
 
-    carapace = {
-      enable = true;
-    };
+    # carapace = {
+    #   enable = true;
+    # };
 
     oh-my-posh = {
       enable = true;
@@ -222,6 +221,10 @@ in
       userEmail = "pangolecimal@gmail.com";
       extraConfig = {
         init.defaultBranch = "main";
+      };
+
+      aliases = {
+        ignore = ''!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi'';
       };
 
       delta = {
