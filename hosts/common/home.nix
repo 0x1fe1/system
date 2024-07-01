@@ -184,7 +184,7 @@ in
       ];
       interactiveShellInit = /*fish*/ ''
         complete -c v -w 'nix run ~/neovim' -e
-        complete -c j -a '(__history_completions 25)' -e
+        complete -k --no-files j -a '(__history_completions 25)' -e
       '';
       shellInitLast = /*fish*/ ''
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
