@@ -184,6 +184,7 @@ in
       ];
       interactiveShellInit = /*fish*/ ''
         complete -c v -w 'nix run ~/neovim' -e
+        complete -k --no-files j -a '(__history_completions 25)' -e
         complete -c j -w z -e
         complete -c j -e
       '';
@@ -194,6 +195,7 @@ in
 
         status is-interactive; and begin
           complete -c v -w 'nix run ~/neovim' -e
+          complete -k --no-files j -a '(__history_completions 25)' -e
           complete -c j -w z -e
           complete -c j -e
         end
