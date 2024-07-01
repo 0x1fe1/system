@@ -193,14 +193,6 @@ in
       '';
     };
 
-    bash = {
-      enable = true;
-    };
-
-    # carapace = {
-    #   enable = true;
-    # };
-
     oh-my-posh = {
       enable = true;
       settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ./../../dots/ohmyposh.toml));
@@ -211,9 +203,10 @@ in
       nix-direnv.enable = true;
     };
 
+    bash.enable = true;
     zoxide.enable = true;
     fzf.enable = true;
-    # fzf.enableFishIntegration = false;
+    fzf.enableFishIntegration = false;
     ripgrep.enable = true;
     eza.enable = true;
     bat.enable = true;
