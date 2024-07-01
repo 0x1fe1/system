@@ -148,7 +148,7 @@ in
     EDITOR = "vim";
   };
 
-  # home.shellAliases = shell-aliases-common;
+  home.shellAliases = shell-aliases-common;
 
   programs = {
     zellij = {
@@ -170,14 +170,14 @@ in
       extraConfig = builtins.readFile ./../../dots/wezterm.lua;
     };
 
-    # kitty = {
-    #   enable = true;
-    #   theme = "Tokyo Night";
-    # };
+    kitty = {
+      enable = true;
+      theme = "Tokyo Night";
+    };
 
     fish = {
       enable = true;
-      shellAliases = shell-aliases-common;
+      # shellAliases = shell-aliases-common;
       functions = shell-functions-fish;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
