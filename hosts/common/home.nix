@@ -184,8 +184,8 @@ in
       ];
       interactiveShellInit = /*fish*/ ''
         complete -c v -w 'nix run ~/neovim' -e
-        complete -c j -w z -e
-        complete -c j -e
+        # complete -c j -w z -e
+        # complete -c j -e
       '';
       shellInitLast = /*fish*/ ''
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
@@ -193,8 +193,8 @@ in
         set -U fish_greeting
 
         complete -c v -w 'nix run ~/neovim' -e
-        complete -c j -w z -e
-        complete -c j -e
+        # complete -c j -w z -e
+        # complete -c j -e
       '';
     };
 
