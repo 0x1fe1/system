@@ -137,6 +137,8 @@
     libgudev
     linuxHeaders
     pango
+  ] ++ [
+    linuxKernel.kernels.linux_6_9_hardened.dev
   ];
 
   programs.fish.enable = true;
