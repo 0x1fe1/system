@@ -179,14 +179,17 @@ in
       enable = true;
       # shellAliases = shell-aliases-common;
       functions = shell-functions-fish;
-      plugins = [
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-        # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
-      ];
+      # plugins = [
+      #   { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      #   # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+      # ];
       shellInitLast = /*fish*/ ''
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
         set -gx DIRENV_LOG_FORMAT ""
         set -U fish_greeting
+
+        # remove zoxide suggestions
+        complete -c j -a '(__history_completions 25)' -e
       '';
     };
 
@@ -210,7 +213,7 @@ in
 
     zoxide.enable = true;
     fzf.enable = true;
-    fzf.enableFishIntegration = false;
+    # fzf.enableFishIntegration = false;
     ripgrep.enable = true;
     eza.enable = true;
     bat.enable = true;
