@@ -177,19 +177,19 @@ in
 
     fish = {
       enable = true;
-      # shellAliases = shell-aliases-common;
       functions = shell-functions-fish;
-      # plugins = [
-      #   { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-      #   # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
-      # ];
+      plugins = [
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+        # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
+      ];
+      interactiveShellInit = /*fish*/ ''
+        complete -c v -w 'nix run ~/neovim' -e
+        complete -c j -a '(__history_completions 25)' -e
+      '';
       shellInitLast = /*fish*/ ''
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
         set -gx DIRENV_LOG_FORMAT ""
         set -U fish_greeting
-
-        # remove zoxide suggestions
-        complete -c j -a '(__history_completions 25)' -e
       '';
     };
 
