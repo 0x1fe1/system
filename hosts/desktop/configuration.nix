@@ -44,10 +44,11 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
 
-    # prime = {
-    #   sync.enable = true;
-    #   nvidiaBusId = "PCI:1:0:0";
-    # };
+    prime = {
+      sync.enable = true;
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
   };
   ###
 }
