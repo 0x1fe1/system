@@ -49,21 +49,38 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    # Configure keymap in X11
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    displayManager = {
+      sddm.enable = true;
+      defaultSession = "none+awesome";
+    };
+
+    windowManager.awesome = {
+      enable = true;
+      luaModules = with pkgs.luaPackages; [
+        luarocks # is the package manager for Lua modules
+        luadbi-mysql # Database abstraction layer
+      ];
+    };
+
+    desktopManager = {
+      plasma5 = {
+        enable = true;
+        notoPackage = pkgs.noto-fonts-monochrome-emoji;
+      };
+    };
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -120,8 +137,6 @@
     vim
     git
   ];
-
-  services.xserver.desktopManager.plasma5.notoPackage = pkgs.noto-fonts-monochrome-emoji;
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
