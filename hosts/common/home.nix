@@ -83,6 +83,7 @@ in
     kdePackages.kate
     libreoffice
     obsidian
+    gimp
     # protonvpn-gui
     # staruml
     # vlc
