@@ -12,7 +12,7 @@ let
     ":q" = "exit";
 
     # [J]ump to (zoxide)
-    j = "z";
+    # j = "z";
     "j-" = "j -"; # [J]ump to [-] (previous directory)
     "j." = "j .."; # [J]ump to [.]./ (parent directory)
     jp = "j ~/personal"; # [J]ump to [P]ersonal
@@ -57,6 +57,12 @@ let
         --preview-window "right,67%,wrap,~3" --border=rounded
         --bind "enter:become(nix run ~/neovim {})"
       ''));
+    };
+
+    j = {
+      body = /*fish*/''
+        z $argv
+      '';
     };
   };
 in
