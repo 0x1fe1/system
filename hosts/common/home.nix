@@ -87,6 +87,7 @@ in
     brave
     cool-retro-term
     floorp
+    firefox
     gimp
     kdePackages.kate
     libreoffice
@@ -129,7 +130,9 @@ in
     dunst
     libnotify
     swww
-    waybar
+    (pkgs.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    }))
     networkmanagerapplet
     grim
     slurp
