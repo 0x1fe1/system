@@ -128,6 +128,7 @@ in
 
     ### hyprland-related
     dunst
+    mako
     libnotify
     swww
     (pkgs.waybar.overrideAttrs (oldAttrs: {
