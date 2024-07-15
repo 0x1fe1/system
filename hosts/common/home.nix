@@ -86,10 +86,11 @@ in
     ### big ahh apps
     brave
     cool-retro-term
+    floorp
+    gimp
     kdePackages.kate
     libreoffice
     obsidian
-    gimp
     # protonvpn-gui
     # staruml
     # vlc
