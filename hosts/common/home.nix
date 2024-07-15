@@ -132,6 +132,7 @@ in
     networkmanagerapplet
     grim
     slurp
+    rofi-wayland
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
