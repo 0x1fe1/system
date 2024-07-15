@@ -97,6 +97,7 @@ in
 
     ### cli utils
     xclip
+    wl-clipboard
     fd
     file
     jq
@@ -122,6 +123,15 @@ in
     fg-virgil
     noto-fonts-monochrome-emoji
     symbola
+
+    ### hyprland-related
+    dunst
+    libnotify
+    swww
+    waybar
+    networkmanagerapplet
+    grim
+    slurp
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e

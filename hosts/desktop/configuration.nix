@@ -12,8 +12,8 @@
   networking.hostName = "desktop"; # Define your hostname.
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "pango";
+  # services.xserver.displayManager.autoLogin.enable = true;
+  # services.xserver.displayManager.autoLogin.user = "pango";
 
   environment.systemPackages = with pkgs; [
     gnumake
