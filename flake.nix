@@ -41,7 +41,7 @@
 
       homeConfigurations = {
         desktop = hm.lib.homeManagerConfiguration {
-          pkgs = pkgs;
+          inherit pkgs;
           modules = [
             ./hosts/desktop/home.nix
           ];

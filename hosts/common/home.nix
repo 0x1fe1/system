@@ -99,7 +99,7 @@ in
 
     ### cli utils
     xclip
-    wl-clipboard
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     fd
     file
     jq
@@ -126,18 +126,22 @@ in
     noto-fonts-monochrome-emoji
     symbola
 
-    ### hyprland-related
+    ### hyprland
     dunst
-    mako
     libnotify
     swww
     (pkgs.waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     }))
     networkmanagerapplet
-    grim
-    slurp
     rofi-wayland
+    # grim
+    # slurp
+
+    ### sway
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    mako # notification system developed by swaywm maintainer
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
@@ -172,6 +176,11 @@ in
   };
 
   home.shellAliases = shell-aliases-common;
+
+  wayland.windowManager.sway = {
+    enable = true;
+  };
+  services.clipman.enable = true;
 
   programs = {
     zellij = {

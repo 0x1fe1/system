@@ -112,7 +112,7 @@
   users.users.pango = {
     isNormalUser = true;
     description = "pango";
-    extraGroups = [ "networkmanager" "wheel" "docker" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "podman" "video" "input" ];
     shell = pkgs.fish;
     useDefaultShell = true;
   };
