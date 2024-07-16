@@ -99,7 +99,7 @@ in
 
     ### cli utils
     xclip
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    wl-clipboard
     fd
     file
     jq
@@ -135,13 +135,9 @@ in
     }))
     networkmanagerapplet
     rofi-wayland
-    # grim
-    # slurp
-
-    ### sway
+    tofi
     grim # screenshot functionality
     slurp # screenshot functionality
-    mako # notification system developed by swaywm maintainer
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
@@ -177,19 +173,19 @@ in
 
   home.shellAliases = shell-aliases-common;
 
-  wayland.windowManager.sway = {
-    enable = true;
-    config = {
-      modifier = "Mod4";
-      # Use kitty as default terminal
-      terminal = "wezterm";
-      # startup = [
-      #   # Launch Firefox on start
-      #   { command = "firefox"; }
-      # ];
-    };
-  };
-  services.clipman.enable = true;
+  # wayland.windowManager.sway = {
+  #   enable = true;
+  #   config = {
+  #     modifier = "Mod4";
+  #     # Use kitty as default terminal
+  #     terminal = "wezterm";
+  #     # startup = [
+  #     #   # Launch Firefox on start
+  #     #   { command = "firefox"; }
+  #     # ];
+  #   };
+  # };
+  # services.clipman.enable = true;
 
   programs = {
     zellij = {
@@ -225,20 +221,11 @@ in
       ];
       interactiveShellInit = /*fish*/ ''
         complete -c v -w 'nix run ~/neovim' -e
-        complete -c j -e
-        complete -c j -w z -e
-        complete -c j -e
-        complete -k --no-files j -a '(__history_completions 25)' -e
       '';
       shellInitLast = /*fish*/ ''
         set -gx FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix"
         set -gx DIRENV_LOG_FORMAT ""
         set -U fish_greeting
-
-        complete -c j -e
-        complete -c j -w z -e
-        complete -c j -e
-        complete -k --no-files j -a '(__history_completions 25)' -e
       '';
     };
 

@@ -54,8 +54,9 @@
 
     # Configure keymap in X11
     xkb = {
-      layout = "us";
-      variant = "";
+      layout = "us,ru";
+      variant = "qwerty";
+      options = "grp:win_space_toggle";
     };
 
     displayManager = {
@@ -79,6 +80,11 @@
     };
   };
 
+  # services.autorandr = {
+  #   enable = true;
+  #
+  # };
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -86,15 +92,15 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";
-      };
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
