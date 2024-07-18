@@ -127,17 +127,17 @@ in
     symbola
 
     ### hyprland
-    dunst
-    libnotify
-    swww
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    }))
-    networkmanagerapplet
-    rofi-wayland
-    tofi
-    grim # screenshot functionality
-    slurp # screenshot functionality
+    # dunst
+    # libnotify
+    # swww
+    # (pkgs.waybar.overrideAttrs (oldAttrs: {
+    #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    # }))
+    # networkmanagerapplet
+    # rofi-wayland
+    # tofi
+    # grim # screenshot functionality
+    # slurp # screenshot functionality
 
     (writeShellScriptBin "custom-system-edit" ''
       set -e
@@ -173,19 +173,12 @@ in
 
   home.shellAliases = shell-aliases-common;
 
-  # wayland.windowManager.sway = {
-  #   enable = true;
-  #   config = {
-  #     modifier = "Mod4";
-  #     # Use kitty as default terminal
-  #     terminal = "wezterm";
-  #     # startup = [
-  #     #   # Launch Firefox on start
-  #     #   { command = "firefox"; }
-  #     # ];
-  #   };
-  # };
-  # services.clipman.enable = true;
+  xsession.windowManager.i3 = {
+    enable = true;
+    config = {
+      modifier = "Mod4";
+    };
+  };
 
   programs = {
     zellij = {

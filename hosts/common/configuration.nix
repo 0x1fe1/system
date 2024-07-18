@@ -61,15 +61,25 @@
 
     displayManager = {
       sddm.enable = true;
-      defaultSession = "none+awesome";
+      defaultSession = "none+i3";
     };
 
-    windowManager.awesome = {
-      enable = true;
-      luaModules = with pkgs.luaPackages; [
-        luarocks # is the package manager for Lua modules
-        luadbi-mysql # Database abstraction layer
-      ];
+    windowManager = {
+      i3 = {
+        enable = true;
+        # extraPackages = with pkgs; [
+        #   dmenu #application launcher most people use
+        #   i3status # gives you the default i3 status bar
+        #   i3lock #default i3 screen locker
+        # ];
+      };
+      # awesome = {
+      #   enable = true;
+      #   luaModules = with pkgs.luaPackages; [
+      #     luarocks # is the package manager for Lua modules
+      #     luadbi-mysql # Database abstraction layer
+      #   ];
+      # };
     };
 
     desktopManager = {
@@ -89,12 +99,12 @@
   #
   # };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # programs.hyprland = {
+  #   enable = true;
+  #   xwayland.enable = true;
+  # };
+  # xdg.portal.enable = true;
+  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # services.greetd = {
   #   enable = true;
