@@ -119,12 +119,12 @@ in
     # quickemu
 
     ### fonts
-    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-    # font-awesome
-    # corefonts
+    fira-code
     fg-virgil
     noto-fonts-monochrome-emoji
     symbola
+    corefonts
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
 
     ### hyprland
     # dunst
@@ -171,12 +171,12 @@ in
     EDITOR = "vim";
   };
 
-  home.shellAliases = shell-aliases-common;
 
   xsession.windowManager.i3 = {
     enable = true;
     config = {
       modifier = "Mod4";
+      terminal = "kitty";
     };
   };
 
@@ -203,11 +203,12 @@ in
     kitty = {
       enable = true;
       theme = "Tokyo Night";
+      extraConfig = builtins.readFile ./../../dots/kitty.conf;
     };
 
     fish = {
       enable = true;
-      functions = shell-functions-fish;
+      functions = shell-aliases-common // shell-functions-fish;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
         # { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
