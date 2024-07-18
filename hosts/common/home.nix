@@ -29,4 +29,15 @@
       terminal = "kitty";
     };
   };
+
+  programs.i3status = {
+    enable = true;
+    general = {
+      colors = true;
+      color_good = "#a6e3a1";
+      color_degraded = "#f9e2af";
+      color_bad = "#f38ba8";
+      interval = 1;
+    };
+  };
 }
