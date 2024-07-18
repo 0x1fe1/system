@@ -80,6 +80,10 @@
     };
   };
 
+  # services.picom = {
+  #   enable = true;
+  # };
+
   # services.autorandr = {
   #   enable = true;
   #
