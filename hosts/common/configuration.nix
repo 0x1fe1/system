@@ -67,11 +67,6 @@
     windowManager = {
       i3 = {
         enable = true;
-        # extraPackages = with pkgs; [
-        #   dmenu #application launcher most people use
-        #   i3status # gives you the default i3 status bar
-        #   i3lock #default i3 screen locker
-        # ];
       };
       # awesome = {
       #   enable = true;
@@ -83,12 +78,16 @@
     };
 
     desktopManager = {
+      xterm.enable = false;
       plasma5 = {
         enable = true;
         notoPackage = pkgs.noto-fonts-monochrome-emoji;
       };
     };
   };
+
+  # links /libexec from derivations to /run/current-system/sw
+  environment.pathsToLink = [ "/libexec" ];
 
   # services.picom = {
   #   enable = true;

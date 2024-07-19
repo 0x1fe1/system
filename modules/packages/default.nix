@@ -17,7 +17,6 @@ let custom = import ./custom-scripts.nix { inherit pkgs; }; in {
 
     ### cli utils
     xclip
-    wl-clipboard
     fd
     file
     jq

@@ -12,8 +12,8 @@
   networking.hostName = "desktop"; # Define your hostname.
 
   # Enable automatic login for the user.
-  # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "pango";
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "pango";
 
   environment.systemPackages = with pkgs; [
     gnumake
@@ -46,8 +46,8 @@
 
     prime = {
       sync.enable = true;
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0"; #
+      intelBusId = "PCI:0:2:0"; # HACK (its nonexistent)
     };
   };
   ###

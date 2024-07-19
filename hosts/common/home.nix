@@ -1,4 +1,4 @@
-{ ... }@inputs: {
+{ pkgs, ... }@inputs: {
   imports = [
     ../../modules/default.nix
   ];
@@ -11,22 +11,32 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      emoji = [ "Symbola" ];
+      emoji = [ "Noto Emoji" ];
       monospace = [ "FiraCode Nerd Font" ];
     };
   };
 
-  home.file = { };
-
   home.sessionVariables = {
     EDITOR = "vim";
   };
+
+  home.file = { };
 
   xsession.windowManager.i3 = {
     enable = true;
     config = {
       modifier = "Mod4";
       terminal = "kitty";
+      defaultWorkspace = "workspace number 1";
+      menu = "${pkgs.rofi}/bin/rofi -show drun -show-icons";
+      bars = [ ];
+      startup = [ ];
+      workspaceOutputAssign = [ ];
+      colors = { };
+      floating = { };
+      focus = { };
+      gaps = { };
+      window = { };
     };
   };
 
