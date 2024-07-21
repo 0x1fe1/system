@@ -22,10 +22,13 @@ let custom = import ./custom-scripts.nix { inherit pkgs; }; in {
     jq
     just
     man-pages
-    maim
+    maim # screenshot
+    playerctl # media
+    xorg.xf86inputsynaptics # touchpad
+    xorg.xbacklight # screen brightness
     networkmanager
     networkmanagerapplet
-    nh
+    nh # nixos-rebuild wrapper
     nix-output-monitor
     tldr
     wgo
