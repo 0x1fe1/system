@@ -22,6 +22,7 @@ let custom = import ./custom-scripts.nix { inherit pkgs; }; in {
     jq
     just
     man-pages
+    maim
     networkmanager
     networkmanagerapplet
     nh
