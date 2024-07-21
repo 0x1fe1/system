@@ -51,5 +51,15 @@
     };
   };
 
-  services.picom.enable = true;
+  services.picom = {
+    enable = true;
+    # package = (pkgs.picom.overrideAttrs (oldAttrs: {
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "ibhagwan";
+    #     repo = "picom";
+    #     rev = "v7.5";
+    #     hash = "sha256-n7QuX4iiCLLbmrVrZHMQRh2+lj2DapIyyX9uAmh3iNA=";
+    #   };
+    # }));
+  };
 }
