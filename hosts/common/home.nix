@@ -50,4 +50,6 @@
       interval = 1;
     };
   };
+
+  services.picom.enable = true;
 }
