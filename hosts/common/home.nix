@@ -53,13 +53,15 @@
 
   services.picom = {
     enable = true;
-    # package = (pkgs.picom.overrideAttrs (oldAttrs: {
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "ibhagwan";
-    #     repo = "picom";
-    #     rev = "v7.5";
-    #     hash = "sha256-n7QuX4iiCLLbmrVrZHMQRh2+lj2DapIyyX9uAmh3iNA=";
-    #   };
-    # }));
+    backend = "glx";
+    activeOpacity = 0.9;
+    settings = {
+      blur =
+        {
+          method = "gaussian";
+          size = 10;
+          deviation = 5.0;
+        };
+    };
   };
 }
