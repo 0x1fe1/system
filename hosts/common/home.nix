@@ -279,6 +279,15 @@
           size = 10;
           deviation = 5.0;
         };
+      blur-background-exclude = [
+        "class_g != 'konsole' &&
+window_type != 'tooltip' &&
+window_type != 'menu' &&
+window_type != 'popup_menu' &&
+window_type != 'dropdown_menu' &&
+window_type != 'splash' &&
+window_type != 'combo'"
+      ];
     };
   };
 }
