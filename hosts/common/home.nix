@@ -280,7 +280,7 @@
           deviation = 5.0;
         };
       blur-background-exclude = [
-        "class_g != 'konsole' &&
+        "class_g != 'kitty' &&
 window_type != 'tooltip' &&
 window_type != 'menu' &&
 window_type != 'popup_menu' &&
