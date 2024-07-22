@@ -30,7 +30,6 @@
       defaultWorkspace = "workspace number $ws1";
       # menu = "${pkgs.rofi}/bin/rofi -show drun -show-icons";
       bars = [
-
         {
           colors = {
             background = "#000000";
@@ -241,12 +240,12 @@
         };
         position = 3;
       };
-      battery = {
-        settings = {
-          format = " <%status %percentage %remaining>";
-        };
-        position = 4;
-      };
+      # battery = {
+      #   settings = {
+      #     format = " <%status %percentage %remaining>";
+      #   };
+      #   position = 4;
+      # };
       disk = {
         settings = {
           format = " <DISK: %free (%avail) / %total>";
