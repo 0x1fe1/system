@@ -219,21 +219,21 @@
       separator = "";
     };
     modules = {
-      volume = {
+      "volume master" = {
         settings = {
           format = " <Audio: %volume>";
           format_muted = " <Audio: muted (%volume)>";
         };
         position = 1;
       };
-      "ethernet eth0" = {
+      "ethernet _first_" = {
         settings = {
           format_down = " <Ethernet: down>";
           format_up = " <Ethernet: %ip (%speed)>";
         };
         position = 2;
       };
-      "wireless wlan0" = {
+      "wireless _first_" = {
         settings = {
           format_down = " <W: down>";
           format_up = " <Wireless: (%quality at %essid, %bitrate / %frequency) %ip>";
@@ -246,7 +246,7 @@
         };
         position = 4;
       };
-      "disk '/'" = {
+      "disk /" = {
         settings = {
           format = " <DISK: %free (%avail) / %total>";
         };
