@@ -226,27 +226,27 @@
         };
         position = 1;
       };
-      ethernet = {
+      "ethernet eth0" = {
         settings = {
           format_down = " <Ethernet: down>";
           format_up = " <Ethernet: %ip (%speed)>";
         };
         position = 2;
       };
-      wireless = {
+      "wireless wlan0" = {
         settings = {
           format_down = " <W: down>";
           format_up = " <Wireless: (%quality at %essid, %bitrate / %frequency) %ip>";
         };
         position = 3;
       };
-      # battery = {
-      #   settings = {
-      #     format = " <%status %percentage %remaining>";
-      #   };
-      #   position = 4;
-      # };
-      disk = {
+      "battery 0" = {
+        settings = {
+          format = " <%status %percentage %remaining>";
+        };
+        position = 4;
+      };
+      "disk '/'" = {
         settings = {
           format = " <DISK: %free (%avail) / %total>";
         };
@@ -260,7 +260,7 @@
         };
         position = 6;
       };
-      time = {
+      "tztime local" = {
         settings = {
           format = " <Time: %Y-%m-%d %H:%M:%S>";
         };
