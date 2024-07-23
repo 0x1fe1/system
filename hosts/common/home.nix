@@ -240,12 +240,13 @@
         };
         position = 3;
       };
-      "battery 0" = {
-        settings = {
-          format = " <%status %percentage %remaining>";
-        };
-        position = 4;
-      };
+      # TODO: https://i3wm.org/docs/i3status.html#_battery
+      # "battery 0" = {
+      #   settings = {
+      #     format = " <%status %percentage %remaining>";
+      #   };
+      #   position = 4;
+      # };
       "disk /" = {
         settings = {
           format = " <DISK: %free (%avail) / %total>";
