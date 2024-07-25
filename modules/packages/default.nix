@@ -16,28 +16,29 @@ let custom = import ./custom-scripts.nix { inherit pkgs; }; in {
     # vscode
 
     ### cli utils
-    xclip
-    fd
-    file
-    jq
-    just
-    man-pages
-    maim # screenshot
-    playerctl # media
-    xorg.xf86inputsynaptics # touchpad
-    xorg.xbacklight # screen brightness
-    networkmanager
-    networkmanagerapplet
-    nh # nixos-rebuild wrapper
-    nix-output-monitor
-    tldr
-    wgo
-    ngrok
-    distrobox
     # nix-prefetch
     # nix-prefetch-github
     # qemu
     # quickemu
+    distrobox
+    fd
+    file
+    fossil
+    jq
+    just
+    maim # screenshot
+    man-pages
+    networkmanager
+    networkmanagerapplet
+    ngrok
+    nh # nixos-rebuild wrapper
+    nix-output-monitor
+    playerctl # media
+    tldr
+    wgo
+    xclip
+    xorg.xbacklight # screen brightness
+    xorg.xf86inputsynaptics # touchpad
 
     ### fonts
     fira-code
