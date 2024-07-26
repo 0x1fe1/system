@@ -17,7 +17,6 @@
           pkgs.nerdfonts.override{fonts=["FiraCode"];}
         }/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
         fontSize = 36;
-        # theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
       };
       efi = {
         canTouchEfiVariables = true;
@@ -64,18 +63,7 @@
       defaultSession = "none+i3";
     };
 
-    windowManager = {
-      i3 = {
-        enable = true;
-      };
-      # awesome = {
-      #   enable = true;
-      #   luaModules = with pkgs.luaPackages; [
-      #     luarocks # is the package manager for Lua modules
-      #     luadbi-mysql # Database abstraction layer
-      #   ];
-      # };
-    };
+    windowManager.i3.enable = true;
 
     desktopManager = {
       xterm.enable = false;
@@ -89,31 +77,17 @@
   # links /libexec from derivations to /run/current-system/sw
   environment.pathsToLink = [ "/libexec" ];
 
-  # services.picom = {
-  #   enable = true;
-  # };
-
-  # services.autorandr = {
-  #   enable = true;
-  #
-  # };
-
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  # };
-  # xdg.portal.enable = true;
-  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-  #       user = "greeter";
-  #     };
-  #   };
-  # };
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        command = "${pkgs.i3}/bin/i3";
+        user = "pango";
+      };
+      default_session = initial_session;
+    };
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -179,7 +153,6 @@
 
   environment.sessionVariables = {
     FLAKE = "/home/pango/system";
-    NIXOS_OZONE_WL = "1";
   };
 
   environment.systemPackages = with pkgs; [
