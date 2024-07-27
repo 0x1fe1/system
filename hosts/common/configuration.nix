@@ -59,7 +59,7 @@
     };
 
     displayManager = {
-      sddm.enable = true;
+      # sddm.enable = true;
       defaultSession = "none+i3";
     };
 
@@ -67,10 +67,10 @@
 
     desktopManager = {
       xterm.enable = false;
-      plasma5 = {
-        enable = true;
-        notoPackage = pkgs.noto-fonts-monochrome-emoji;
-      };
+      # plasma5 = {
+      #   enable = true;
+      #   notoPackage = pkgs.noto-fonts-monochrome-emoji;
+      # };
     };
   };
 
@@ -81,8 +81,8 @@
     enable = true;
     settings = rec {
       initial_session = {
-        # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        command = "${pkgs.i3}/bin/i3";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd i3";
+        # command = "${pkgs.i3}/bin/i3";
         user = "pango";
       };
       default_session = initial_session;
