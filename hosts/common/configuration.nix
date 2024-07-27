@@ -59,7 +59,7 @@
     };
 
     displayManager = {
-      # sddm.enable = true;
+      sddm.enable = true;
       defaultSession = "none+i3";
     };
 
@@ -77,17 +77,17 @@
   # links /libexec from derivations to /run/current-system/sw
   environment.pathsToLink = [ "/libexec" ];
 
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd i3";
-        # command = "${pkgs.i3}/bin/i3";
-        user = "pango";
-      };
-      default_session = initial_session;
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     initial_session = {
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd i3";
+  #       # command = "${pkgs.i3}/bin/i3";
+  #       user = "pango";
+  #     };
+  #     default_session = initial_session;
+  #   };
+  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
