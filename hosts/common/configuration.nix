@@ -59,7 +59,7 @@
     };
 
     displayManager = {
-      gdm.enable = true;
+      sddm.enable = true;
       defaultSession = "none+i3";
     };
 
