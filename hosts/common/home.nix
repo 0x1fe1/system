@@ -19,7 +19,4 @@
   home.sessionVariables = {
     EDITOR = "vim";
   };
-
-  home.file = { };
-
 }
