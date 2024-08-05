@@ -152,6 +152,26 @@
         "$mod+Shift+mod2+KP_9" = "move container to workspace number $ws9";
         "$mod+Shift+mod2+KP_0" = "move container to workspace number $ws0";
 
+        "$mod+mod2+KP_End" = "workspace number $ws1";
+        "$mod+mod2+KP_Down" = "workspace number $ws2";
+        "$mod+mod2+KP_Next" = "workspace number $ws3";
+        "$mod+mod2+KP_Left" = "workspace number $ws4";
+        "$mod+mod2+KP_Begin" = "workspace number $ws5";
+        "$mod+mod2+KP_Right" = "workspace number $ws6";
+        "$mod+mod2+KP_Home" = "workspace number $ws7";
+        "$mod+mod2+KP_Up" = "workspace number $ws8";
+        "$mod+mod2+KP_Prior" = "workspace number $ws9";
+        "$mod+mod2+KP_Insert" = "workspace number $ws0";
+        "$mod+Shift+mod2+KP_End" = "move container to workspace number $ws1";
+        "$mod+Shift+mod2+KP_Down" = "move container to workspace number $ws2";
+        "$mod+Shift+mod2+KP_Next" = "move container to workspace number $ws3";
+        "$mod+Shift+mod2+KP_Left" = "move container to workspace number $ws4";
+        "$mod+Shift+mod2+KP_Begin" = "move container to workspace number $ws5";
+        "$mod+Shift+mod2+KP_Right" = "move container to workspace number $ws6";
+        "$mod+Shift+mod2+KP_Home" = "move container to workspace number $ws7";
+        "$mod+Shift+mod2+KP_Up" = "move container to workspace number $ws8";
+        "$mod+Shift+mod2+KP_Prior" = "move container to workspace number $ws9";
+        "$mod+Shift+mod2+KP_Insert" = "move container to workspace number $ws0";
 
         # navigation
         "$mod+h" = "focus left";
