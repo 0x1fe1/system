@@ -59,7 +59,7 @@
         { command = "xrandr --output DP-0 --mode 3440x1440 --rate 144"; notification = false; }
         { command = "xinput set-prop \"12\" \"libinput Accel Profile Enabled\" 0 1 0"; notification = false; }
         { command = "picom --config ~/.config/picom/picom.conf"; always = true; notification = false; }
-        { command = "i3-msg 'workspace $ws2; exec brave'"; notification = false; }
+        { command = "i3-msg 'workspace $ws2; exec firefox'"; notification = false; }
       ];
 
       floating.modifier = "Mod4";
@@ -130,6 +130,28 @@
         "$mod+Shift+8" = "move container to workspace number $ws8";
         "$mod+Shift+9" = "move container to workspace number $ws9";
         "$mod+Shift+0" = "move container to workspace number $ws0";
+
+        "$mod+KP_1" = "workspace number $ws1";
+        "$mod+KP_2" = "workspace number $ws2";
+        "$mod+KP_3" = "workspace number $ws3";
+        "$mod+KP_4" = "workspace number $ws4";
+        "$mod+KP_5" = "workspace number $ws5";
+        "$mod+KP_6" = "workspace number $ws6";
+        "$mod+KP_7" = "workspace number $ws7";
+        "$mod+KP_8" = "workspace number $ws8";
+        "$mod+KP_9" = "workspace number $ws9";
+        "$mod+KP_0" = "workspace number $ws0";
+        "$mod+Shift+KP_1" = "move container to workspace number $ws1";
+        "$mod+Shift+KP_2" = "move container to workspace number $ws2";
+        "$mod+Shift+KP_3" = "move container to workspace number $ws3";
+        "$mod+Shift+KP_4" = "move container to workspace number $ws4";
+        "$mod+Shift+KP_5" = "move container to workspace number $ws5";
+        "$mod+Shift+KP_6" = "move container to workspace number $ws6";
+        "$mod+Shift+KP_7" = "move container to workspace number $ws7";
+        "$mod+Shift+KP_8" = "move container to workspace number $ws8";
+        "$mod+Shift+KP_9" = "move container to workspace number $ws9";
+        "$mod+Shift+KP_0" = "move container to workspace number $ws0";
+
 
         # navigation
         "$mod+h" = "focus left";
