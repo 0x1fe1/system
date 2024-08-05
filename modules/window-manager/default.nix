@@ -131,26 +131,26 @@
         "$mod+Shift+9" = "move container to workspace number $ws9";
         "$mod+Shift+0" = "move container to workspace number $ws0";
 
-        "$mod+KP_1" = "workspace number $ws1";
-        "$mod+KP_2" = "workspace number $ws2";
-        "$mod+KP_3" = "workspace number $ws3";
-        "$mod+KP_4" = "workspace number $ws4";
-        "$mod+KP_5" = "workspace number $ws5";
-        "$mod+KP_6" = "workspace number $ws6";
-        "$mod+KP_7" = "workspace number $ws7";
-        "$mod+KP_8" = "workspace number $ws8";
-        "$mod+KP_9" = "workspace number $ws9";
-        "$mod+KP_0" = "workspace number $ws0";
-        "$mod+Shift+KP_1" = "move container to workspace number $ws1";
-        "$mod+Shift+KP_2" = "move container to workspace number $ws2";
-        "$mod+Shift+KP_3" = "move container to workspace number $ws3";
-        "$mod+Shift+KP_4" = "move container to workspace number $ws4";
-        "$mod+Shift+KP_5" = "move container to workspace number $ws5";
-        "$mod+Shift+KP_6" = "move container to workspace number $ws6";
-        "$mod+Shift+KP_7" = "move container to workspace number $ws7";
-        "$mod+Shift+KP_8" = "move container to workspace number $ws8";
-        "$mod+Shift+KP_9" = "move container to workspace number $ws9";
-        "$mod+Shift+KP_0" = "move container to workspace number $ws0";
+        "$mod+mod2+KP_1" = "workspace number $ws1";
+        "$mod+mod2+KP_2" = "workspace number $ws2";
+        "$mod+mod2+KP_3" = "workspace number $ws3";
+        "$mod+mod2+KP_4" = "workspace number $ws4";
+        "$mod+mod2+KP_5" = "workspace number $ws5";
+        "$mod+mod2+KP_6" = "workspace number $ws6";
+        "$mod+mod2+KP_7" = "workspace number $ws7";
+        "$mod+mod2+KP_8" = "workspace number $ws8";
+        "$mod+mod2+KP_9" = "workspace number $ws9";
+        "$mod+mod2+KP_0" = "workspace number $ws0";
+        "$mod+Shift+mod2+KP_1" = "move container to workspace number $ws1";
+        "$mod+Shift+mod2+KP_2" = "move container to workspace number $ws2";
+        "$mod+Shift+mod2+KP_3" = "move container to workspace number $ws3";
+        "$mod+Shift+mod2+KP_4" = "move container to workspace number $ws4";
+        "$mod+Shift+mod2+KP_5" = "move container to workspace number $ws5";
+        "$mod+Shift+mod2+KP_6" = "move container to workspace number $ws6";
+        "$mod+Shift+mod2+KP_7" = "move container to workspace number $ws7";
+        "$mod+Shift+mod2+KP_8" = "move container to workspace number $ws8";
+        "$mod+Shift+mod2+KP_9" = "move container to workspace number $ws9";
+        "$mod+Shift+mod2+KP_0" = "move container to workspace number $ws0";
 
 
         # navigation
