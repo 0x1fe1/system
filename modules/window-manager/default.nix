@@ -237,6 +237,14 @@
       separator = "";
     };
     modules = {
+      "read_file LOCKS" = {
+        settings = {
+          format = " <%content>";
+          format_bad = " <%title - %errno: %error>";
+          path = "/home/pango/.config/i3status/LOCKS";
+        };
+        position = 5;
+      };
       "volume master" = {
         settings = {
           format = " <Audio: %volume>";
