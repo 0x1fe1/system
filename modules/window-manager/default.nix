@@ -44,8 +44,8 @@
             size = 8.0;
           };
 
-          # command = "${pkgs.i3}/bin/i3bar --transparency";
-          statusCommand = "${pkgs.i3blocks}/bin/i3blocks";
+          # command = "i3bar --transparency";
+          statusCommand = "i3blocks";
           mode = "dock";
           hiddenState = "hide";
           position = "bottom";
@@ -193,7 +193,7 @@
 
         # important apps
         "$mod+Shift+e" = "exec --no-startup-id i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
-        "$mod+d" = "exec --no-startup-id /nix/store/a37r84wxwbrkkf7ii728a7cgmzqj3qxg-dmenu-5.3/bin/dmenu_run";
+        "$mod+d" = "exec --no-startup-id dmenu_run";
         "$mod+Return" = "exec --no-startup-id kitty";
 
         # modes or smth
