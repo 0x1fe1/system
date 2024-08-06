@@ -1,4 +1,4 @@
-{ pkgs, ... }@inputs: {
+{ pkgs, lib, ... }@inputs: {
   xsession.windowManager.i3 = {
     enable = true;
     config = {
@@ -225,8 +225,28 @@
     '';
   };
 
-  programs.i3status = {
+  programs.i3blocks = {
     enable = true;
+    bars.bottom = {
+      time = {
+        command = "date +%r";
+        interval = 1;
+      };
+      # Make sure this block comes after the time block
+      date = lib.hm.dag.entryAfter [ "time" ] {
+        command = "date +%d";
+        interval = 5;
+      };
+      # And this block after the example block
+      example = lib.hm.dag.entryAfter [ "date" ] {
+        command = "echo hi $(date +%s)";
+        interval = 3;
+      };
+    };
+  };
+
+  programs.i3status = {
+    enable = false;
     enableDefault = false;
     general = {
       colors = true;
