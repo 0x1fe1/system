@@ -67,10 +67,6 @@
 
     desktopManager = {
       xterm.enable = false;
-      # plasma5 = {
-      #   enable = true;
-      #   notoPackage = pkgs.noto-fonts-monochrome-emoji;
-      # };
     };
   };
 

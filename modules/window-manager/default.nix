@@ -45,7 +45,7 @@
           };
 
           # command = "${pkgs.i3}/bin/i3bar --transparency";
-          statusCommand = "${pkgs.i3status}/bin/i3status";
+          statusCommand = "${pkgs.i3blocks}/bin/i3blocks";
           mode = "dock";
           hiddenState = "hide";
           position = "bottom";
