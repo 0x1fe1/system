@@ -35,6 +35,7 @@ let custom = import ./custom-scripts.nix { inherit pkgs; }; in {
     nix-output-monitor
     playerctl # media
     tldr
+    universal-ctags
     wgo
     xclip
     xorg.xbacklight # screen brightness
