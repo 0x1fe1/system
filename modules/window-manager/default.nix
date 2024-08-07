@@ -268,7 +268,7 @@
 
       weather = lib.hm.dag.entryAfter [ "numlock" ] {
         command = "curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo";
-        interval = "3600";
+        interval = 3600;
         color = "#89b4fa";
         min_width = 250;
         align = "center";
@@ -276,7 +276,7 @@
 
       time = lib.hm.dag.entryAfter [ "weather" ] {
         command = "date +'%Y/%m/%d  %H:%M:%S'";
-        interval = "1";
+        interval = 1;
         min_width = 250;
         align = "center";
       };

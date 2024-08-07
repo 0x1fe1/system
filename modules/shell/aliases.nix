@@ -1,6 +1,6 @@
 {
   shell-aliases-common = {
-    lla = "eza -Tla --icons -s=type";
+    lla = "eza -Tl -s=type --no-user --no-time";
     ll = "lla -L=1";
     ls = "ls --color";
     c = "clear";
@@ -8,13 +8,13 @@
     ":q" = "exit";
 
     # [J]ump to (zoxide)
-    j = "z";
-    "j-" = "j -"; # [J]ump to [-] (previous directory)
-    "j." = "j .."; # [J]ump to [.]./ (parent directory)
-    jp = "j ~/personal"; # [J]ump to [P]ersonal
-    js = "j ~/system"; # [J]ump to [S]ystem
-    jn = "j ~/neovim"; # [J]ump to [N]eovim
-    jm = "j ~/mirea"; # [J]ump to [M]irea
+    # j = "z";
+    # "j-" = "j -"; # [J]ump to [-] (previous directory)
+    # "j." = "j .."; # [J]ump to [.]./ (parent directory)
+    # jp = "j ~/personal"; # [J]ump to [P]ersonal
+    # js = "j ~/system"; # [J]ump to [S]ystem
+    # jn = "j ~/neovim"; # [J]ump to [N]eovim
+    # jm = "j ~/mirea"; # [J]ump to [M]irea
 
     # [V]im (nvim built with nixvim)
     v = "nix run ~/neovim";
