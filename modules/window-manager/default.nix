@@ -45,7 +45,7 @@
           };
 
           # command = "i3bar --transparency";
-          statusCommand = "i3blocks";
+          statusCommand = "i3blocks -c ~/.config/i3blocks/trial.toml";
           mode = "dock";
           hiddenState = "hide";
           position = "bottom";
