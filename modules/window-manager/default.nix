@@ -60,6 +60,7 @@
         { command = "xinput set-prop \"12\" \"libinput Accel Profile Enabled\" 0 1 0"; notification = false; }
         { command = "picom --config ~/.config/picom/picom.conf"; always = true; notification = false; }
         { command = "i3-msg 'workspace $ws2; exec firefox'"; notification = false; }
+        { command = "playerctld daemon"; notification = false; }
       ];
 
       floating.modifier = "Mod4";
@@ -206,8 +207,10 @@
         "$mod+r" = "mode resize";
         "$mod+s" = "layout stacking";
         "$mod+t" = "layout tabbed";
-        # "$mod+h" = "split h";
-        # "$mod+v" = "split v";
+
+
+        "$mod+n" = "split h";
+        "$mod+m" = "split v";
       };
     };
     extraConfig = ''
@@ -227,92 +230,55 @@
 
   programs.i3blocks = {
     enable = true;
-    bars.bottom = {
-      time = {
-        command = "date +%r";
-        interval = 1;
+    bars.default = {
+      media = {
+        command = "~/.config/i3blocks/media.sh";
+        interval = "repeat";
+        min_width = 150;
+        align = "center";
       };
-      # Make sure this block comes after the time block
-      date = lib.hm.dag.entryAfter [ "time" ] {
-        command = "date +%d";
-        interval = 5;
-      };
-      # And this block after the example block
-      example = lib.hm.dag.entryAfter [ "date" ] {
-        command = "echo hi $(date +%s)";
-        interval = 3;
-      };
-    };
-  };
 
-  programs.i3status = {
-    enable = false;
-    enableDefault = false;
-    general = {
-      colors = true;
-      color_good = "#a6e3a1";
-      color_degraded = "#f9e2af";
-      color_bad = "#f38ba8";
-      interval = 1;
-      separator = "";
-    };
-    modules = {
-      "read_file LOCKS" = {
-        settings = {
-          format = " <%content>";
-          format_bad = " <%title - %errno: %error>";
-          path = "/home/pango/.config/i3status/LOCKS";
-        };
-        position = 5;
+      audio = lib.hm.dag.entryAfter [ "media" ] {
+        command = "wpctl get-volume @DEFAULT_AUDIO_SINK@";
+        interval = "repeat";
+        min_width = 150;
+        align = "center";
       };
-      "volume master" = {
-        settings = {
-          format = " <Audio: %volume>";
-          format_muted = " <Audio: muted (%volume)>";
-        };
-        position = 10;
+
+      language = lib.hm.dag.entryAfter [ "audio" ] {
+        command = "~/.config/i3blocks/lang.sh";
+        interval = "repeat";
+        min_width = 100;
+        align = "center";
       };
-      "ethernet _first_" = {
-        settings = {
-          format_down = " <Ethernet: down>";
-          format_up = " <Ethernet: %ip (%speed)>";
-        };
-        position = 20;
+
+      capslock = lib.hm.dag.entryAfter [ "language" ] {
+        command = "~/.config/i3blocks/capslock.sh";
+        interval = "repeat";
+        min_width = 150;
+        align = "center";
       };
-      "wireless _first_" = {
-        settings = {
-          format_down = " <W: down>";
-          format_up = " <Wireless: (%quality at %essid, %bitrate / %frequency) %ip>";
-        };
-        position = 30;
+
+      numlock = lib.hm.dag.entryAfter [ "capslock" ] {
+        command = "~/.config/i3blocks/numlock.sh";
+        interval = "repeat";
+        min_width = 150;
+        align = "center";
       };
-      # TODO: https://i3wm.org/docs/i3status.html#_battery
-      "battery 0" = {
-        settings = {
-          format = " <%status %percentage %remaining>";
-          format_down = " <No Battery>";
-        };
-        position = 40;
+
+      weather = lib.hm.dag.entryAfter [ "numlock" ] {
+        command = "curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo";
+        interval = "3600";
+        color = "#89b4fa";
+        min_width = 250;
+        align = "center";
       };
-      "disk /" = {
-        settings = {
-          format = " <DISK: %free (%avail) / %total>";
-        };
-        position = 50;
-      };
-      memory = {
-        settings = {
-          format = " <RAM: %used / %available>";
-          format_degraded = " <MEMORY < %available>";
-          threshold_degraded = "1G";
-        };
-        position = 60;
-      };
-      "tztime local" = {
-        settings = {
-          format = " <Time: %Y-%m-%d %H:%M:%S>";
-        };
-        position = 70;
+
+      time = lib.hm.dag.entryAfter [ "weather" ] {
+        command = "date +'%Y/%m/%d  %H:%M:%S'";
+        interval = "1";
+        min_width = 250;
+        align = "center";
       };
     };
   };
