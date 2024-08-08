@@ -45,7 +45,7 @@
           };
 
           # command = "i3bar --transparency";
-          statusCommand = "i3blocks -c ~/.config/i3blocks/trial.toml";
+          statusCommand = "i3blocks -c ~/.config/i3blocks/default";
           mode = "dock";
           hiddenState = "hide";
           position = "bottom";
@@ -111,17 +111,14 @@
         "XF86AudioPrev" = "exec --no-startup-id playerctl previous";
 
         # workspaces
-        "$mod+a" = "workspace number $ws1";
-        "$mod+s" = "workspace number $ws2";
-        "$mod+d" = "workspace number $ws3";
-        "$mod+f" = "workspace number $ws4";
-        "$mod+g" = "workspace number $ws5";
-        "$mod+Shift+a" = "move container to workspace number $ws1";
-        "$mod+Shift+s" = "move container to workspace number $ws2";
-        "$mod+Shift+d" = "move container to workspace number $ws3";
-        "$mod+Shift+f" = "move container to workspace number $ws4";
-        "$mod+Shift+g" = "move container to workspace number $ws5";
-
+        # "$mod+a" = "workspace number $ws1";
+        # "$mod+s" = "workspace number $ws2";
+        # "$mod+d" = "workspace number $ws3";
+        # "$mod+f" = "workspace number $ws4";
+        # "$mod+Shift+a" = "move container to workspace number $ws1";
+        # "$mod+Shift+s" = "move container to workspace number $ws2";
+        # "$mod+Shift+d" = "move container to workspace number $ws3";
+        # "$mod+Shift+f" = "move container to workspace number $ws4";
 
         "$mod+1" = "workspace number $ws1";
         "$mod+2" = "workspace number $ws2";
@@ -206,18 +203,16 @@
 
         # important apps
         "$mod+Shift+e" = "exec --no-startup-id i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
-        "$mod+b" = "exec --no-startup-id dmenu_run";
+        "$mod+d" = "exec --no-startup-id dmenu_run";
         "$mod+Return" = "exec --no-startup-id kitty";
 
         # modes or smth
         "$mod+Shift+w" = "floating toggle";
-        # "$mod+w" = "focus mode_toggle";
-        # "$mod+a" = "focus parent";
         "$mod+e" = "layout toggle split";
-        "$mod+v" = "fullscreen toggle";
+        "$mod+f" = "fullscreen toggle";
         "$mod+Shift+q" = "kill";
         "$mod+r" = "mode resize";
-        # "$mod+s" = "layout stacking";
+        "$mod+s" = "layout stacking";
         "$mod+t" = "layout tabbed";
 
         "$mod+n" = "split h";
