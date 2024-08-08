@@ -239,7 +239,9 @@
     enable = true;
     bars.default = {
       media = {
-        command = "~/.config/i3blocks/media.sh";
+        command = /*bash*/''
+          ss=$(playerctl -l); for s in $ss; do a=$(echo "$s" | sed 's/\..*$//') && b=$(playerctl -p "$s" status) && printf "%s: %s   " "$a" "$b"; done; printf "\n\n#89b4fa\n"
+        '';
         interval = "repeat";
         min_width = 150;
         align = "center";
@@ -253,27 +255,33 @@
       };
 
       language = lib.hm.dag.entryAfter [ "audio" ] {
-        command = "~/.config/i3blocks/lang.sh";
+        command = /*bash*/''
+          l=$(xset -q | grep -A 0 'LED' | cut -c63); printf "Lang: "; if [ "$l" == '0' ]; then printf 'EN\n\n#a6e3a1\n'; elif [ "$l" == '1' ]; then printf 'RU\n\n#f38ba8\n'; else printf "??\n#FF00FF\n"; fi
+        '';
         interval = "repeat";
         min_width = 100;
         align = "center";
       };
 
-      capslock = lib.hm.dag.entryAfter [ "language" ] {
-        command = "~/.config/i3blocks/capslock.sh";
-        interval = "repeat";
-        min_width = 150;
-        align = "center";
-      };
+      # capslock = lib.hm.dag.entryAfter [ "language" ] {
+      #   command = /*bash*/''
+      #     c=$(xset q | grep "Caps Lock" | awk '{print $4}'); printf "CapsLock: %-3s\n\n" "$c"; if [ "$c" == 'on' ]; then echo '#f38ba8'; elif [ "$c" == 'off' ]; then echo '#a6e3a1'; else echo "#FF00FF"; fi
+      #   '';
+      #   interval = "repeat";
+      #   min_width = 150;
+      #   align = "center";
+      # };
+      #
+      # numlock = lib.hm.dag.entryAfter [ "capslock" ] {
+      #   command = /*bash*/''
+      #     c=$(xset q | grep "Num Lock" | awk '{print $8}'); printf "NumLock: %-3s\n\n" "$c"; if [ "$c" == 'on' ]; then echo '#f38ba8'; elif [ "$c" == 'off' ]; then echo '#a6e3a1'; else echo "#FF00FF"; fi
+      #   '';
+      #   interval = "repeat";
+      #   min_width = 150;
+      #   align = "center";
+      # };
 
-      numlock = lib.hm.dag.entryAfter [ "capslock" ] {
-        command = "~/.config/i3blocks/numlock.sh";
-        interval = "repeat";
-        min_width = 150;
-        align = "center";
-      };
-
-      weather = lib.hm.dag.entryAfter [ "numlock" ] {
+      weather = lib.hm.dag.entryAfter [ "language" ] {
         command = "curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo";
         interval = 3600;
         color = "#89b4fa";
