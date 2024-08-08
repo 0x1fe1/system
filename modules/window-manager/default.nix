@@ -61,6 +61,7 @@
         { command = "picom --config ~/.config/picom/picom.conf"; always = true; notification = false; }
         { command = "i3-msg 'workspace $ws2; exec firefox'"; notification = false; }
         { command = "playerctld daemon"; notification = false; }
+        { command = "cp $HOME/wallpapers/$(ls ~/wallpapers/ | shuf -n1) ~/.background-image"; notification = false; }
       ];
 
       floating.modifier = "Mod4";
