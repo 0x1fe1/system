@@ -35,9 +35,9 @@ in
 
     zoxide.enable = true;
     fzf.enable = true;
-    # fzf.enableFishIntegration = false;
     ripgrep.enable = true;
     eza.enable = true;
     bat.enable = true;
+    feh.enable = true;
   };
 }
