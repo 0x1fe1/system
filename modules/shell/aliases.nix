@@ -1,6 +1,6 @@
 {
   shell-aliases-common = {
-    lla = "eza -Tl -s=type --no-user --no-time";
+    lla = "eza -Tl -s=type --no-user --no-time --git-ignore";
     ll = "lla -L=1";
     ls = "ls --color";
     c = "clear";
