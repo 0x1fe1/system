@@ -66,9 +66,6 @@
 
       floating.modifier = "Mod4";
 
-      gaps = { };
-      window = { };
-
       fonts = {
         names = [ "FiraCode" ];
         style = "Regular";
@@ -86,6 +83,8 @@
           l = "resize shrink width 4 px or 4 ppt";
         };
       };
+
+      focus.followMouse = false;
 
       keybindings = {
         # screenshot
@@ -193,6 +192,14 @@
         "$mod+Shift+j" = "move down";
         "$mod+Shift+k" = "move up";
         "$mod+Shift+l" = "move right";
+        "$mod+Left" = "focus left";
+        "$mod+Down" = "focus down";
+        "$mod+Up" = "focus up";
+        "$mod+Right" = "focus right";
+        "$mod+Shift+Left" = "move left";
+        "$mod+Shift+Down" = "move down";
+        "$mod+Shift+Up" = "move up";
+        "$mod+Shift+Right" = "move right";
 
         # i3 reload
         "$mod+Shift+c" = "reload";
