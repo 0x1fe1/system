@@ -4,5 +4,6 @@
     ./programs/default.nix
     ./shell/default.nix
     ./window-manager/default.nix
+    ./services/default.nix
   ];
 }
