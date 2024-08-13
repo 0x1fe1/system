@@ -61,7 +61,7 @@
         { command = "picom --config ~/.config/picom/picom.conf"; always = true; notification = false; }
         { command = "i3-msg 'workspace $ws2; exec firefox'"; notification = false; }
         { command = "playerctld daemon"; notification = false; }
-        { command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | shuf -n1)"; notification = false; }
+        { command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | shuf -n1)"; always = true; notification = false; }
       ];
 
       floating.modifier = "Mod4";
