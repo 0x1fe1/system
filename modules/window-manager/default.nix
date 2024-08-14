@@ -225,6 +225,10 @@
 
         "$mod+n" = "split h";
         "$mod+m" = "split v";
+
+        # clipmenu found from https://johnduhamel.io/posts/2019-01-29-nixos-i3-setup.html
+        "$mod+c" = "exec CM_ONESHOT=1 clipmenud";
+        "$mod+v" = "exec clipmenu";
       };
     };
     extraConfig = ''

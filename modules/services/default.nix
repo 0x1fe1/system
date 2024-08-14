@@ -1,5 +1,5 @@
 { ... }@inputs: {
   services = {
-    # parcellite.enable = true;
+    clipmenu.enable = true;
   };
 }
