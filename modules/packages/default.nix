@@ -20,6 +20,7 @@ let custom = import ./custom-scripts.nix { inherit pkgs; }; in {
     # nix-prefetch-github
     # qemu
     # quickemu
+    clipmenu
     distrobox
     fd
     file
