@@ -44,7 +44,6 @@
             size = 8.0;
           };
 
-          # command = "i3bar --transparency";
           statusCommand = "i3blocks -c ~/.config/i3blocks/default";
           mode = "dock";
           hiddenState = "hide";
@@ -61,7 +60,7 @@
         { command = "picom --config ~/.config/picom/picom.conf"; always = true; notification = false; }
         { command = "i3-msg 'workspace $ws2; exec firefox'"; notification = false; }
         { command = "playerctld daemon"; notification = false; }
-        { command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | shuf -n1)"; always = true; notification = false; }
+        { command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; notification = false; }
       ];
 
       floating.modifier = "Mod4";
@@ -251,7 +250,7 @@
     bars.default = {
       media = {
         command = /*bash*/''
-          ss=$(playerctl -l); for s in $ss; do a=$(echo "$s" | sed 's/\..*$//') && b=$(playerctl -p "$s" status) && printf "%s: %s   " "$a" "$b"; done; printf "\n\n#89b4fa\n"
+          printf ' ' ; ss=$(playerctl -l); for s in $ss; do a=$(echo "$s" | sed 's/\..*$//') && b=$(playerctl -p "$s" status) && printf " %s: %s " "$a" "$b"; done; printf " \n\n#89b4fa\n"
         '';
         interval = "repeat";
         min_width = 150;
@@ -259,7 +258,7 @@
       };
 
       audio = lib.hm.dag.entryAfter [ "media" ] {
-        command = "wpctl get-volume @DEFAULT_AUDIO_SINK@";
+        command = "wpctl get-volume @DEFAULT_AUDIO_SINK@ | xargs -d '\n' printf '  %s  \n'";
         interval = "repeat";
         min_width = 150;
         align = "center";
@@ -267,10 +266,25 @@
 
       language = lib.hm.dag.entryAfter [ "audio" ] {
         command = /*bash*/''
-          l=$(xset -q | grep -A 0 'LED' | cut -c63); printf "Lang: "; if [ "$l" == '0' ]; then printf 'EN\n\n#a6e3a1\n'; elif [ "$l" == '1' ]; then printf 'RU\n\n#f38ba8\n'; else printf "??\n#FF00FF\n"; fi
+          l=$(xset -q | grep -A 0 'LED' | cut -c63); printf "  Lang: "; if [ "$l" == '0' ]; then printf 'EN  \n\n#a6e3a1\n'; elif [ "$l" == '1' ]; then printf 'RU  \n\n#f38ba8\n'; else printf "??\n#FF00FF\n"; fi
         '';
         interval = "repeat";
         min_width = 100;
+        align = "center";
+      };
+
+      weather = lib.hm.dag.entryAfter [ "language" ] {
+        command = "curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo | xargs -d '\n' printf '  %s  \n'";
+        interval = 3600;
+        color = "#89b4fa";
+        min_width = 250;
+        align = "center";
+      };
+
+      time = lib.hm.dag.entryAfter [ "weather" ] {
+        command = "date +'  %Y/%m/%d  %H:%M:%S  '";
+        interval = 1;
+        min_width = 250;
         align = "center";
       };
 
@@ -291,36 +305,6 @@
       #   min_width = 150;
       #   align = "center";
       # };
-
-      weather = lib.hm.dag.entryAfter [ "language" ] {
-        command = "curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo";
-        interval = 3600;
-        color = "#89b4fa";
-        min_width = 250;
-        align = "center";
-      };
-
-      time = lib.hm.dag.entryAfter [ "weather" ] {
-        command = "date +'%Y/%m/%d  %H:%M:%S'";
-        interval = 1;
-        min_width = 250;
-        align = "center";
-      };
-    };
-  };
-
-  services.picom = {
-    enable = true;
-    backend = "glx";
-    settings = {
-      blur = {
-        method = "gaussian";
-        size = 10;
-        deviation = 5.0;
-      };
-      blur-background-exclude = [
-        "class_g != 'kitty'"
-      ];
     };
   };
 }
