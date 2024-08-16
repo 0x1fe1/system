@@ -233,8 +233,8 @@
     };
     extraConfig = ''
       set $mod Mod4
-      set $ws1 "1: term"
-      set $ws2 "2: www"
+      set $ws1 "1"
+      set $ws2 "2"
       set $ws3 "3"
       set $ws4 "4"
       set $ws5 "5"
