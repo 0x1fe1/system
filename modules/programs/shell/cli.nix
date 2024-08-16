@@ -1,0 +1,4 @@
+{ lib, ... }@inputs: {
+  programs = {
+  };
+}

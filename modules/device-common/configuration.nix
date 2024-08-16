@@ -132,7 +132,7 @@
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     users = {
-      "pango" = import ../${config.networking.hostName}/home.nix;
+      "pango" = import ../../hosts/${config.networking.hostName}/home.nix;
     };
   };
 

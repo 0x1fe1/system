@@ -9,12 +9,12 @@
 
     # [J]ump to (zoxide)
     # j = "z";
-    # "j-" = "j -"; # [J]ump to [-] (previous directory)
-    # "j." = "j .."; # [J]ump to [.]./ (parent directory)
-    # jp = "j ~/personal"; # [J]ump to [P]ersonal
-    # js = "j ~/system"; # [J]ump to [S]ystem
-    # jn = "j ~/neovim"; # [J]ump to [N]eovim
-    # jm = "j ~/mirea"; # [J]ump to [M]irea
+    "z-" = "z -"; # Jump to [-] (previous directory)
+    "z." = "z .."; # Jump to [.]./ (parent directory)
+    zp = "z ~/personal"; # Jump to [P]ersonal
+    zs = "z ~/system"; # Jump to [S]ystem
+    zn = "z ~/neovim"; # Jump to [N]eovim
+    zm = "z ~/mirea"; # Jump to [M]irea
 
     # [V]im (nvim built with nixvim)
     v = "nix run ~/neovim";

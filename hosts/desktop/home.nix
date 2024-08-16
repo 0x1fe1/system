@@ -24,6 +24,6 @@
   ];
 
   imports = [
-    ../common/home.nix
+    ../../modules/device-common/home.nix
   ];
 }

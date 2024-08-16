@@ -1,6 +1,6 @@
 { pkgs, ... }@inputs: {
   imports = [
-    ../../modules/default.nix
+    ../default.nix
   ];
 
   home.username = "pango";

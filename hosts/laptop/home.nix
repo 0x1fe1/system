@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     (jetbrains.idea-community)
     # bazecor
@@ -16,6 +16,6 @@
   ];
 
   imports = [
-    ../common/home.nix
+    ../../modules/device-common/home.nix
   ];
 }

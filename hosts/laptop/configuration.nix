@@ -1,13 +1,12 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/device-common/configuration.nix
     inputs.home-manager.nixosModules.default
-    ../common/configuration.nix
   ];
 
   networking.hostName = "laptop";

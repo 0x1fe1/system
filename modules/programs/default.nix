@@ -1,6 +1,6 @@
 { ... }@inputs: {
   imports = [
     ./terminals/default.nix
-    ./cli.nix
+    ./shell/default.nix
   ];
 }
