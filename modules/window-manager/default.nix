@@ -44,7 +44,7 @@
             size = 8.0;
           };
 
-          statusCommand = "i3blocks -c ~/.config/i3blocks/default";
+          statusCommand = "i3blocks -c ~/.config/i3blocks/config";
           mode = "dock";
           hiddenState = "hide";
           position = "bottom";
@@ -247,21 +247,19 @@
 
   programs.i3blocks = {
     enable = true;
-    bars.default = {
+    bars.config = {
       media = {
         command = /*bash*/''
           printf ' ' ; ss=$(playerctl -l); for s in $ss; do a=$(echo "$s" | sed 's/\..*$//') && b=$(playerctl -p "$s" status) && printf " %s: %s " "$a" "$b"; done; printf " \n\n#89b4fa\n"
         '';
         interval = "repeat";
-        min_width = 150;
-        align = "center";
       };
 
       audio = lib.hm.dag.entryAfter [ "media" ] {
-        command = "wpctl get-volume @DEFAULT_AUDIO_SINK@ | xargs -d '\n' printf '  %s  \n'";
+        command = /*bash*/''
+          wpctl get-volume @DEFAULT_AUDIO_SINK@ | xargs -d '\n' printf "  %s  \n"
+        '';
         interval = "repeat";
-        min_width = 150;
-        align = "center";
       };
 
       language = lib.hm.dag.entryAfter [ "audio" ] {
@@ -269,23 +267,21 @@
           l=$(xset -q | grep -A 0 'LED' | cut -c63); printf "  Lang: "; if [ "$l" == '0' ]; then printf 'EN  \n\n#a6e3a1\n'; elif [ "$l" == '1' ]; then printf 'RU  \n\n#f38ba8\n'; else printf "??\n#FF00FF\n"; fi
         '';
         interval = "repeat";
-        min_width = 100;
-        align = "center";
       };
 
       weather = lib.hm.dag.entryAfter [ "language" ] {
-        command = "curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo | xargs -d '\n' printf '  %s  \n'";
+        command = /*bash*/''
+          curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo | xargs -d '\n' printf "  %s  \n"
+        '';
         interval = 3600;
         color = "#89b4fa";
-        min_width = 250;
-        align = "center";
       };
 
       time = lib.hm.dag.entryAfter [ "weather" ] {
-        command = "date +'  %Y/%m/%d  %H:%M:%S  '";
+        command = /*bash*/''
+          date +"  %Y/%m/%d  %H:%M:%S  "
+        '';
         interval = 1;
-        min_width = 250;
-        align = "center";
       };
 
       # capslock = lib.hm.dag.entryAfter [ "language" ] {
