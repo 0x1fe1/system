@@ -88,7 +88,7 @@
 		displayManager = {
 			sddm.enable = true;
 			sddm.wayland.enable = true;
-			defaultSession = "hyprland";
+			defaultSession = "none+i3";
 			autoLogin.enable = true;
 			autoLogin.user = "pango";
 		};
