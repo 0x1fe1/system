@@ -1,75 +1,46 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{
-	inputs,
-	lib,
-	config,
-	pkgs,
-	...
-}: {
-	# You can import other NixOS modules here
+{ inputs, lib, config, pkgs, ... }: {
 	imports = [
-		# If you want to use modules from other flakes (such as nixos-hardware):
-		# inputs.hardware.nixosModules.common-cpu-amd
-		# inputs.hardware.nixosModules.common-ssd
-
-		# You can also split up your configuration and import pieces of it here:
-		# ./users.nix
-
-		# Import your generated (nixos-generate-config) hardware configuration
 		./hardware-configuration.nix
 	];
 
-	nixpkgs = {
-		# You can add overlays here
-		overlays = [
-			# If you want to use overlays exported from other flakes:
-			# neovim-nightly-overlay.overlays.default
-
-			# Or define it inline, for example:
-			# (final: prev: {
-			#	 hi = final.hello.overrideAttrs (oldAttrs: {
-			#		 patches = [ ./change-hello-to-hi.patch ];
-			#	 });
-			# })
-		];
-		# Configure your nixpkgs instance
-		config = {
-			# Disable if you don't want unfree packages
-			allowUnfree = true;
-		};
-	};
+	nixpkgs.config.allowUnfree = true;
 
 	nix = let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs; in {
 		settings = {
-			# Enable flakes and new 'nix' command
 			experimental-features = [ "nix-command" "flakes" ];
-			# Opinionated: disable global registry
-			# flake-registry = "";
-			# Workaround for https://github.com/NixOS/nix/issues/9574
 			nix-path = config.nix.nixPath;
 		};
-		# Opinionated: disable channels
 		channel.enable = false;
-
-		# Opinionated: make flake registry and nix path match flake inputs
 		registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
 		nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 	};
 
-	boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
-
-	networking.hostName = "server";
-	networking.networkmanager.enable = true;
-	networking.firewall = {
-		enable = true;
-		allowedTCPPorts = [ 6969 ];
-		allowedUDPPorts = [ 6970 ];
+	boot = {
+		loader = {
+			grub = {
+				enable = true;
+				device = "nodev";
+				useOSProber = true;
+				efiSupport = true;
+				font = "${
+					pkgs.nerdfonts.override{fonts=["FiraCode"];}
+				}/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
+				fontSize = 36;
+			};
+			efi = {
+				canTouchEfiVariables = true;
+				efiSysMountPoint = "/boot/efi";
+			};
+		};
 	};
+
+	networking.hostName = "desktop";
+	networking.networkmanager.enable = true;
 
 	# Set your time zone.
 	time.timeZone = "Europe/Moscow";
+	# FIX dualboot (only on windows) breaks time
+	time.hardwareClockInLocalTime = true;
 
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
@@ -86,40 +57,115 @@
 		LC_TIME = "ru_RU.UTF-8";
 	};
 
-	# Enable the X11 windowing system.
-	# services.xserver.enable = true;
-	# services.xserver.displayManager.startx.enable = true;
-
-	# Enable the XFCE Desktop Environment.
-	# services.xserver.displayManager.lightdm.enable = true;
-	# services.xserver.desktopManager.xfce.enable = true;
-
-	# Configure keymap in X11
-	# services.xserver.xkb = {
-	# 	layout = "us,ru";
-	# 	variant = "qwerty";
-	# 	options = "grp:win_space_toggle";
-	# };
-
 	users.users.pango = {
 		isNormalUser = true;
-		openssh.authorizedKeys.keys = [
-			"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyFLwmHGcdqVWh3+bQAsX9FITY5LQ0yS/d8nAsQdO37 domkuzaleza@gmail.com"
-			"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2slVNoAgWt7Uv6jA7Nq2KYsAYxShLUMeoymNwpwk+l domkuzaleza@gmail.com"
+		extraGroups = [
+			"networkmanager"
+			"wheel"
+			"docker"
+			"podman"
+			"video"
+			"audio"
+			"input"
+			"tty"
+			"plugdev"
+			"dialout"
+			"gpio"
 		];
-		extraGroups = [ "wheel" "networkmanager" ];
 	};
 
-	# This setups a SSH server. Very important if you're setting up a headless system.
-	# Feel free to remove if you don't need it.
-	services.openssh = {
-		enable = true;
-		settings = {
-			PasswordAuthentication = false;
+	services = {
+		xserver = {
+			enable = true;
+			xkb = {
+				layout = "us,ru";
+				variant = "qwerty";
+				options = "grp:win_space_toggle";
+			};
+			desktopManager.xterm.enable = false;
+			windowManager.i3.enable = true;
 		};
+		displayManager = {
+			sddm.enable = true;
+			sddm.wayland.enable = true;
+			defaultSession = "hyprland";
+			autoLogin.enable = true;
+			autoLogin.user = "pango";
+		};
+		# desktopManager.plasma6.enable = true;
+		openssh = {
+			enable = true;
+			settings.PasswordAuthentication = false;
+		};
+		# postgresql = {
+		# 	enable = true;
+		# 	ensureDatabases = [ "trial" "mathmarathon" ];
+		# 	authentication = pkgs.lib.mkOverride 10 ''
+		# 		#type database	DBuser	auth-method
+		# 		local all			 all		 trust
+		# 	'';
+		# };
+		udev.packages = [ pkgs.bazecor ];
+	};
+
+	programs.hyprland.enable = true;
+	programs.steam.enable = true;
+
+	# links /libexec from derivations to /run/current-system/sw
+	environment.pathsToLink = [ "/libexec" ];
+
+	environment.sessionVariables = {
+		FLAKE = "/home/pango/system";
+		NIXOS_OZONE_WL = "1";
+		EDITOR = "vim";
+	};
+
+	environment.systemPackages = with pkgs; [
+		vim
+		git
+	];
+
+	programs.nix-ld.enable = true;
+	programs.nix-ld.libraries = with pkgs; [
+		# Add any missing dynamic libraries for unpackaged programs
+		# here, NOT in environment.systemPackages
+		atk
+		cairo
+		gdk-pixbuf
+		glib
+		glibc
+		gobject-introspection
+		gtk3
+		libgudev
+		linuxHeaders
+		pango
+	];
+
+	# Enable sound with pipewire.
+	hardware.pulseaudio.enable = false;
+	security.rtkit.enable = true;
+	security.polkit.enable = true;
+	services.pipewire = {
+		enable = true;
+		alsa.enable = true;
+		alsa.support32Bit = true;
+		pulse.enable = true;
+		extraConfig.pipewire = {
+			"99-disable-bell" = {
+				"context.properties"= {
+					"module.x11.bell" = false;
+				};
+			};
+		};
+		# If you want to use JACK applications, uncomment this
+		#jack.enable = true;
+
+		# use the example session manager
+		# (no others are packaged yet so this is enabled by default,
+		# no need to redefine it in your config for now)
+		#media-session.enable = true;
 	};
 
 
-	# https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 	system.stateVersion = "24.05";
 }
