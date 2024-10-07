@@ -44,16 +44,43 @@
 	};
 
 	# Add stuff for your user as you see fit:
-	# programs.neovim.enable = true;
-	# home.packages = with pkgs; [ steam ];
+	home.packages = with pkgs; [
+		python3
+		ngrok
+		# kitty
+		# xfce.exo
+	];
 
-	# Enable home-manager and git
 	programs.home-manager.enable = true;
+
+	programs.bash = {
+		enable = true;
+		shellAliases = {
+			v="nix run ~/neovim";
+			cn="pushd ~/system && nix run ~/neovim ~/system && popd";
+			fn="sudo nixos-rebuild switch --flake ~/system#server";
+			hn="home-manager switch --flake ~/system#pango@server";
+		};
+	};
+
+	programs.neovim.enable = true;
 	programs.zoxide.enable = true;
-	# programs.fzf.enable = true;
-	# programs.ripgrep.enable = true;
-	# programs.eza.enable = true;
-	# programs.bat.enable = true;
+	programs.fzf.enable = true;
+	programs.ripgrep.enable = true;
+	programs.eza.enable = true;
+	programs.bat.enable = true;
+
+	programs.zellij = {
+		enable = true;
+		settings.theme = "catppuccin-mocha";
+	};
+
+	programs.direnv = {
+		enable = true;
+		enableBashIntegration = true;
+		nix-direnv.enable = true;
+	};
+
 	programs.git = {
 		enable = true;
 		userName = "0x1fe1";

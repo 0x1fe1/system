@@ -62,7 +62,11 @@
 
 	networking.hostName = "server";
 	networking.networkmanager.enable = true;
-	# networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+	networking.firewall = {
+		enable = true;
+		allowedTCPPorts = [ 6969 ];
+		allowedUDPPorts = [ 6970 ];
+	};
 
 	# Set your time zone.
 	time.timeZone = "Europe/Moscow";
@@ -83,18 +87,19 @@
 	};
 
 	# Enable the X11 windowing system.
-	services.xserver.enable = true;
+	# services.xserver.enable = true;
+	# services.xserver.displayManager.startx.enable = true;
 
 	# Enable the XFCE Desktop Environment.
-	services.xserver.displayManager.lightdm.enable = true;
-	services.xserver.desktopManager.xfce.enable = true;
+	# services.xserver.displayManager.lightdm.enable = true;
+	# services.xserver.desktopManager.xfce.enable = true;
 
 	# Configure keymap in X11
-	services.xserver.xkb = {
-		layout = "us,ru";
-		variant = "qwerty";
-		options = "grp:win_space_toggle";
-	};
+	# services.xserver.xkb = {
+	# 	layout = "us,ru";
+	# 	variant = "qwerty";
+	# 	options = "grp:win_space_toggle";
+	# };
 
 	users.users.pango = {
 		isNormalUser = true;
@@ -113,6 +118,7 @@
 			PasswordAuthentication = false;
 		};
 	};
+
 
 	# https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 	system.stateVersion = "24.05";
