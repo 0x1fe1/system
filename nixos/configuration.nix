@@ -80,7 +80,7 @@
 			xkb = {
 				layout = "us,ru";
 				variant = "qwerty";
-				options = "grp:win_space_toggle";
+				options = "grp:caps_toggle";
 			};
 			desktopManager.xterm.enable = false;
 			windowManager.i3.enable = true;
