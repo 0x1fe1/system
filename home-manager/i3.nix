@@ -69,7 +69,7 @@
 
 			startup = [
 			{ notification = false; command = "xrandr --output DP-0 --mode 3440x1440 --rate 144"; always = true; }
-			{ notification = false; command = "picom --config ~/.config/picom/picom.conf"; always = true; }
+			{ notification = false; command = "picom --config ~/.config/picom/picom.conf"; always = false; }
 			{ notification = false; command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; }
 			{ notification = false; command = "xinput set-prop \"12\" \"libinput Accel Profile Enabled\" 0 1 0"; }
 			{ notification = false; command = "playerctld daemon"; }
