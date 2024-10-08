@@ -3,6 +3,9 @@
 		bash = {
 			enable = true;
 			historyControl = [ "ignorespace" ];
+			sessionVariables = {
+				DIRENV_LOG_FORMAT = "";
+			};
 			shellAliases = {
 				lla = "eza -Tl -s=type --no-user --no-time --git-ignore";
 				ll = "lla -L=1";
