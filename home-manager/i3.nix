@@ -13,6 +13,7 @@
 			];
 		};
 	};
+
 	xsession.windowManager.i3 = {
 		enable = true;
 		config = {
@@ -67,14 +68,14 @@
 			} ];
 
 			startup = [
-				{ command = "xrandr --output DP-0 --mode 3440x1440 --rate 144"; notification = false; }
-				{ command = "xinput set-prop \"12\" \"libinput Accel Profile Enabled\" 0 1 0"; notification = false; }
-				{ command = "picom --config ~/.config/picom/picom.conf"; always = true; notification = false; }
-				{ command = "i3-msg 'workspace $ws1; exec kitty'"; notification = false; }
-				{ command = "i3-msg 'workspace $ws2; exec firefox'"; notification = false; }
-				# { command = "i3-msg 'workspace $ws3; exec brave --password-store=basic'"; notification = false; }
-				{ command = "playerctld daemon"; notification = false; }
-				{ command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; notification = false; }
+			{ notification = false; command = "xrandr --output DP-0 --mode 3440x1440 --rate 144"; always = true; }
+			{ notification = false; command = "picom --config ~/.config/picom/picom.conf"; always = true; }
+			{ notification = false; command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; }
+			{ notification = false; command = "xinput set-prop \"12\" \"libinput Accel Profile Enabled\" 0 1 0"; }
+			{ notification = false; command = "playerctld daemon"; }
+			{ notification = false; command = "i3-msg 'workspace $ws1; exec kitty'"; }
+			{ notification = false; command = "i3-msg 'workspace $ws2; exec firefox'"; }
+			# { notification = false;  command = "i3-msg 'workspace $ws3; exec brave --password-store=basic'"; }
 			];
 
 			floating.modifier = "Mod4";
@@ -197,22 +198,22 @@
 				"$mod+Shift+KP_Insert" = "move container to workspace number $ws0";
 
 				# navigation
-				"$mod+h" = "focus left";
-				"$mod+j" = "focus down";
-				"$mod+k" = "focus up";
-				"$mod+l" = "focus right";
-				"$mod+Shift+h" = "move left";
-				"$mod+Shift+j" = "move down";
-				"$mod+Shift+k" = "move up";
-				"$mod+Shift+l" = "move right";
-				"$mod+Left" = "focus left";
-				"$mod+Down" = "focus down";
-				"$mod+Up" = "focus up";
-				"$mod+Right" = "focus right";
-				"$mod+Shift+Left" = "move left";
-				"$mod+Shift+Down" = "move down";
-				"$mod+Shift+Up" = "move up";
-				"$mod+Shift+Right" = "move right";
+				"$mod+h"	= "focus left";
+				"$mod+j"	= "focus down";
+				"$mod+k"	= "focus up";
+				"$mod+l"	= "focus right";
+				"$mod+Left"	= "focus left";
+				"$mod+Down"	= "focus down";
+				"$mod+Up"	= "focus up";
+				"$mod+Right"	= "focus right";
+				"$mod+Shift+h"		= "move left";
+				"$mod+Shift+j"		= "move down";
+				"$mod+Shift+k"		= "move up";
+				"$mod+Shift+l"		= "move right";
+				"$mod+Shift+Left"	= "move left";
+				"$mod+Shift+Down"	= "move down";
+				"$mod+Shift+Up"		= "move up";
+				"$mod+Shift+Right"	= "move right";
 
 				# i3 reload
 				"$mod+Shift+c" = "reload";
@@ -263,48 +264,34 @@
 		enable = true;
 		bars.config = {
 			media = {
-				command = /*bash*/''printf ' ' ; ss=$(playerctl -l); for s in $ss; do a=$(echo "$s" | sed 's/\..*$//') && b=$(playerctl -p "$s" status) && printf " %s: %s " "$a" "$b"; done; printf " \n\n#89b4fa\n" '';
+				command = /*bash*/''
+printf ' ' ; ss=$(playerctl -l); for s in $ss; do a=$(echo "$s" | sed 's/\..*$//') && b=$(playerctl -p "$s" status) && printf " %s: %s " "$a" "$b"; done; printf " \n\n#89b4fa\n" '';
 				interval = "repeat";
 			};
 
 			audio = lib.hm.dag.entryAfter [ "media" ] {
-				command = /*bash*/''wpctl get-volume @DEFAULT_AUDIO_SINK@ | xargs -d '\n' printf "	%s	\n" '';
+				command = /*bash*/''
+wpctl get-volume @DEFAULT_AUDIO_SINK@ | xargs -d '\n' printf "   %s   \n" '';
 				interval = "repeat";
 			};
 
 			language = lib.hm.dag.entryAfter [ "audio" ] {
-				command = /*bash*/''l=$(xset -q | grep -A 0 'LED' | cut -c63); printf "	Lang: "; if [ "$l" == '0' ]; then printf 'EN	\n\n#a6e3a1\n'; elif [ "$l" == '1' ]; then printf 'RU	\n\n#f38ba8\n'; else printf "??\n#FF00FF\n"; fi '';
+				command = /*bash*/''
+l=$(xset -q | grep -A 0 'LED' | cut -c63); printf "   Lang: "; if [ "$l" == '0' ]; then printf 'EN   \n\n#a6e3a1\n'; elif [ "$l" == '1' ]; then printf 'RU   \n\n#f38ba8\n'; else printf "??\n#FF00FF\n"; fi '';
 				interval = "repeat";
 			};
 
 			weather = lib.hm.dag.entryAfter [ "language" ] {
-				command = /*bash*/''curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo | xargs -d '\n' printf "	%s	\n" '';
+				command = /*bash*/''
+curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo | xargs -d '\n' printf "   %s   \n" '';
 				interval = 3600;
 				color = "#89b4fa";
 			};
 
 			time = lib.hm.dag.entryAfter [ "weather" ] {
-				command = /*bash*/''date +"	%Y/%m/%d	%H:%M:%S	"'';
+				command = /*bash*/''date +"   %Y/%m/%d   %H:%M:%S   "'';
 				interval = 1;
 			};
-
-			# capslock = lib.hm.dag.entryAfter [ "language" ] {
-			#	 command = /*bash*/''
-			#		 c=$(xset q | grep "Caps Lock" | awk '{print $4}'); printf "CapsLock: %-3s\n\n" "$c"; if [ "$c" == 'on' ]; then echo '#f38ba8'; elif [ "$c" == 'off' ]; then echo '#a6e3a1'; else echo "#FF00FF"; fi
-			#	 '';
-			#	 interval = "repeat";
-			#	 min_width = 150;
-			#	 align = "center";
-			# };
-			#
-			# numlock = lib.hm.dag.entryAfter [ "capslock" ] {
-			#	 command = /*bash*/''
-			#		 c=$(xset q | grep "Num Lock" | awk '{print $8}'); printf "NumLock: %-3s\n\n" "$c"; if [ "$c" == 'on' ]; then echo '#f38ba8'; elif [ "$c" == 'off' ]; then echo '#a6e3a1'; else echo "#FF00FF"; fi
-			#	 '';
-			#	 interval = "repeat";
-			#	 min_width = 150;
-			#	 align = "center";
-			# };
 		};
 	};
 }
