@@ -38,6 +38,10 @@
 				# [H]ome rebuild [N]ixos (switch home-manager with the new config)
 				hn = "custom-home-rebuild";
 			};
+			bashrcExtra = ''
+				bind 'set show-all-if-ambiguous on'
+				bind 'TAB:menu-complete'
+			'';
 		};
 
 		oh-my-posh = {

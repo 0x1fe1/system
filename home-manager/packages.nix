@@ -23,6 +23,7 @@
 		# qemu
 		# quickemu
 		clipmenu
+		devenv
 		distrobox
 		fd
 		file
