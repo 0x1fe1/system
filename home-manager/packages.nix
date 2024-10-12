@@ -12,6 +12,7 @@
 		libreoffice
 		obsidian
 		pgmodeler
+		vlc
 		# protonvpn-gui
 		# staruml
 		# vlc
