@@ -92,19 +92,11 @@
 			autoLogin.enable = true;
 			autoLogin.user = "pango";
 		};
-		# desktopManager.plasma6.enable = true;
+		desktopManager.plasma6.enable = true;
 		openssh = {
 			enable = true;
 			settings.PasswordAuthentication = false;
 		};
-		# postgresql = {
-		# 	enable = true;
-		# 	ensureDatabases = [ "trial" "mathmarathon" ];
-		# 	authentication = pkgs.lib.mkOverride 10 ''
-		# 		#type database	DBuser	auth-method
-		# 		local all			 all		 trust
-		# 	'';
-		# };
 		udev.packages = [ pkgs.bazecor ];
 	};
 
