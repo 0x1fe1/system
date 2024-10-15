@@ -24,25 +24,21 @@
 		# qemu
 		# quickemu
 		clipmenu
-		devenv
-		distrobox
 		fd
 		file
 		fossil
 		jq
 		just
 		maim # screenshot
-		man-pages
 		networkmanager
 		networkmanagerapplet
 		ngrok
-		nh # nixos-rebuild wrapper
-		nix-output-monitor
 		playerctl # media
 		tldr
 		universal-ctags
 		wgo
 		xclip
+		rlwrap # allows to use arrows in REPLs
 		xorg.xbacklight # screen brightness
 		xorg.xf86inputsynaptics # touchpad
 
