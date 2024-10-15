@@ -92,7 +92,7 @@
 			autoLogin.enable = true;
 			autoLogin.user = "pango";
 		};
-		desktopManager.plasma6.enable = true;
+		# desktopManager.plasma6.enable = true;
 		openssh = {
 			enable = true;
 			settings.PasswordAuthentication = false;
@@ -131,6 +131,7 @@
 		libgudev
 		linuxHeaders
 		pango
+		raylib
 	];
 
 	# Enable sound with pipewire.
