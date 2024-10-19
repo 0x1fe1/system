@@ -1,23 +1,22 @@
 { pkgs, ... }@inputs: {
 	home.packages = with pkgs; [
 		### big ahh apps
+		# protonvpn-gui
+		# staruml
+		# vlc
+		# vscode
 		bazecor
-		# blender
 		blender-hip
-		# brave
+		brave
 		cool-retro-term
-		floorp
 		firefox
+		floorp
 		gimp
 		kdePackages.kate
 		libreoffice
 		obsidian
 		pgmodeler
 		vlc
-		# protonvpn-gui
-		# staruml
-		# vlc
-		# vscode
 
 		### cli utils
 		# nix-prefetch
@@ -35,11 +34,11 @@
 		networkmanagerapplet
 		ngrok
 		playerctl # media
+		rlwrap # allows to use arrows in REPLs
 		tldr
 		universal-ctags
 		wgo
 		xclip
-		rlwrap # allows to use arrows in REPLs
 		xorg.xbacklight # screen brightness
 		xorg.xf86inputsynaptics # touchpad
 
