@@ -12,7 +12,7 @@
 		firefox
 		floorp
 		gimp
-		kdePackages.kate
+		# kdePackages.kate
 		libreoffice
 		obsidian
 		pgmodeler
