@@ -75,7 +75,12 @@ xsession.windowManager.i3 = {
 			{ notification = false; command = "xrandr --output DisplayPort-0 --mode 3440x1440 --rate 144"; always = true; }
 		];
 
-		floating.modifier = "Mod4";
+		floating = {
+			modifier = "Mod4";
+			criteria = [
+				{ class = "[.]*"; }
+			];
+		};
 
 		fonts = {
 			names = [ "FiraCode" ];
