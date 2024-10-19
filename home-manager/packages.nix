@@ -2,7 +2,8 @@
 	home.packages = with pkgs; [
 		### big ahh apps
 		bazecor
-		blender
+		# blender
+		blender-hip
 		brave
 		cool-retro-term
 		floorp
