@@ -104,7 +104,7 @@
 	programs.steam.enable = true;
 
 	# links /libexec from derivations to /run/current-system/sw
-	environment.pathsToLink = [ "/libexec" ];
+	# environment.pathsToLink = [ "/libexec" ];
 
 	environment.sessionVariables = {
 		FLAKE = "/home/pango/system";

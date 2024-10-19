@@ -4,7 +4,7 @@
 		bazecor
 		# blender
 		blender-hip
-		brave
+		# brave
 		cool-retro-term
 		floorp
 		firefox
