@@ -132,7 +132,7 @@
 		linuxHeaders
 		pango
 		raylib
-		xorg.libX11
+		xorg.libX11.dev
 	];
 
 	# Enable sound with pipewire.
