@@ -1,6 +1,6 @@
 { pkgs, ... }@inputs: {
 	home.packages = with pkgs; [
-		### big ahh apps
+	] ++ [ ### big ahh apps
 		# protonvpn-gui
 		# staruml
 		# vlc
@@ -8,48 +8,33 @@
 		bazecor
 		blender-hip
 		brave
-		cool-retro-term
 		firefox
-		floorp
 		gimp
-		# kdePackages.kate
 		libreoffice
-		obsidian
-		pgmodeler
 		vlc
-
-		### cli utils
-		# nix-prefetch
-		# nix-prefetch-github
-		# qemu
-		# quickemu
+	] ++ [ ### cli utils
 		clipmenu
+		coreutils
 		fd
 		file
 		fossil
 		jq
 		just
-		maim # screenshot
+		moreutils
 		networkmanager
-		networkmanagerapplet
 		ngrok
 		playerctl # media
 		rlwrap # allows to use arrows in REPLs
 		tldr
 		universal-ctags
-		wgo
 		xclip
-		xorg.xbacklight # screen brightness
-		xorg.xf86inputsynaptics # touchpad
-
-		### fonts
+	] ++ [ ### fonts
 		fira-code
 		fg-virgil
 		noto-fonts-monochrome-emoji
 		corefonts
 		(nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
-
-		### hyprland
+	] ++ [ ### window-manager
 		wl-clipboard
 		wlr-randr
 		# dunst
