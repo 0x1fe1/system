@@ -30,7 +30,7 @@
 				sensitivity = -0.25;
 			};
 			bind = [
-				"$mod, Q, exec, kitty"
+				"$mod, Q, exec, wezterm"
 				"$mod, F, exec, firefox"
 				"$mod, d, exec, dmenu_run"
 				"$mod, G, fullscreen"

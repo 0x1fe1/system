@@ -10,6 +10,7 @@ services.picom = {
 		};
 		blur-background-exclude = [
 			"class_g != 'kitty'"
+			"class_g != 'wezterm'"
 		];
 	};
 };
@@ -22,7 +23,7 @@ xsession.windowManager.i3 = {
 	enable = true;
 	config = {
 		modifier = "Mod4";
-		terminal = "kitty";
+		terminal = "wezterm";
 		defaultWorkspace = "workspace number $ws1";
 		bars = [ {
 			colors = {
@@ -83,6 +84,7 @@ xsession.windowManager.i3 = {
 			modifier = "Mod4";
 			criteria = [
 				{ class = "[.]*"; }
+				{ window_role = "pop-up"; }
 			];
 		};
 
@@ -217,8 +219,8 @@ xsession.windowManager.i3 = {
 
 			# important apps
 			"$mod+Shift+e" = "exec --no-startup-id i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
-			"$mod+d" = "exec --no-startup-id dmenu_run";
-			"$mod+Return" = "exec --no-startup-id kitty";
+			"$mod+d" = "exec --no-startup-id rofi -show run";
+			"$mod+Return" = "exec --no-startup-id wezterm";
 
 			# modes or smth
 			"$mod+w" = "floating toggle";
