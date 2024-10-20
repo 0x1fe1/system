@@ -17,6 +17,9 @@ services.picom = {
 
 programs.rofi = {
 	enable = true;
+	terminal = "wezterm";
+	theme = "Arc-Dark";
+	location = "top";
 };
 
 xsession.windowManager.i3 = {
