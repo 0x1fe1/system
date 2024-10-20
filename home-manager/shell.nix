@@ -21,7 +21,7 @@
 				jm = "j ~/mirea"; # Jump to [M]irea
 
 				# [V]im (nvim built with nixvim)
-				v = "nix run ~/neovim";
+				v = "[[ -e ~/neovim/result/bin/nvim ]] && ~/neovim/result/bin/nvim || (pushd ~/neovim && nix build && popd && ~/neovim/result/bin/nvim)";
 				"v." = "v ."; # [V]im [.] open vim in current directory
 
 				# [F]zf [F]unction (the underlying search directories function)
