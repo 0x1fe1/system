@@ -10,6 +10,7 @@
 	boot.initrd.kernelModules = [ "amdgpu" ];
 	boot.kernelModules = [ "kvm-intel" ];
 	boot.extraModulePackages = [ ];
+	boot.kernelPackages = pkgs.linuxPackages_latest;
 
 	fileSystems."/" = {
 		device = "/dev/disk/by-uuid/689e2d15-ffdd-443f-8696-56786fba9865";
