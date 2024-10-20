@@ -6,6 +6,7 @@
 		# vlc
 		# vscode
 		bazecor
+
 		blender-hip
 		brave
 		firefox
