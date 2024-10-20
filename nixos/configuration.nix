@@ -160,6 +160,9 @@
 		#media-session.enable = true;
 	};
 
+	systemd.tmpfiles.rules = [
+		"L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+	];
 
 	system.stateVersion = "24.05";
 }
