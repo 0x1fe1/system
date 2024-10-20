@@ -14,6 +14,10 @@ services.picom = {
 	};
 };
 
+programs.rofi = {
+	enable = true;
+};
+
 xsession.windowManager.i3 = {
 	enable = true;
 	config = {
@@ -217,7 +221,7 @@ xsession.windowManager.i3 = {
 			"$mod+Return" = "exec --no-startup-id kitty";
 
 			# modes or smth
-			"$mod+Shift+w" = "floating toggle";
+			"$mod+w" = "floating toggle";
 			"$mod+e" = "layout toggle split";
 			"$mod+f" = "fullscreen toggle";
 			"$mod+Shift+q" = "kill";
