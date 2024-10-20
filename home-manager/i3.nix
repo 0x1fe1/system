@@ -9,7 +9,7 @@ services.picom = {
 			deviation = 5.0;
 		};
 		blur-background-exclude = [
-			"class_g != 'kitty'"
+			# "class_g != 'kitty'"
 			"class_g != 'wezterm'"
 		];
 	};
@@ -83,7 +83,7 @@ xsession.windowManager.i3 = {
 		floating = {
 			modifier = "Mod4";
 			criteria = [
-				{ class = "[.]*"; }
+				# { class = "[.]*"; }
 				{ window_role = "pop-up"; }
 			];
 		};
