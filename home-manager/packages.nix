@@ -55,11 +55,10 @@
 		(writeShellScriptBin "custom-nvim" ''
 			set -e
 			if [[ -e ~/neovim/result/bin/nvim ]]; then
-				shift
 				~/neovim/result/bin/nvim "$@"
 			else
-				pushd ~/neovim
 				echo "\`nvim\` not found. building..."
+				pushd ~/neovim
 				nix build && echo "build complete." || echo "build failed."
 				popd
 			fi
@@ -68,7 +67,7 @@
 		(writeShellScriptBin "custom-system-edit" ''
 			set -e
 			pushd ~/system
-			nix run ~/neovim .
+			custom-nvim .
 			popd
 		'')
 
