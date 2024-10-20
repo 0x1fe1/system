@@ -29,6 +29,12 @@
 		};
 	};
 
+	xdg.portal = {
+		enable = true;
+		extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+		config.common.default = [ "gtk" ];
+	};
+
 	# Nicely reload system units when changing configs
 	systemd.user.startServices = "sd-switch";
 }
