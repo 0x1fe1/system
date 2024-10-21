@@ -76,6 +76,9 @@
 			"dialout"
 			"gpio"
 		];
+		openssh.authorizedKeys.keys = [
+			"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyFLwmHGcdqVWh3+bQAsX9FITY5LQ0yS/d8nAsQdO37 domkuzaleza@gmail.com"
+		];
 	};
 
 	services = {
