@@ -18,9 +18,10 @@
 			bind = [
 				"$mod, Q, exec, wezterm"
 				"$mod, F, exec, firefox"
-				"$mod, d, exec, dmenu_run"
+				"$mod, D, exec, dmenu_run"
 				"$mod, G, fullscreen"
 				"$mod, C, killactive"
+				"$mod, H, togglefloating"
 				", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 				"$mod SHIFT, right, resizeactive, 10 0"
 				"$mod SHIFT, left, resizeactive, -10 0"

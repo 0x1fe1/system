@@ -1,8 +1,9 @@
-{ pkgs, ... }@inputs: {
+{ inputs, pkgs, ... }@other: {
 	programs = {
 		wezterm = {
 			enable = true;
 			extraConfig = builtins.readFile ./wezterm.lua;
+			package = package = inputs.wezterm.packages.${pkgs.system}.default;
 		};
 
 		kitty = {
