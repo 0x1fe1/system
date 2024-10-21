@@ -22,6 +22,7 @@
 				"$mod, G, fullscreen"
 				"$mod, C, killactive"
 				"$mod, H, togglefloating"
+				"$mod, W, exec, swww img ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"
 				", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 				"$mod SHIFT, right, resizeactive, 10 0"
 				"$mod SHIFT, left, resizeactive, -10 0"
@@ -42,7 +43,7 @@
 			];
 
 			# exec = [ "wlr-randr --output DP-1 --mode 3440x1440@144Hz --adaptive-sync enabled --scale 1.6" ];
-			exec-once = [ "waybar" ];
+			exec-once = [ "waybar" "swww-daemon" ];
 			input = {
 				kb_layout = "us,ru";
 				kb_options = "grp:caps_toggle";
@@ -51,11 +52,11 @@
 				# sensitivity = -0.25;
 			};
 
-			# 	extraConfig = ''
-			# 		decoration:blur:enabled = false
-			# 		decoration:drop_shadow = false
-			# 		misc:vfr = true
-			# 	'';
+			# extraConfig = ''
+			# 	decoration:blur:enabled = false
+			# 	decoration:drop_shadow = false
+			# 	misc:vfr = true
+			# '';
 		};
 	};
 }

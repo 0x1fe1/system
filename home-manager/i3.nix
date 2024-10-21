@@ -77,7 +77,7 @@ xsession.windowManager.i3 = {
 		} ];
 
 		startup = [
-			{ notification = false; command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; }
+			{ notification = false; command = "feh --bg-scale ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; }
 			{ notification = false; command = "picom --config ~/.config/picom/picom.conf"; always = false; }
 			{ notification = false; command = "playerctld daemon"; }
 			{ notification = false; command = "xinput set-prop \"12\" \"libinput Accel Profile Enabled\" 0 1 0"; }
