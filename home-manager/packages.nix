@@ -24,7 +24,7 @@
 		just
 		moreutils
 		networkmanager
-		# ngrok
+		ngrok
 		playerctl # media
 		rlwrap # allows to use arrows in REPLs
 		tldr
@@ -46,13 +46,10 @@
 		# (pkgs.waybar.overrideAttrs (oldAttrs: {
 		#	 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
 		# }))
-		# networkmanagerapplet
-		# rofi-wayland
+		rofi-wayland
 		# tofi
-		dmenu
-		# grim # screenshot functionality
+		# dmenu
 		# slurp # screenshot functionality
-		catppuccin-cursors.mochaDark
 	] ++ [
 		(writeShellScriptBin "custom-nvim" ''
 			set -e

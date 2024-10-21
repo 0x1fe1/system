@@ -36,6 +36,7 @@
 	};
 
 	home.file.".icons/default".source = "${pkgs.banana-cursor}/share/icons/Banana";
+	home.file.".Xresources".text = "Xcursor.theme: default";
 
 	# Nicely reload system units when changing configs
 	systemd.user.startServices = "sd-switch";

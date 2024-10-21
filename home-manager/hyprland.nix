@@ -18,7 +18,7 @@
 			bind = [
 				"$mod, Q, exec, wezterm"
 				"$mod, F, exec, firefox"
-				"$mod, D, exec, dmenu_run"
+				"$mod, D, exec, rofi -show run"
 				"$mod, G, fullscreen"
 				"$mod, C, killactive"
 				"$mod, H, togglefloating"
