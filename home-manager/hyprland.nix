@@ -16,30 +16,36 @@
 			};
 			animations.enabled = false;
 			bind = [
-				"$mod, Q, exec, wezterm"
-				"$mod, F, exec, firefox"
-				"$mod, D, exec, rofi -show run"
-				"$mod, G, fullscreen"
-				"$mod, C, killactive"
-				"$mod, H, togglefloating"
-				"$mod, W, exec, swww img ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"
+				"SUPER, T, exec, wezterm"
+				"SUPER, D, exec, rofi -show run"
+				"SUPER, F, fullscreen"
+				"SUPER, C, killactive"
+				"SUPER SHIFT, Q, togglefloating"
+				"SUPER, W, exec, swww img ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"
 				", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
-				"$mod SHIFT, right, resizeactive, 10 0"
-				"$mod SHIFT, left, resizeactive, -10 0"
-				"$mod SHIFT, up, resizeactive, 0 -10"
-				"$mod SHIFT, down, resizeactive, 0 10"
 			] ++ (
 				# workspaces
-				# binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+				# binds SUPER + [shift +] {1..9} to [move to] workspace {1..9}
 				builtins.concatLists (builtins.genList (i:
 					let ws = i + 1; in [
-					"$mod, code:1${toString i}, workspace, ${toString ws}"
-					"$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+					"SUPER, code:1${toString i}, workspace, ${toString ws}"
+					"SUPER SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
 				]) 9)
 			);
+			binde = [
+				"SUPER ALT, right, resizeactive, 10 0"
+				"SUPER ALT, left, resizeactive, -10 0"
+				"SUPER ALT, up, resizeactive, 0 -10"
+				"SUPER ALT, down, resizeactive, 0 10"
+
+				"SUPER SHIFT, right, movefocus r"
+				"SUPER SHIFT, left, movefocus l"
+				"SUPER SHIFT, up, movefocus u"
+				"SUPER SHIFT, down, movefocus d"
+			];
 			bindm = [
-				"$mod, mouse:272, movewindow"
-				"$mod, mouse:273, resizewindow"
+				"SUPER, mouse:272, movewindow"
+				"SUPER, mouse:273, resizewindow"
 			];
 
 			# exec = [ "wlr-randr --output DP-1 --mode 3440x1440@144Hz --adaptive-sync enabled --scale 1.6" ];
