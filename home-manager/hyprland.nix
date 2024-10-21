@@ -4,6 +4,14 @@
 		settings = {};
 	};
 
+	programs.rofi = {
+		enable = true;
+		terminal = "wezterm";
+		theme = "Arc-Dark";
+		location = "top";
+		package = pkgs.rofi-wayland;
+	};
+
 	wayland.windowManager.hyprland = {
 		enable = true;
 		xwayland.enable = true;
