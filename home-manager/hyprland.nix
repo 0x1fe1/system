@@ -19,9 +19,9 @@
 				"SUPER, T, exec, wezterm"
 				"SUPER, D, exec, rofi -show run"
 				"SUPER, F, fullscreen"
-				"SUPER, C, killactive"
-				"SUPER SHIFT, Q, togglefloating"
-				"SUPER, W, exec, swww img ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"
+				"SUPER SHIFT, Q, killactive"
+				"SUPER, C, togglefloating"
+				"SUPER, W, exec, swww img ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1) --transition-duration=1"
 				", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 			] ++ (
 				# workspaces
@@ -33,15 +33,18 @@
 				]) 9)
 			);
 			binde = [
-				"SUPER ALT, right, resizeactive, 10 0"
-				"SUPER ALT, left, resizeactive, -10 0"
-				"SUPER ALT, up, resizeactive, 0 -10"
-				"SUPER ALT, down, resizeactive, 0 10"
-
-				"SUPER SHIFT, right, movefocus, r"
-				"SUPER SHIFT, left, movefocus, l"
-				"SUPER SHIFT, up, movefocus, u"
-				"SUPER SHIFT, down, movefocus, d"
+				"SUPER, left,		movefocus, l"
+				"SUPER, down,		movefocus, d"
+				"SUPER, up,		movefocus, u"
+				"SUPER, right,		movefocus, r"
+				"SUPER ALT, left,	resizeactive, -10 0"
+				"SUPER ALT, down,	resizeactive, 0 10"
+				"SUPER ALT, up,		resizeactive, 0 -10"
+				"SUPER ALT, right,	resizeactive, 10 0"
+				"SUPER SHIFT, left,	movewindow, l"
+				"SUPER SHIFT, down,	movewindow, d"
+				"SUPER SHIFT, up,	movewindow, u"
+				"SUPER SHIFT, right,	movewindow, r"
 			];
 			bindm = [
 				"SUPER, mouse:272, movewindow"
