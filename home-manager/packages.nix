@@ -47,7 +47,7 @@
 		#	 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
 		# }))
 		# networkmanagerapplet
-		rofi-wayland
+		# rofi-wayland
 		# tofi
 		dmenu
 		# grim # screenshot functionality
