@@ -3,16 +3,18 @@
 	] ++ [ ### big ahh apps
 		# protonvpn-gui
 		# staruml
-		# vlc
 		# vscode
-		bazecor
+		# bazecor
 		blender-hip
 		brave
 		firefox
-		gimp
+		# gimp
 		libreoffice
-		vlc
+		# vlc
+		# postman
+		# pgmodeler
 	] ++ [ ### cli utils
+		acpi
 		clipmenu
 		coreutils
 		fd
@@ -22,7 +24,7 @@
 		just
 		moreutils
 		networkmanager
-		ngrok
+		# ngrok
 		playerctl # media
 		rlwrap # allows to use arrows in REPLs
 		tldr
@@ -45,7 +47,7 @@
 		#	 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
 		# }))
 		# networkmanagerapplet
-		# rofi-wayland
+		rofi-wayland
 		# tofi
 		dmenu
 		# grim # screenshot functionality
@@ -77,9 +79,9 @@
 			set -e
 			pushd ~/system
 			# nh os switch
-			if sudo nixos-rebuild switch --flake .#desktop; then
+			if sudo nixos-rebuild switch --flake .#laptop; then
 				current=$(nixos-rebuild list-generations --no-build-nix | grep current)
-				git add . ; git commit --allow-empty -m "desktop@system: $current"
+				git add . ; git commit --allow-empty -m "laptop@system: $current"
 			fi
 			popd
 		'')
@@ -88,9 +90,9 @@
 			set -e
 			pushd ~/system
 			# nh home switch --configuration=$(hostname)
-			if home-manager switch --flake .#pango@desktop; then
+			if home-manager switch --flake .#pango@laptop; then
 				current=$(nixos-rebuild list-generations --no-build-nix | grep current)
-				git add . ; git commit --allow-empty -m "desktop@home: $current"
+				git add . ; git commit --allow-empty -m "laptop@home: $current"
 			fi
 			popd
 		'')

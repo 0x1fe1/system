@@ -22,9 +22,7 @@
 				device = "nodev";
 				useOSProber = true;
 				efiSupport = true;
-				font = "${
-					pkgs.nerdfonts.override{fonts=["FiraCode"];}
-				}/share/fonts/truetype/NerdFonts/FiraCodeNerdFont-Regular.ttf";
+				font = "${pkgs.iosevka}/share/fonts/truetype/Iosevka-Regular.ttf";
 				fontSize = 36;
 			};
 			efi = {
@@ -34,8 +32,14 @@
 		};
 	};
 
-	networking.hostName = "desktop";
+	networking.hostName = "laptop";
 	networking.networkmanager.enable = true;
+
+	hardware.bluetooth.enable = true;
+	hardware.bluetooth.powerOnBoot = true;
+
+	services.libinput.enable = true; # Enable touchpad support
+	services.power-profiles-daemon.enable = true;
 
 	# Set your time zone.
 	time.timeZone = "Europe/Moscow";
@@ -88,9 +92,7 @@
 		displayManager = {
 			sddm.enable = true;
 			sddm.wayland.enable = true;
-			defaultSession = "none+i3";
-			autoLogin.enable = true;
-			autoLogin.user = "pango";
+			defaultSession = "hyprland";
 		};
 		# desktopManager.plasma6.enable = true;
 		openssh = {
@@ -101,7 +103,6 @@
 	};
 
 	programs.hyprland.enable = true;
-	programs.steam.enable = true;
 
 	# links /libexec from derivations to /run/current-system/sw
 	environment.pathsToLink = [ "/libexec" "/share/xdg-desktop-portal" "/share/applications" ];
@@ -117,23 +118,23 @@
 		git
 	];
 
-	programs.nix-ld.enable = true;
-	programs.nix-ld.libraries = with pkgs; [
-		# Add any missing dynamic libraries for unpackaged programs
-		# here, NOT in environment.systemPackages
-		atk
-		cairo
-		gdk-pixbuf
-		glib
-		glibc
-		gobject-introspection
-		gtk3
-		libgudev
-		linuxHeaders
-		pango
-		raylib
-		xorg.libX11.dev
-	];
+	# programs.nix-ld.enable = true;
+	# programs.nix-ld.libraries = with pkgs; [
+	# 	# Add any missing dynamic libraries for unpackaged programs
+	# 	# here, NOT in environment.systemPackages
+	# 	atk
+	# 	cairo
+	# 	gdk-pixbuf
+	# 	glib
+	# 	glibc
+	# 	gobject-introspection
+	# 	gtk3
+	# 	libgudev
+	# 	linuxHeaders
+	# 	pango
+	# 	raylib
+	# 	xorg.libX11.dev
+	# ];
 
 	# Enable sound with pipewire.
 	hardware.pulseaudio.enable = false;
@@ -151,13 +152,6 @@
 				};
 			};
 		};
-		# If you want to use JACK applications, uncomment this
-		#jack.enable = true;
-
-		# use the example session manager
-		# (no others are packaged yet so this is enabled by default,
-		# no need to redefine it in your config for now)
-		#media-session.enable = true;
 	};
 
 	systemd.tmpfiles.rules = [

@@ -3,8 +3,8 @@
 		./packages.nix
 		./shell.nix
 		./terminals.nix
-		./i3.nix
 		./hyprland.nix
+		# ./i3.nix
 	];
 
 	nixpkgs = {
@@ -25,7 +25,7 @@
 		enable = true;
 		defaultFonts = {
 			emoji = [ "Noto Emoji" ];
-			monospace = [ "Fira Code" ];
+			monospace = [ "Iosevka" ];
 		};
 	};
 

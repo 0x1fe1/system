@@ -1,5 +1,5 @@
 {
-	description = "Pango's desktop NixOS Config";
+	description = "Pango's laptop NixOS Config";
 
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -13,17 +13,17 @@
 		home-manager,
 		...
 	} @ inputs: let inherit (self) outputs; in {
-		# Available through `sudo nixos-rebuild switch --flake .#desktop`
+		# Available through `sudo nixos-rebuild switch --flake .#laptop`
 		nixosConfigurations = {
-			desktop = nixpkgs.lib.nixosSystem {
+			laptop = nixpkgs.lib.nixosSystem {
 				specialArgs = { inherit inputs outputs; };
 				modules = [ ./nixos/configuration.nix ];
 			};
 		};
 
-		# Available through `home-manager switch --flake .#pango@desktop`
+		# Available through `home-manager switch --flake .#pango@laptop`
 		homeConfigurations = {
-			"pango@desktop" = home-manager.lib.homeManagerConfiguration {
+			"pango@laptop" = home-manager.lib.homeManagerConfiguration {
 				pkgs = nixpkgs.legacyPackages.x86_64-linux;
 				extraSpecialArgs = { inherit inputs outputs; };
 				modules = [ ./home-manager/home.nix ];
