@@ -24,7 +24,7 @@
 		just
 		moreutils
 		networkmanager
-		ngrok
+		# ngrok
 		playerctl # media
 		rlwrap # allows to use arrows in REPLs
 		tldr
@@ -46,7 +46,6 @@
 		# (pkgs.waybar.overrideAttrs (oldAttrs: {
 		#	 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
 		# }))
-		rofi-wayland
 		# tofi
 		# dmenu
 		# slurp # screenshot functionality

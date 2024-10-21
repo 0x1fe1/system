@@ -20,6 +20,7 @@ programs.rofi = {
 	terminal = "wezterm";
 	theme = "Arc-Dark";
 	location = "top";
+	package = pkgs.rofi-wayland;
 };
 
 xsession.windowManager.i3 = {
