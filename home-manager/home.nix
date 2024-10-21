@@ -35,6 +35,8 @@
 		config.common.default = [ "gtk" ];
 	};
 
+	home.file.".icons/default".source = "${pkgs.banana-cursor}/share/icons/Banana";
+
 	# Nicely reload system units when changing configs
 	systemd.user.startServices = "sd-switch";
 }
