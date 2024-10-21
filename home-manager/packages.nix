@@ -40,9 +40,9 @@
 	] ++ [ ### window-manager
 		wl-clipboard
 		wlr-randr
+		swww
 		# dunst
 		# libnotify
-		# swww
 		# (pkgs.waybar.overrideAttrs (oldAttrs: {
 		#	 mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
 		# }))

@@ -4,11 +4,6 @@
 		settings = {};
 	};
 
-	services.hyprpaper = {
-		enable = true;
-		settings = {};
-	};
-
 	wayland.windowManager.hyprland = {
 		enable = true;
 		xwayland.enable = true;
