@@ -21,7 +21,7 @@
 				"SUPER, F, fullscreen"
 				"SUPER SHIFT, Q, killactive"
 				"SUPER, C, togglefloating"
-				"SUPER, W, exec, swww img ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1) --transition-duration=1"
+				"SUPER, W, exec, swww img ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1) --transition-type=fade --transition-duration=1"
 				", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 			] ++ (
 				# workspaces
