@@ -38,10 +38,10 @@
 				"SUPER ALT, up, resizeactive, 0 -10"
 				"SUPER ALT, down, resizeactive, 0 10"
 
-				"SUPER SHIFT, right, movefocus r"
-				"SUPER SHIFT, left, movefocus l"
-				"SUPER SHIFT, up, movefocus u"
-				"SUPER SHIFT, down, movefocus d"
+				"SUPER SHIFT, right, movefocus, r"
+				"SUPER SHIFT, left, movefocus, l"
+				"SUPER SHIFT, up, movefocus, u"
+				"SUPER SHIFT, down, movefocus, d"
 			];
 			bindm = [
 				"SUPER, mouse:272, movewindow"
