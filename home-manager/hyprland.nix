@@ -10,8 +10,9 @@
 		settings = {
 			"$mod" = "SUPER";
 			general = {
-				gaps_in = 2;
-				gaps_out = 2;
+				gaps_in = 0;
+				gaps_out = 0;
+				border = 0;
 			};
 			animations.enabled = false;
 			bind = [
