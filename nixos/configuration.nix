@@ -112,7 +112,7 @@
 	environment.sessionVariables = {
 		FLAKE = "/home/pango/system";
 		NIXOS_OZONE_WL = "1";
-		EDITOR = "vim";
+		EDITOR = "$(realpath ~/neovim/result/bin/nvim)";
 	};
 
 	environment.systemPackages = with pkgs; [
