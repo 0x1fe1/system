@@ -1,4 +1,4 @@
-{ pkgs, ... }@inputs: {
+{ inputs, pkgs, ... }@other: {
 	programs = {
 		wezterm = {
 			enable = true;
