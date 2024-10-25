@@ -74,8 +74,8 @@
 			];
 
 			windowrule = [
-				# "windowrule = size 50%, ^(EZE)$"
-				"windowrule = center, ^(EZE)$"
+				# "size 50%, ^(EZE)$"
+				"center, ^(EZE)$"
 			];
 
 			xwayland = {
