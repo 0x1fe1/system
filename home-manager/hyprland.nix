@@ -74,7 +74,7 @@
 			];
 
 			windowrule = [
-				"# windowrule = size 50%, ^(EZE)$"
+				# "windowrule = size 50%, ^(EZE)$"
 				"windowrule = center, ^(EZE)$"
 			];
 
