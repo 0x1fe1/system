@@ -41,18 +41,18 @@
 				]) 9)
 			);
 			binde = [
-				"SUPER, left,		movefocus, l"
-				"SUPER, down,		movefocus, d"
-				"SUPER, up,		movefocus, u"
-				"SUPER, right,		movefocus, r"
-				"SUPER ALT, left,	resizeactive, -10 0"
-				"SUPER ALT, down,	resizeactive, 0 10"
-				"SUPER ALT, up,		resizeactive, 0 -10"
-				"SUPER ALT, right,	resizeactive, 10 0"
-				"SUPER SHIFT, left,	movewindow, l"
-				"SUPER SHIFT, down,	movewindow, d"
-				"SUPER SHIFT, up,	movewindow, u"
-				"SUPER SHIFT, right,	movewindow, r"
+				"SUPER       , left  , movefocus, l"
+				"SUPER       , down  , movefocus, d"
+				"SUPER       , up    , movefocus, u"
+				"SUPER       , right , movefocus, r"
+				"SUPER ALT   , left  , resizeactive, -10 0"
+				"SUPER ALT   , down  , resizeactive, 0 10"
+				"SUPER ALT   , up    , resizeactive, 0 -10"
+				"SUPER ALT   , right , resizeactive, 10 0"
+				"SUPER SHIFT , left  , movewindow, l"
+				"SUPER SHIFT , down  , movewindow, d"
+				"SUPER SHIFT , up    , movewindow, u"
+				"SUPER SHIFT , right , movewindow, r"
 			];
 			bindm = [
 				"SUPER, mouse:272, movewindow"
@@ -69,10 +69,23 @@
 				# sensitivity = -0.25;
 			};
 
+			monitor = [
+				"eDP-1, 2880x1800@90, 0x0, 2"
+			];
+
+			windowrule = [
+				"# windowrule = size 50%, ^(EZE)$"
+				"windowrule = center, ^(EZE)$"
+			];
+
+			xwayland = {
+				  force_zero_scaling = true;
+			};
+
 			# extraConfig = ''
-			# 	decoration:blur:enabled = false
-			# 	decoration:drop_shadow = false
-			# 	misc:vfr = true
+			# 	# decoration:blur:enabled = false
+			# 	# decoration:drop_shadow = false
+			# 	# misc:vfr = true
 			# '';
 		};
 	};
