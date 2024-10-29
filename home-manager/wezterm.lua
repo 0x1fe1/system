@@ -7,7 +7,7 @@ config.color_scheme = "Tokyo Night"
 config.disable_default_key_bindings = true
 config.adjust_window_size_when_changing_font_size = false
 config.warn_about_missing_glyphs = false
-config.window_decorations = "NONE"
+config.window_decorations = "NONE|NONE"
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_max_width = 64
@@ -46,8 +46,8 @@ end
 config.keys = {
 	keymap("o", "CTRL|ALT", wezterm.action.EmitEvent("toggle-opacity")),
 	keymap("f", "CTRL|ALT", wezterm.action.EmitEvent("font-switch")),
-	keymap("h", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Right", size = {Percent = 50}})),
-	keymap("v", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Down", size = {Percent = 50}})),
+	keymap("v", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Right", size = {Percent = 50}})),
+	keymap("h", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Down", size = {Percent = 50}})),
 	keymap("p", "CTRL", wezterm.action.PaneSelect),
 	-- keymap("l", "CTRL|SHIFT", wezterm.action.nop),
 	keymap('Tab', 'CTRL', act.ActivateTabRelative(1)),
@@ -73,14 +73,15 @@ config.keys = {
 	-- 	window:perform_action(act.CopyMode 'ClearPattern', pane)
 	-- 	window:perform_action(act.ActivateCopyMode, pane)
 	-- end)),
-	keymap('LeftArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Left'),
-	keymap('LeftArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Left', 1 }),
+	keymap('LeftArrow',  'SHIFT|CTRL', act.ActivatePaneDirection 'Left'),
 	keymap('RightArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Right'),
+	keymap('UpArrow',    'SHIFT|CTRL', act.ActivatePaneDirection 'Up'),
+	keymap('DownArrow',  'SHIFT|CTRL', act.ActivatePaneDirection 'Down'),
+
+	keymap('LeftArrow',  'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Left', 1 }),
 	keymap('RightArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Right', 1 }),
-	keymap('UpArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Up'),
-	keymap('UpArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Up', 1 }),
-	keymap('DownArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Down'),
-	keymap('DownArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Down', 1 }),
+	keymap('UpArrow',    'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Up', 1 }),
+	keymap('DownArrow',  'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Down', 1 }),
 }
 config.key_tables = {
 	copy_mode = {
