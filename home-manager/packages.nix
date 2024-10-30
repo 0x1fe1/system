@@ -9,6 +9,7 @@
 		brave
 		firefox
 		# gimp
+		godot_4
 		libreoffice
 		# vlc
 		# postman

@@ -46,8 +46,8 @@ end
 config.keys = {
 	keymap("o", "CTRL|ALT", wezterm.action.EmitEvent("toggle-opacity")),
 	keymap("f", "CTRL|ALT", wezterm.action.EmitEvent("font-switch")),
-	keymap("h", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Right", size = {Percent = 50}})),
-	keymap("v", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Down", size = {Percent = 50}})),
+	keymap("v", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Right", size = {Percent = 50}})),
+	keymap("h", "CTRL|SHIFT|ALT", wezterm.action.SplitPane({direction = "Down", size = {Percent = 50}})),
 	keymap("p", "CTRL", wezterm.action.PaneSelect),
 	-- keymap("l", "CTRL|SHIFT", wezterm.action.nop),
 	keymap('Tab', 'CTRL', act.ActivateTabRelative(1)),
@@ -74,12 +74,13 @@ config.keys = {
 	-- 	window:perform_action(act.ActivateCopyMode, pane)
 	-- end)),
 	keymap('LeftArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Left'),
-	keymap('LeftArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Left', 1 }),
 	keymap('RightArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Right'),
-	keymap('RightArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Right', 1 }),
 	keymap('UpArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Up'),
-	keymap('UpArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Up', 1 }),
 	keymap('DownArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Down'),
+
+	keymap('LeftArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Left', 1 }),
+	keymap('RightArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Right', 1 }),
+	keymap('UpArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Up', 1 }),
 	keymap('DownArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Down', 1 }),
 }
 config.key_tables = {
