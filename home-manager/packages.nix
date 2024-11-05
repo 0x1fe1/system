@@ -23,6 +23,7 @@
 		just
 		moreutils
 		networkmanager
+		networkmanagerapplet
 		ngrok
 		playerctl # media
 		rlwrap # allows to use arrows in REPLs
