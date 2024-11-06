@@ -21,6 +21,7 @@
 		fd
 		file
 		fossil
+		sqlite
 		jq
 		just
 		moreutils
