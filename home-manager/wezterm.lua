@@ -73,15 +73,20 @@ config.keys = {
 	-- 	window:perform_action(act.CopyMode 'ClearPattern', pane)
 	-- 	window:perform_action(act.ActivateCopyMode, pane)
 	-- end)),
-	keymap('LeftArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Left'),
+	keymap('LeftArrow',  'SHIFT|CTRL', act.ActivatePaneDirection 'Left'),
 	keymap('RightArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Right'),
-	keymap('UpArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Up'),
-	keymap('DownArrow', 'SHIFT|CTRL', act.ActivatePaneDirection 'Down'),
+	keymap('UpArrow',    'SHIFT|CTRL', act.ActivatePaneDirection 'Up'),
+	keymap('DownArrow',  'SHIFT|CTRL', act.ActivatePaneDirection 'Down'),
 
-	keymap('LeftArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Left', 1 }),
-	keymap('RightArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Right', 1 }),
-	keymap('UpArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Up', 1 }),
-	keymap('DownArrow', 'SHIFT|ALT|CTRL', act.AdjustPaneSize{ 'Down', 1 }),
+	keymap('LeftArrow',  'ALT|CTRL', act.AdjustPaneSize{ 'Left', 1 }),
+	keymap('RightArrow', 'ALT|CTRL', act.AdjustPaneSize{ 'Right', 1 }),
+	keymap('UpArrow',    'ALT|CTRL', act.AdjustPaneSize{ 'Up', 1 }),
+	keymap('DownArrow',  'ALT|CTRL', act.AdjustPaneSize{ 'Down', 1 }),
+
+	keymap('LeftArrow',  'SHIFT|ALT|CTRL', act.RotatePanes 'CounterClockwise'),
+	keymap('RightArrow', 'SHIFT|ALT|CTRL', act.RotatePanes 'Clockwise'),
+	keymap('UpArrow',    'SHIFT|ALT|CTRL', act.RotatePanes 'CounterClockwise'),
+	keymap('DownArrow',  'SHIFT|ALT|CTRL', act.RotatePanes 'Clockwise'),
 }
 config.key_tables = {
 	copy_mode = {
@@ -162,5 +167,19 @@ config.key_tables = {
 		{ key = 'DownArrow', mods = 'NONE', action = act.CopyMode 'NextMatch' },
 	},
 }
+
+config.mouse_bindings = {
+	{
+		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+		mods = 'NONE',
+		action = act.ScrollByLine(-1),
+	},
+	{
+		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+		mods = 'NONE',
+		action = act.ScrollByLine(1),
+	},
+}
+
 
 return config
