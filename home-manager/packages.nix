@@ -25,6 +25,7 @@
 		jq
 		just
 		moreutils
+		man-pages
 		networkmanager
 		# ngrok
 		playerctl # media
