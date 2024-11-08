@@ -102,7 +102,17 @@
 			enable = true;
 			settings.PasswordAuthentication = false;
 		};
-		udev.packages = [ pkgs.bazecor ];
+		udev.packages = [
+			pkgs.bazecor
+			(pkgs.writeTextFile {
+				name = "ECE0206";
+				text = ''
+# Rules for ECE0206
+SUBSYSTEM=="usb", SYSFS{idVendor}=="04b4", SYSFS{idProduct}=="8613", ACTION=="add", GROUP="wheel", MODE="0664"
+				'';
+				destination = "/etc/udev/rules.d/50-ece.rules";
+				})
+		];
 	};
 
 	programs.hyprland.enable = true;
