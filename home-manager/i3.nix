@@ -86,7 +86,7 @@ xsession.windowManager.i3 = {
 		floating = {
 			modifier = "Mod4";
 			criteria = [
-				# { class = "[.]*"; }
+				{ class = "EZE"; }
 				{ window_role = "pop-up"; }
 			];
 		};
