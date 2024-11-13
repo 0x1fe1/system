@@ -20,7 +20,6 @@ programs.rofi = {
 	terminal = "wezterm";
 	theme = "Arc-Dark";
 	location = "top";
-	package = pkgs.rofi-wayland;
 };
 
 xsession.windowManager.i3 = {
@@ -77,17 +76,17 @@ xsession.windowManager.i3 = {
 		} ];
 
 		startup = [
-			{ notification = false; command = "feh --bg-scale ~/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; }
+			{ notification = false; command = "feh --bg-scale $HOME/wallpapers/$(ls ~/wallpapers/ | sort -R | head -1)"; always = true; }
 			{ notification = false; command = "picom --config ~/.config/picom/picom.conf"; always = false; }
 			{ notification = false; command = "playerctld daemon"; }
 			{ notification = false; command = "xinput set-prop \"12\" \"libinput Accel Profile Enabled\" 0 1 0"; }
-			{ notification = false; command = "xrandr --output DisplayPort-0 --mode 3440x1440 --rate 144"; always = true; }
+			{ notification = false; command = "xrandr --output eDP-1 --mode 2880x1880 --rate 90"; always = true; }
 		];
 
 		floating = {
 			modifier = "Mod4";
 			criteria = [
-				# { class = "[.]*"; }
+				{ class = "EZE"; }
 				{ window_role = "pop-up"; }
 			];
 		};
@@ -123,11 +122,11 @@ xsession.windowManager.i3 = {
 			"XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle # mute sound";
 
 			# screen brightness controls
-			# "XF86MonBrightnessUp" = "exec --no-startup-id xbacklight -inc 5 # increase screen brightness";
-			# "XF86MonBrightnessDown" = "exec --no-startup-id xbacklight -dec 5 # decrease screen brightness";
+			"XF86MonBrightnessUp" = "exec --no-startup-id xbacklight -inc 5 # increase screen brightness";
+			"XF86MonBrightnessDown" = "exec --no-startup-id xbacklight -dec 5 # decrease screen brightness";
 
 			# touchpad controls
-			# "XF86TouchpadToggle" = "exec --no-startup-id ~/.config/i3/toggletouchpad.sh # toggle touchpad";
+			"XF86TouchpadToggle" = "exec --no-startup-id ~/.config/i3/toggletouchpad.sh # toggle touchpad";
 
 			# media player controls
 			"XF86AudioPlay" = "exec --no-startup-id playerctl play-pause";
