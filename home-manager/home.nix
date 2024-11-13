@@ -34,9 +34,12 @@
 		extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 		config.common.default = [ "gtk" ];
 	};
-
 	home.file.".icons/default".source = "${pkgs.banana-cursor}/share/icons/Banana";
-	home.file.".Xresources".text = "Xcursor.theme: default";
+	home.file.".Xresources".text = ''
+		*dpi: 150
+		Xft.dpi: 150
+		Xcursor.theme: default
+	'';
 
 	# Nicely reload system units when changing configs
 	systemd.user.startServices = "sd-switch";
