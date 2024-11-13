@@ -33,6 +33,7 @@
 		tldr
 		universal-ctags
 		xclip
+		xorg.xbacklight
 	] ++ [ ### fonts
 		fira-code
 		iosevka

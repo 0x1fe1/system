@@ -92,7 +92,7 @@ xsession.windowManager.i3 = {
 		};
 
 		fonts = {
-			names = [ "FiraCode" ];
+			names = [ "Iosevka" ];
 			style = "Regular";
 			size = 8.0;
 		};
@@ -117,9 +117,9 @@ xsession.windowManager.i3 = {
 			"Ctrl+Print" = "exec --no-startup-id ${pkgs.maim}/bin/maim --format=png --select \"/home/$USER/Pictures/screenshot-$(date -u +'%Y.%m.%d-%H:%M:%S').png\"";
 
 			# pipewire controls
-			"XF86AudioRaiseVolume" = "exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ #increase sound volume";
-			"XF86AudioLowerVolume" = "exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- #decrease sound volume";
-			"XF86AudioMute" = "exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle # mute sound";
+			"XF86AudioRaiseVolume" = "\"exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && pkill -SIGRTMIN+1 i3blocks\"";
+			"XF86AudioLowerVolume" = "\"exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -SIGRTMIN+1 i3blocks\"";
+			"XF86AudioMute" = "\"exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && pkill -SIGRTMIN+1 i3blocks\"";
 
 			# screen brightness controls
 			"XF86MonBrightnessUp" = "exec --no-startup-id xbacklight -inc 5 # increase screen brightness";
@@ -129,10 +129,10 @@ xsession.windowManager.i3 = {
 			"XF86TouchpadToggle" = "exec --no-startup-id ~/.config/i3/toggletouchpad.sh # toggle touchpad";
 
 			# media player controls
-			"XF86AudioPlay" = "exec --no-startup-id playerctl play-pause";
-			"XF86AudioPause" = "exec --no-startup-id playerctl play-pause";
-			"XF86AudioNext" = "exec --no-startup-id playerctl next";
-			"XF86AudioPrev" = "exec --no-startup-id playerctl previous";
+			"XF86AudioPlay"  = "\"exec --no-startup-id playerctl play-pause && pkill -SIGRTMIN+3 i3blocks\"";
+			"XF86AudioPause" = "\"exec --no-startup-id playerctl play-pause && pkill -SIGRTMIN+3 i3blocks\"";
+			"XF86AudioNext"  = "\"exec --no-startup-id playerctl next && pkill -SIGRTMIN+3 i3blocks\"";
+			"XF86AudioPrev"  = "\"exec --no-startup-id playerctl previous && pkill -SIGRTMIN+3 i3blocks\"";
 
 			# workspaces
 			"$mod+1" = "workspace number $ws1";
@@ -199,22 +199,22 @@ xsession.windowManager.i3 = {
 			"$mod+Shift+KP_Insert" = "move container to workspace number $ws0";
 
 			# navigation
-			"$mod+h"	= "focus left";
-			"$mod+j"	= "focus down";
-			"$mod+k"	= "focus up";
-			"$mod+l"	= "focus right";
-			"$mod+Left"	= "focus left";
-			"$mod+Down"	= "focus down";
-			"$mod+Up"	= "focus up";
-			"$mod+Right"	= "focus right";
-			"$mod+Shift+h"		= "move left";
-			"$mod+Shift+j"		= "move down";
-			"$mod+Shift+k"		= "move up";
-			"$mod+Shift+l"		= "move right";
-			"$mod+Shift+Left"	= "move left";
-			"$mod+Shift+Down"	= "move down";
-			"$mod+Shift+Up"		= "move up";
-			"$mod+Shift+Right"	= "move right";
+			"$mod+h"           = "focus left";
+			"$mod+j"           = "focus down";
+			"$mod+k"           = "focus up";
+			"$mod+l"           = "focus right";
+			"$mod+Left"        = "focus left";
+			"$mod+Down"        = "focus down";
+			"$mod+Up"          = "focus up";
+			"$mod+Right"       = "focus right";
+			"$mod+Shift+h"     = "move left";
+			"$mod+Shift+j"     = "move down";
+			"$mod+Shift+k"     = "move up";
+			"$mod+Shift+l"     = "move right";
+			"$mod+Shift+Left"  = "move left";
+			"$mod+Shift+Down"  = "move down";
+			"$mod+Shift+Up"    = "move up";
+			"$mod+Shift+Right" = "move right";
 
 			# i3 reload
 			"$mod+Shift+c" = "reload";
@@ -254,6 +254,7 @@ xsession.windowManager.i3 = {
 		set $ws8 "8"
 		set $ws9 "9"
 		set $ws0 "10"
+		bindsym --release Caps_Lock exec pkill -SIGRTMIN+2 i3blocks
 	'';
 };
 
@@ -262,26 +263,34 @@ programs.i3blocks = {
 	bars.config = {
 		media = {
 			command = /*bash*/'' printf ' ' ; ss=$(playerctl -l); for s in $ss; do a=$(echo "$s" | sed 's/\..*$//') && b=$(playerctl -p "$s" status) && printf " %s: %s " "$a" "$b"; done; printf " \n\n#89b4fa\n" '';
-			interval = "repeat";
+			interval = "once";
+			signal = 3;
 		};
 
 		audio = lib.hm.dag.entryAfter [ "media" ] {
 			command = /*bash*/'' wpctl get-volume @DEFAULT_AUDIO_SINK@ | xargs -d '\n' printf "   %s   \n" '';
-			interval = "repeat";
+			interval = "once";
+			signal = 1;
 		};
 
 		language = lib.hm.dag.entryAfter [ "audio" ] {
 			command = /*bash*/'' l=$(xset -q | grep -A 0 'LED' | cut -c63); printf "   Lang: "; if [ "$l" == '0' ]; then printf 'EN   \n\n#a6e3a1\n'; elif [ "$l" == '1' ]; then printf 'RU   \n\n#f38ba8\n'; else printf "??\n#FF00FF\n"; fi '';
-			interval = "repeat";
+			interval = "once";
+			signal = 2;
 		};
 
 		weather = lib.hm.dag.entryAfter [ "language" ] {
 			command = /*bash*/'' curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo | xargs -d '\n' printf "   %s   \n" '';
-			interval = 3600;
+			interval = 60;
 			color = "#89b4fa";
 		};
 
-		time = lib.hm.dag.entryAfter [ "weather" ] {
+		battery = lib.hm.dag.entryAfter [ "weather" ] {
+			command = "/home/pango/.config/i3blocks/battery.sh";
+			interval = 10;
+		};
+
+		time = lib.hm.dag.entryAfter [ "battery" ] {
 			command = /*bash*/''date +"   %Y/%m/%d   %H:%M:%S   "'';
 			interval = 1;
 		};

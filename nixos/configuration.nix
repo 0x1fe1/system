@@ -40,6 +40,7 @@
 
 	services.libinput.enable = true; # Enable touchpad support
 	services.power-profiles-daemon.enable = true;
+	services.blueman.enable = true;
 
 	# Set your time zone.
 	time.timeZone = "Europe/Moscow";
