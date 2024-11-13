@@ -36,8 +36,8 @@
 	};
 	home.file.".icons/default".source = "${pkgs.banana-cursor}/share/icons/Banana";
 	home.file.".Xresources".text = ''
-		*dpi: 150
-		Xft.dpi: 150
+		*dpi: 200
+		Xft.dpi: 200
 		Xcursor.theme: default
 	'';
 
