@@ -4,7 +4,7 @@
 		./shell.nix
 		./terminals.nix
 		./hyprland.nix
-		# ./i3.nix
+		./i3.nix
 	];
 
 	nixpkgs = {
