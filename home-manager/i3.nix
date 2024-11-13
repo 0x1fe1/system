@@ -87,6 +87,7 @@ xsession.windowManager.i3 = {
 			modifier = "Mod4";
 			criteria = [
 				{ class = "EZE"; }
+				{ class = "FUCKERY"; }
 				{ window_role = "pop-up"; }
 			];
 		};
